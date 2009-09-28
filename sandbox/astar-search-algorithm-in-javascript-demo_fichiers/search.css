@@ -1,0 +1,47 @@
+
+
+#controls {
+	border: 1px dashed;
+	margin-bottom: 10px;
+}
+
+.left {
+	float:left;
+}
+.right {
+	float: right;
+}
+.clear {
+	clear: both;
+	line-height:0px;
+}
+
+#message {
+	color:#f00;
+	font-size:1.2em;
+}
+#search_grid  {
+	width:600px;
+	height:600px;
+	position: relative;
+}
+
+.grid_item {
+	display: block;
+	border: 1px solid #bbb;
+	float: left;
+	line-height:12px;
+	font-size:10px;
+}
+.grid_item.wall {
+	background-color: #9CA69D;
+}
+.grid_item.start {
+	background-color: #FF703F;
+}
+.grid_item.active {
+	background-color: #FF703F;
+}
+.grid_item.finish {
+
+}

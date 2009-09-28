@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg">
+	<head>
+	</head>
+	<body>
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" zoomAndPan="disable">
+
+			<script type="text/ecmascript" xlink:href="game_fichiers/prototype.js"/>			<script type="text/ecmascript" xlink:href="game_fichiers/scriptaculous.js"/>
+			<script type="text/ecmascript" xlink:href="game_fichiers/init.js"/><script type="text/ecmascript" xlink:href="game_fichiers/ground.js"/><script type="text/ecmascript" xlink:href="game_fichiers/player.js"/><script type="text/ecmascript" xlink:href="game_fichiers/hud.js"/>
+<script type="text/ecmascript" xlink:href="game_fichiers/dijkstra.js"/><script type="text/ecmascript" xlink:href="game_fichiers/astar.js"/>
+<!-- HUD -->
+<g id="HUD" style="z-index: 9;">
+	<!-- background -->
+	<rect x="0" y="90%" width="100%" height="10%"/>
+	<rect x="0" y="80%" ry="10" width="20%" height="20%"/>
+
+	<!-- character -->
+	<image x="0" y="81%" width="18%" height="18%" xlink:href="game_fichiers/00Inkscape_skull_corneum.png" image-rendering="optimizeSpeed" style="z-index: 10;"/>
+</g>
+
+<g cells="85" rows="17" id="map" columns="5">
+		<polygon cell_SE="cell_4" stroke="black" points="11.25,19.4856 22.5,38.9711 45,38.9711 56.25,19.4856 45,0 22.5,0" stroke-width="0.01in" cell_S="cell_10" id="cell_0" cell_SW="cell_5" fill="none"/>
+		<polygon cell_SE="cell_5" stroke="black" points="78.75,19.4856 90,38.9711 112.5,38.9711 123.75,19.4856 112.5,0 90,0" stroke-width="0.01in" cell_S="cell_11" id="cell_1" cell_SW="cell_6" fill="none"/>
+		<polygon cell_SE="cell_6" stroke="black" points="146.25,19.4856 157.5,38.9711 180,38.9711 191.25,19.4856 180,0 157.5,0" stroke-width="0.01in" cell_S="cell_12" id="cell_2" cell_SW="cell_7" fill="none"/>
+		<polygon cell_SE="cell_7" stroke="black" points="213.75,19.4856 225,38.9711 247.5,38.9711 258.75,19.4856 247.5,0 225,0" stroke-width="0.01in" cell_S="cell_13" id="cell_3" cell_SW="cell_8" fill="none"/>
+		<polygon cell_SE="cell_8" stroke="black" points="281.25,19.4856 292.5,38.9711 315,38.9711 326.25,19.4856 315,0 292.5,0" cell_NE="cell_0" stroke-width="0.01in" cell_S="cell_14" id="cell_4" cell_SW="cell_9" fill="none"/>
+		<polygon cell_NW="cell_0" cell_SE="cell_9" stroke="black" points="45,38.9711 56.25,58.4567 78.75,58.4567 90,38.9711 78.75,19.4856 56.25,19.4856" cell_NE="cell_1" stroke-width="0.01in" cell_S="cell_15" id="cell_5" cell_SW="cell_10" fill="none"/>
+		<polygon cell_NW="cell_1" cell_SE="cell_10" stroke="black" points="112.5,38.9711 123.75,58.4567 146.25,58.4567 157.5,38.9711 146.25,19.4856 123.75,19.4856" cell_NE="cell_2" stroke-width="0.01in" cell_S="cell_16" id="cell_6" cell_SW="cell_11" fill="none"/>
+		<polygon cell_NW="cell_2" cell_SE="cell_11" stroke="black" points="180,38.9711 191.25,58.4567 213.75,58.4567 225,38.9711 213.75,19.4856 191.25,19.4856" cell_NE="cell_3" stroke-width="0.01in" cell_S="cell_17" id="cell_7" cell_SW="cell_12" fill="none"/>
+		<polygon cell_NW="cell_3" cell_SE="cell_12" stroke="black" points="247.5,38.9711 258.75,58.4567 281.25,58.4567 292.5,38.9711 281.25,19.4856 258.75,19.4856" cell_NE="cell_4" stroke-width="0.01in" cell_S="cell_18" id="cell_8" cell_SW="cell_13" fill="none"/>
+		<polygon cell_NW="cell_4" cell_SE="cell_13" stroke="black" points="315,38.9711 326.25,58.4567 348.75,58.4567 360,38.9711 348.75,19.4856 326.25,19.4856" cell_NE="cell_5" stroke-width="0.01in" cell_S="cell_19" id="cell_9" cell_SW="cell_14" fill="none"/>
+		<polygon cell_N="cell_0" cell_NW="cell_5" cell_SE="cell_14" stroke="black" points="11.25,58.4567 22.5,77.9423 45,77.9423 56.25,58.4567 45,38.9711 22.5,38.9711" cell_NE="cell_6" stroke-width="0.01in" cell_S="cell_20" id="cell_10" cell_SW="cell_15" fill="none"/>
+		<polygon cell_N="cell_1" cell_NW="cell_6" cell_SE="cell_15" stroke="black" points="78.75,58.4567 90,77.9423 112.5,77.9423 123.75,58.4567 112.5,38.9711 90,38.9711" cell_NE="cell_7" stroke-width="0.01in" cell_S="cell_21" id="cell_11" cell_SW="cell_16" fill="none"/>
+		<polygon cell_N="cell_2" cell_NW="cell_7" cell_SE="cell_16" stroke="black" points="146.25,58.4567 157.5,77.9423 180,77.9423 191.25,58.4567 180,38.9711 157.5,38.9711" cell_NE="cell_8" stroke-width="0.01in" cell_S="cell_22" id="cell_12" cell_SW="cell_17" fill="none"/>
+		<polygon cell_N="cell_3" cell_NW="cell_8" cell_SE="cell_17" stroke="black" points="213.75,58.4567 225,77.9423 247.5,77.9423 258.75,58.4567 247.5,38.9711 225,38.9711" cell_NE="cell_9" stroke-width="0.01in" cell_S="cell_23" id="cell_13" cell_SW="cell_18" fill="none"/>
+		<polygon cell_N="cell_4" cell_NW="cell_9" cell_SE="cell_18" stroke="black" points="281.25,58.4567 292.5,77.9423 315,77.9423 326.25,58.4567 315,38.9711 292.5,38.9711" cell_NE="cell_10" stroke-width="0.01in" cell_S="cell_24" id="cell_14" cell_SW="cell_19" fill="none"/>
+		<polygon cell_N="cell_5" cell_NW="cell_10" cell_SE="cell_19" stroke="black" points="45,77.9423 56.25,97.4279 78.75,97.4279 90,77.9423 78.75,58.4567 56.25,58.4567" cell_NE="cell_11" stroke-width="0.01in" cell_S="cell_25" id="cell_15" cell_SW="cell_20" fill="none"/>
+		<polygon cell_N="cell_6" cell_NW="cell_11" cell_SE="cell_20" stroke="black" points="112.5,77.9423 123.75,97.4279 146.25,97.4279 157.5,77.9423 146.25,58.4567 123.75,58.4567" cell_NE="cell_12" stroke-width="0.01in" cell_S="cell_26" id="cell_16" cell_SW="cell_21" fill="none"/>
+		<polygon cell_N="cell_7" cell_NW="cell_12" cell_SE="cell_21" stroke="black" points="180,77.9423 191.25,97.4279 213.75,97.4279 225,77.9423 213.75,58.4567 191.25,58.4567" cell_NE="cell_13" stroke-width="0.01in" cell_S="cell_27" id="cell_17" cell_SW="cell_22" fill="none"/>
+		<polygon cell_N="cell_8" cell_NW="cell_13" cell_SE="cell_22" stroke="black" points="247.5,77.9423 258.75,97.4279 281.25,97.4279 292.5,77.9423 281.25,58.4567 258.75,58.4567" cell_NE="cell_14" stroke-width="0.01in" cell_S="cell_28" id="cell_18" cell_SW="cell_23" fill="none"/>
+		<polygon cell_N="cell_9" cell_NW="cell_14" cell_SE="cell_23" stroke="black" points="315,77.9423 326.25,97.4279 348.75,97.4279 360,77.9423 348.75,58.4567 326.25,58.4567" cell_NE="cell_15" stroke-width="0.01in" cell_S="cell_29" id="cell_19" cell_SW="cell_24" fill="none"/>
+		<polygon cell_N="cell_10" cell_NW="cell_15" cell_SE="cell_24" stroke="black" points="11.25,97.4279 22.5,116.913 45,116.913 56.25,97.4279 45,77.9423 22.5,77.9423" cell_NE="cell_16" stroke-width="0.01in" cell_S="cell_30" id="cell_20" cell_SW="cell_25" fill="none"/>
+		<polygon cell_N="cell_11" cell_NW="cell_16" cell_SE="cell_25" stroke="black" points="78.75,97.4279 90,116.913 112.5,116.913 123.75,97.4279 112.5,77.9423 90,77.9423" cell_NE="cell_17" stroke-width="0.01in" cell_S="cell_31" id="cell_21" cell_SW="cell_26" fill="none"/>
+		<polygon cell_N="cell_12" cell_NW="cell_17" cell_SE="cell_26" stroke="black" points="146.25,97.4279 157.5,116.913 180,116.913 191.25,97.4279 180,77.9423 157.5,77.9423" cell_NE="cell_18" stroke-width="0.01in" cell_S="cell_32" id="cell_22" cell_SW="cell_27" fill="none"/>
+		<polygon cell_N="cell_13" cell_NW="cell_18" cell_SE="cell_27" stroke="black" points="213.75,97.4279 225,116.913 247.5,116.913 258.75,97.4279 247.5,77.9423 225,77.9423" cell_NE="cell_19" stroke-width="0.01in" cell_S="cell_33" id="cell_23" cell_SW="cell_28" fill="none"/>
+		<polygon cell_N="cell_14" cell_NW="cell_19" cell_SE="cell_28" stroke="black" points="281.25,97.4279 292.5,116.913 315,116.913 326.25,97.4279 315,77.9423 292.5,77.9423" cell_NE="cell_20" stroke-width="0.01in" cell_S="cell_34" id="cell_24" cell_SW="cell_29" fill="none"/>
+		<polygon cell_N="cell_15" cell_NW="cell_20" cell_SE="cell_29" stroke="black" points="45,116.913 56.25,136.399 78.75,136.399 90,116.913 78.75,97.4279 56.25,97.4279" cell_NE="cell_21" stroke-width="0.01in" cell_S="cell_35" id="cell_25" cell_SW="cell_30" fill="none"/>
+		<polygon cell_N="cell_16" cell_NW="cell_21" cell_SE="cell_30" stroke="black" points="112.5,116.913 123.75,136.399 146.25,136.399 157.5,116.913 146.25,97.4279 123.75,97.4279" cell_NE="cell_22" stroke-width="0.01in" cell_S="cell_36" id="cell_26" cell_SW="cell_31" fill="none"/>
+		<polygon cell_N="cell_17" cell_NW="cell_22" cell_SE="cell_31" stroke="black" points="180,116.913 191.25,136.399 213.75,136.399 225,116.913 213.75,97.4279 191.25,97.4279" cell_NE="cell_23" stroke-width="0.01in" cell_S="cell_37" id="cell_27" cell_SW="cell_32" fill="none"/>
+		<polygon cell_N="cell_18" cell_NW="cell_23" cell_SE="cell_32" stroke="black" points="247.5,116.913 258.75,136.399 281.25,136.399 292.5,116.913 281.25,97.4279 258.75,97.4279" cell_NE="cell_24" stroke-width="0.01in" cell_S="cell_38" id="cell_28" cell_SW="cell_33" fill="none"/>
+		<polygon cell_N="cell_19" cell_NW="cell_24" cell_SE="cell_33" stroke="black" points="315,116.913 326.25,136.399 348.75,136.399 360,116.913 348.75,97.4279 326.25,97.4279" cell_NE="cell_25" stroke-width="0.01in" cell_S="cell_39" id="cell_29" cell_SW="cell_34" fill="none"/>
+		<polygon cell_N="cell_20" cell_NW="cell_25" cell_SE="cell_34" stroke="black" points="11.25,136.399 22.5,155.885 45,155.885 56.25,136.399 45,116.913 22.5,116.913" cell_NE="cell_26" stroke-width="0.01in" cell_S="cell_40" id="cell_30" cell_SW="cell_35" fill="none"/>
+		<polygon cell_N="cell_21" cell_NW="cell_26" cell_SE="cell_35" stroke="black" points="78.75,136.399 90,155.885 112.5,155.885 123.75,136.399 112.5,116.913 90,116.913" cell_NE="cell_27" stroke-width="0.01in" cell_S="cell_41" id="cell_31" cell_SW="cell_36" fill="none"/>
+		<polygon cell_N="cell_22" cell_NW="cell_27" cell_SE="cell_36" stroke="black" points="146.25,136.399 157.5,155.885 180,155.885 191.25,136.399 180,116.913 157.5,116.913" cell_NE="cell_28" stroke-width="0.01in" cell_S="cell_42" id="cell_32" cell_SW="cell_37" fill="none"/>
+		<polygon cell_N="cell_23" cell_NW="cell_28" cell_SE="cell_37" stroke="black" points="213.75,136.399 225,155.885 247.5,155.885 258.75,136.399 247.5,116.913 225,116.913" cell_NE="cell_29" stroke-width="0.01in" cell_S="cell_43" id="cell_33" cell_SW="cell_38" fill="none"/>
+		<polygon cell_N="cell_24" cell_NW="cell_29" cell_SE="cell_38" stroke="black" points="281.25,136.399 292.5,155.885 315,155.885 326.25,136.399 315,116.913 292.5,116.913" cell_NE="cell_30" stroke-width="0.01in" cell_S="cell_44" id="cell_34" cell_SW="cell_39" fill="none"/>
+		<polygon cell_N="cell_25" cell_NW="cell_30" cell_SE="cell_39" stroke="black" points="45,155.885 56.25,175.37 78.75,175.37 90,155.885 78.75,136.399 56.25,136.399" cell_NE="cell_31" stroke-width="0.01in" cell_S="cell_45" id="cell_35" cell_SW="cell_40" fill="none"/>
+		<polygon cell_N="cell_26" cell_NW="cell_31" cell_SE="cell_40" stroke="black" points="112.5,155.885 123.75,175.37 146.25,175.37 157.5,155.885 146.25,136.399 123.75,136.399" cell_NE="cell_32" stroke-width="0.01in" cell_S="cell_46" id="cell_36" cell_SW="cell_41" fill="none"/>
+		<polygon cell_N="cell_27" cell_NW="cell_32" cell_SE="cell_41" stroke="black" points="180,155.885 191.25,175.37 213.75,175.37 225,155.885 213.75,136.399 191.25,136.399" cell_NE="cell_33" stroke-width="0.01in" cell_S="cell_47" id="cell_37" cell_SW="cell_42" fill="none"/>
+		<polygon cell_N="cell_28" cell_NW="cell_33" cell_SE="cell_42" stroke="black" points="247.5,155.885 258.75,175.37 281.25,175.37 292.5,155.885 281.25,136.399 258.75,136.399" cell_NE="cell_34" stroke-width="0.01in" cell_S="cell_48" id="cell_38" cell_SW="cell_43" fill="none"/>
+		<polygon cell_N="cell_29" cell_NW="cell_34" cell_SE="cell_43" stroke="black" points="315,155.885 326.25,175.37 348.75,175.37 360,155.885 348.75,136.399 326.25,136.399" cell_NE="cell_35" stroke-width="0.01in" cell_S="cell_49" id="cell_39" cell_SW="cell_44" fill="none"/>
+		<polygon cell_N="cell_30" cell_NW="cell_35" cell_SE="cell_44" stroke="black" points="11.25,175.37 22.5,194.856 45,194.856 56.25,175.37 45,155.885 22.5,155.885" cell_NE="cell_36" stroke-width="0.01in" cell_S="cell_50" id="cell_40" cell_SW="cell_45" fill="none"/>
+		<polygon cell_N="cell_31" cell_NW="cell_36" cell_SE="cell_45" stroke="black" points="78.75,175.37 90,194.856 112.5,194.856 123.75,175.37 112.5,155.885 90,155.885" cell_NE="cell_37" stroke-width="0.01in" cell_S="cell_51" id="cell_41" cell_SW="cell_46" fill="none"/>
+		<polygon cell_N="cell_32" cell_NW="cell_37" cell_SE="cell_46" stroke="black" points="146.25,175.37 157.5,194.856 180,194.856 191.25,175.37 180,155.885 157.5,155.885" cell_NE="cell_38" stroke-width="0.01in" cell_S="cell_52" id="cell_42" cell_SW="cell_47" fill="none"/>
+		<polygon cell_N="cell_33" cell_NW="cell_38" cell_SE="cell_47" stroke="black" points="213.75,175.37 225,194.856 247.5,194.856 258.75,175.37 247.5,155.885 225,155.885" cell_NE="cell_39" stroke-width="0.01in" cell_S="cell_53" id="cell_43" cell_SW="cell_48" fill="none"/>
+		<polygon cell_N="cell_34" cell_NW="cell_39" cell_SE="cell_48" stroke="black" points="281.25,175.37 292.5,194.856 315,194.856 326.25,175.37 315,155.885 292.5,155.885" cell_NE="cell_40" stroke-width="0.01in" cell_S="cell_54" id="cell_44" cell_SW="cell_49" fill="none"/>
+		<polygon cell_N="cell_35" cell_NW="cell_40" cell_SE="cell_49" stroke="black" points="45,194.856 56.25,214.341 78.75,214.341 90,194.856 78.75,175.37 56.25,175.37" cell_NE="cell_41" stroke-width="0.01in" cell_S="cell_55" id="cell_45" cell_SW="cell_50" fill="none"/>
+		<polygon cell_N="cell_36" cell_NW="cell_41" cell_SE="cell_50" stroke="black" points="112.5,194.856 123.75,214.341 146.25,214.341 157.5,194.856 146.25,175.37 123.75,175.37" cell_NE="cell_42" stroke-width="0.01in" cell_S="cell_56" id="cell_46" cell_SW="cell_51" fill="none"/>
+		<polygon cell_N="cell_37" cell_NW="cell_42" cell_SE="cell_51" stroke="black" points="180,194.856 191.25,214.341 213.75,214.341 225,194.856 213.75,175.37 191.25,175.37" cell_NE="cell_43" stroke-width="0.01in" cell_S="cell_57" id="cell_47" cell_SW="cell_52" fill="none"/>
+		<polygon cell_N="cell_38" cell_NW="cell_43" cell_SE="cell_52" stroke="black" points="247.5,194.856 258.75,214.341 281.25,214.341 292.5,194.856 281.25,175.37 258.75,175.37" cell_NE="cell_44" stroke-width="0.01in" cell_S="cell_58" id="cell_48" cell_SW="cell_53" fill="none"/>
+		<polygon cell_N="cell_39" cell_NW="cell_44" cell_SE="cell_53" stroke="black" points="315,194.856 326.25,214.341 348.75,214.341 360,194.856 348.75,175.37 326.25,175.37" cell_NE="cell_45" stroke-width="0.01in" cell_S="cell_59" id="cell_49" cell_SW="cell_54" fill="none"/>
+		<polygon cell_N="cell_40" cell_NW="cell_45" cell_SE="cell_54" stroke="black" points="11.25,214.341 22.5,233.827 45,233.827 56.25,214.341 45,194.856 22.5,194.856" cell_NE="cell_46" stroke-width="0.01in" cell_S="cell_60" id="cell_50" cell_SW="cell_55" fill="none"/>
+		<polygon cell_N="cell_41" cell_NW="cell_46" cell_SE="cell_55" stroke="black" points="78.75,214.341 90,233.827 112.5,233.827 123.75,214.341 112.5,194.856 90,194.856" cell_NE="cell_47" stroke-width="0.01in" cell_S="cell_61" id="cell_51" cell_SW="cell_56" fill="none"/>
+		<polygon cell_N="cell_42" cell_NW="cell_47" cell_SE="cell_56" stroke="black" points="146.25,214.341 157.5,233.827 180,233.827 191.25,214.341 180,194.856 157.5,194.856" cell_NE="cell_48" stroke-width="0.01in" cell_S="cell_62" id="cell_52" cell_SW="cell_57" fill="none"/>
+		<polygon cell_N="cell_43" cell_NW="cell_48" cell_SE="cell_57" stroke="black" points="213.75,214.341 225,233.827 247.5,233.827 258.75,214.341 247.5,194.856 225,194.856" cell_NE="cell_49" stroke-width="0.01in" cell_S="cell_63" id="cell_53" cell_SW="cell_58" fill="none"/>
+		<polygon cell_N="cell_44" cell_NW="cell_49" cell_SE="cell_58" stroke="black" points="281.25,214.341 292.5,233.827 315,233.827 326.25,214.341 315,194.856 292.5,194.856" cell_NE="cell_50" stroke-width="0.01in" cell_S="cell_64" id="cell_54" cell_SW="cell_59" fill="none"/>
+		<polygon cell_N="cell_45" cell_NW="cell_50" cell_SE="cell_59" stroke="black" points="45,233.827 56.25,253.312 78.75,253.312 90,233.827 78.75,214.341 56.25,214.341" cell_NE="cell_51" stroke-width="0.01in" cell_S="cell_65" id="cell_55" cell_SW="cell_60" fill="none"/>
+		<polygon cell_N="cell_46" cell_NW="cell_51" cell_SE="cell_60" stroke="black" points="112.5,233.827 123.75,253.312 146.25,253.312 157.5,233.827 146.25,214.341 123.75,214.341" cell_NE="cell_52" stroke-width="0.01in" cell_S="cell_66" id="cell_56" cell_SW="cell_61" fill="none"/>
+		<polygon cell_N="cell_47" cell_NW="cell_52" cell_SE="cell_61" stroke="black" points="180,233.827 191.25,253.312 213.75,253.312 225,233.827 213.75,214.341 191.25,214.341" cell_NE="cell_53" stroke-width="0.01in" cell_S="cell_67" id="cell_57" cell_SW="cell_62" fill="none"/>
+		<polygon cell_N="cell_48" cell_NW="cell_53" cell_SE="cell_62" stroke="black" points="247.5,233.827 258.75,253.312 281.25,253.312 292.5,233.827 281.25,214.341 258.75,214.341" cell_NE="cell_54" stroke-width="0.01in" cell_S="cell_68" id="cell_58" cell_SW="cell_63" fill="none"/>
+		<polygon cell_N="cell_49" cell_NW="cell_54" cell_SE="cell_63" stroke="black" points="315,233.827 326.25,253.312 348.75,253.312 360,233.827 348.75,214.341 326.25,214.341" cell_NE="cell_55" stroke-width="0.01in" cell_S="cell_69" id="cell_59" cell_SW="cell_64" fill="none"/>
+		<polygon cell_N="cell_50" cell_NW="cell_55" cell_SE="cell_64" stroke="black" points="11.25,253.312 22.5,272.798 45,272.798 56.25,253.312 45,233.827 22.5,233.827" cell_NE="cell_56" stroke-width="0.01in" cell_S="cell_70" id="cell_60" cell_SW="cell_65" fill="none"/>
+		<polygon cell_N="cell_51" cell_NW="cell_56" cell_SE="cell_65" stroke="black" points="78.75,253.312 90,272.798 112.5,272.798 123.75,253.312 112.5,233.827 90,233.827" cell_NE="cell_57" stroke-width="0.01in" cell_S="cell_71" id="cell_61" cell_SW="cell_66" fill="none"/>
+		<polygon cell_N="cell_52" cell_NW="cell_57" cell_SE="cell_66" stroke="black" points="146.25,253.312 157.5,272.798 180,272.798 191.25,253.312 180,233.827 157.5,233.827" cell_NE="cell_58" stroke-width="0.01in" cell_S="cell_72" id="cell_62" cell_SW="cell_67" fill="none"/>
+		<polygon cell_N="cell_53" cell_NW="cell_58" cell_SE="cell_67" stroke="black" points="213.75,253.312 225,272.798 247.5,272.798 258.75,253.312 247.5,233.827 225,233.827" cell_NE="cell_59" stroke-width="0.01in" cell_S="cell_73" id="cell_63" cell_SW="cell_68" fill="none"/>
+		<polygon cell_N="cell_54" cell_NW="cell_59" cell_SE="cell_68" stroke="black" points="281.25,253.312 292.5,272.798 315,272.798 326.25,253.312 315,233.827 292.5,233.827" cell_NE="cell_60" stroke-width="0.01in" cell_S="cell_74" id="cell_64" cell_SW="cell_69" fill="none"/>
+		<polygon cell_N="cell_55" cell_NW="cell_60" cell_SE="cell_69" stroke="black" points="45,272.798 56.25,292.284 78.75,292.284 90,272.798 78.75,253.312 56.25,253.312" cell_NE="cell_61" stroke-width="0.01in" cell_S="cell_75" id="cell_65" cell_SW="cell_70" fill="none"/>
+		<polygon cell_N="cell_56" cell_NW="cell_61" cell_SE="cell_70" stroke="black" points="112.5,272.798 123.75,292.284 146.25,292.284 157.5,272.798 146.25,253.312 123.75,253.312" cell_NE="cell_62" stroke-width="0.01in" cell_S="cell_76" id="cell_66" cell_SW="cell_71" fill="none"/>
+		<polygon cell_N="cell_57" cell_NW="cell_62" cell_SE="cell_71" stroke="black" points="180,272.798 191.25,292.284 213.75,292.284 225,272.798 213.75,253.312 191.25,253.312" cell_NE="cell_63" stroke-width="0.01in" cell_S="cell_77" id="cell_67" cell_SW="cell_72" fill="none"/>
+		<polygon cell_N="cell_58" cell_NW="cell_63" cell_SE="cell_72" stroke="black" points="247.5,272.798 258.75,292.284 281.25,292.284 292.5,272.798 281.25,253.312 258.75,253.312" cell_NE="cell_64" stroke-width="0.01in" cell_S="cell_78" id="cell_68" cell_SW="cell_73" fill="none"/>
+		<polygon cell_N="cell_59" cell_NW="cell_64" cell_SE="cell_73" stroke="black" points="315,272.798 326.25,292.284 348.75,292.284 360,272.798 348.75,253.312 326.25,253.312" cell_NE="cell_65" stroke-width="0.01in" cell_S="cell_79" id="cell_69" cell_SW="cell_74" fill="none"/>
+		<polygon cell_N="cell_60" cell_NW="cell_65" cell_SE="cell_74" stroke="black" points="11.25,292.284 22.5,311.769 45,311.769 56.25,292.284 45,272.798 22.5,272.798" cell_NE="cell_66" stroke-width="0.01in" cell_S="cell_80" id="cell_70" cell_SW="cell_75" fill="none"/>
+		<polygon cell_N="cell_61" cell_NW="cell_66" cell_SE="cell_75" stroke="black" points="78.75,292.284 90,311.769 112.5,311.769 123.75,292.284 112.5,272.798 90,272.798" cell_NE="cell_67" stroke-width="0.01in" cell_S="cell_81" id="cell_71" cell_SW="cell_76" fill="none"/>
+		<polygon cell_N="cell_62" cell_NW="cell_67" cell_SE="cell_76" stroke="black" points="146.25,292.284 157.5,311.769 180,311.769 191.25,292.284 180,272.798 157.5,272.798" cell_NE="cell_68" stroke-width="0.01in" cell_S="cell_82" id="cell_72" cell_SW="cell_77" fill="none"/>
+		<polygon cell_N="cell_63" cell_NW="cell_68" cell_SE="cell_77" stroke="black" points="213.75,292.284 225,311.769 247.5,311.769 258.75,292.284 247.5,272.798 225,272.798" cell_NE="cell_69" stroke-width="0.01in" cell_S="cell_83" id="cell_73" cell_SW="cell_78" fill="none"/>
+		<polygon cell_N="cell_64" cell_NW="cell_69" cell_SE="cell_78" stroke="black" points="281.25,292.284 292.5,311.769 315,311.769 326.25,292.284 315,272.798 292.5,272.798" cell_NE="cell_70" stroke-width="0.01in" cell_S="cell_84" id="cell_74" cell_SW="cell_79" fill="none"/>
+		<polygon cell_N="cell_65" cell_NW="cell_70" cell_SE="cell_79" stroke="black" points="45,311.769 56.25,331.255 78.75,331.255 90,311.769 78.75,292.284 56.25,292.284" cell_NE="cell_71" stroke-width="0.01in" cell_S="cell_85" id="cell_75" cell_SW="cell_80" fill="none"/>
+		<polygon cell_N="cell_66" cell_NW="cell_71" cell_SE="cell_80" stroke="black" points="112.5,311.769 123.75,331.255 146.25,331.255 157.5,311.769 146.25,292.284 123.75,292.284" cell_NE="cell_72" stroke-width="0.01in" cell_S="cell_86" id="cell_76" cell_SW="cell_81" fill="none"/>
+		<polygon cell_N="cell_67" cell_NW="cell_72" cell_SE="cell_81" stroke="black" points="180,311.769 191.25,331.255 213.75,331.255 225,311.769 213.75,292.284 191.25,292.284" cell_NE="cell_73" stroke-width="0.01in" cell_S="cell_87" id="cell_77" cell_SW="cell_82" fill="none"/>
+		<polygon cell_N="cell_68" cell_NW="cell_73" cell_SE="cell_82" stroke="black" points="247.5,311.769 258.75,331.255 281.25,331.255 292.5,311.769 281.25,292.284 258.75,292.284" cell_NE="cell_74" stroke-width="0.01in" cell_S="cell_88" id="cell_78" cell_SW="cell_83" fill="none"/>
+		<polygon cell_N="cell_69" cell_NW="cell_74" cell_SE="cell_83" stroke="black" points="315,311.769 326.25,331.255 348.75,331.255 360,311.769 348.75,292.284 326.25,292.284" cell_NE="cell_75" stroke-width="0.01in" cell_S="cell_89" id="cell_79" cell_SW="cell_84" fill="none"/>
+		<polygon cell_N="cell_70" cell_NW="cell_75" cell_SE="cell_84" stroke="black" points="11.25,331.255 22.5,350.74 45,350.74 56.25,331.255 45,311.769 22.5,311.769" cell_NE="cell_76" stroke-width="0.01in" cell_S="cell_90" id="cell_80" cell_SW="cell_85" fill="none"/>
+		<polygon cell_N="cell_71" cell_NW="cell_76" cell_SE="cell_85" stroke="black" points="78.75,331.255 90,350.74 112.5,350.74 123.75,331.255 112.5,311.769 90,311.769" cell_NE="cell_77" stroke-width="0.01in" cell_S="cell_91" id="cell_81" cell_SW="cell_86" fill="none"/>
+		<polygon cell_N="cell_72" cell_NW="cell_77" cell_SE="cell_86" stroke="black" points="146.25,331.255 157.5,350.74 180,350.74 191.25,331.255 180,311.769 157.5,311.769" cell_NE="cell_78" stroke-width="0.01in" cell_S="cell_92" id="cell_82" cell_SW="cell_87" fill="none"/>
+		<polygon cell_N="cell_73" cell_NW="cell_78" cell_SE="cell_87" stroke="black" points="213.75,331.255 225,350.74 247.5,350.74 258.75,331.255 247.5,311.769 225,311.769" cell_NE="cell_79" stroke-width="0.01in" cell_S="cell_93" id="cell_83" cell_SW="cell_88" fill="none"/>
+		<polygon cell_N="cell_74" cell_NW="cell_79" cell_SE="cell_88" stroke="black" points="281.25,331.255 292.5,350.74 315,350.74 326.25,331.255 315,311.769 292.5,311.769" cell_NE="cell_80" stroke-width="0.01in" cell_S="cell_94" id="cell_84" cell_SW="cell_89" fill="none"/>
+	</g>
+<script>
+	//mapPoints = ;
+
+	var grid = [[{"id":"cell_0","pos":{"x":0,"y":0}},{"id":"cell_1","pos":{"x":0,"y":1}},{"id":"cell_2","pos":{"x":0,"y":2}},{"id":"cell_3","pos":{"x":0,"y":3}},{"id":"cell_4","pos":{"x":0,"y":4}}],[{"id":"cell_5","pos":{"x":1,"y":0}},{"id":"cell_6","pos":{"x":1,"y":1}},{"id":"cell_7","pos":{"x":1,"y":2}},{"id":"cell_8","pos":{"x":1,"y":3}},{"id":"cell_9","pos":{"x":1,"y":4}}],[{"id":"cell_10","pos":{"x":2,"y":0}},{"id":"cell_11","pos":{"x":2,"y":1}},{"id":"cell_12","pos":{"x":2,"y":2}},{"id":"cell_13","pos":{"x":2,"y":3}},{"id":"cell_14","pos":{"x":2,"y":4}}],[{"id":"cell_15","pos":{"x":3,"y":0}},{"id":"cell_16","pos":{"x":3,"y":1}},{"id":"cell_17","pos":{"x":3,"y":2}},{"id":"cell_18","pos":{"x":3,"y":3}},{"id":"cell_19","pos":{"x":3,"y":4}}],[{"id":"cell_20","pos":{"x":4,"y":0}},{"id":"cell_21","pos":{"x":4,"y":1}},{"id":"cell_22","pos":{"x":4,"y":2}},{"id":"cell_23","pos":{"x":4,"y":3}},{"id":"cell_24","pos":{"x":4,"y":4}}],[{"id":"cell_25","pos":{"x":5,"y":0}},{"id":"cell_26","pos":{"x":5,"y":1}},{"id":"cell_27","pos":{"x":5,"y":2}},{"id":"cell_28","pos":{"x":5,"y":3}},{"id":"cell_29","pos":{"x":5,"y":4}}],[{"id":"cell_30","pos":{"x":6,"y":0}},{"id":"cell_31","pos":{"x":6,"y":1}},{"id":"cell_32","pos":{"x":6,"y":2}},{"id":"cell_33","pos":{"x":6,"y":3}},{"id":"cell_34","pos":{"x":6,"y":4}}],[{"id":"cell_35","pos":{"x":7,"y":0}},{"id":"cell_36","pos":{"x":7,"y":1}},{"id":"cell_37","pos":{"x":7,"y":2}},{"id":"cell_38","pos":{"x":7,"y":3}},{"id":"cell_39","pos":{"x":7,"y":4}}],[{"id":"cell_40","pos":{"x":8,"y":0}},{"id":"cell_41","pos":{"x":8,"y":1}},{"id":"cell_42","pos":{"x":8,"y":2}},{"id":"cell_43","pos":{"x":8,"y":3}},{"id":"cell_44","pos":{"x":8,"y":4}}],[{"id":"cell_45","pos":{"x":9,"y":0}},{"id":"cell_46","pos":{"x":9,"y":1}},{"id":"cell_47","pos":{"x":9,"y":2}},{"id":"cell_48","pos":{"x":9,"y":3}},{"id":"cell_49","pos":{"x":9,"y":4}}],[{"id":"cell_50","pos":{"x":10,"y":0}},{"id":"cell_51","pos":{"x":10,"y":1}},{"id":"cell_52","pos":{"x":10,"y":2}},{"id":"cell_53","pos":{"x":10,"y":3}},{"id":"cell_54","pos":{"x":10,"y":4}}],[{"id":"cell_55","pos":{"x":11,"y":0}},{"id":"cell_56","pos":{"x":11,"y":1}},{"id":"cell_57","pos":{"x":11,"y":2}},{"id":"cell_58","pos":{"x":11,"y":3}},{"id":"cell_59","pos":{"x":11,"y":4}}],[{"id":"cell_60","pos":{"x":12,"y":0}},{"id":"cell_61","pos":{"x":12,"y":1}},{"id":"cell_62","pos":{"x":12,"y":2}},{"id":"cell_63","pos":{"x":12,"y":3}},{"id":"cell_64","pos":{"x":12,"y":4}}],[{"id":"cell_65","pos":{"x":13,"y":0}},{"id":"cell_66","pos":{"x":13,"y":1}},{"id":"cell_67","pos":{"x":13,"y":2}},{"id":"cell_68","pos":{"x":13,"y":3}},{"id":"cell_69","pos":{"x":13,"y":4}}],[{"id":"cell_70","pos":{"x":14,"y":0}},{"id":"cell_71","pos":{"x":14,"y":1}},{"id":"cell_72","pos":{"x":14,"y":2}},{"id":"cell_73","pos":{"x":14,"y":3}},{"id":"cell_74","pos":{"x":14,"y":4}}],[{"id":"cell_75","pos":{"x":15,"y":0}},{"id":"cell_76","pos":{"x":15,"y":1}},{"id":"cell_77","pos":{"x":15,"y":2}},{"id":"cell_78","pos":{"x":15,"y":3}},{"id":"cell_79","pos":{"x":15,"y":4}}],[{"id":"cell_80","pos":{"x":16,"y":0}},{"id":"cell_81","pos":{"x":16,"y":1}},{"id":"cell_82","pos":{"x":16,"y":2}},{"id":"cell_83","pos":{"x":16,"y":3}},{"id":"cell_84","pos":{"x":16,"y":4}}]];
+
+	// var path = astar.search( grid, grid[2][1], grid[4][4] );
+	// console.log('path found : %o', path);
+
+	var last_path = [ grid[0][0] ];
+
+	$('cell_0').addEventListener('click', function(){
+			console.log('mlk');
+			clear_path(grid);
+			last_path = astar.search( grid, last_path.last(), grid.findGraphNodeById(this.id) );
+		}, false);
+	//});
+
+	function clear_path(path) {
+		path.each(function(e){
+			e = $(e.id)
+			e.setAttribute('fill', '');
+		});
+	}
+	function highlight_path(path) {
+		path.each(function(e){
+			e = $(e.id)
+			e.setAttribute('fill', 'red');
+		});
+	}
+
+</script>		</svg>
+	</body><div id="_firebugConsole" style="display: none;" FirebugVersion="1.4X.2"/>
+</html>

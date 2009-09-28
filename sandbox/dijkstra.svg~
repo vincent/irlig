@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  shortest-path.svg
+
+  Demonstration of Dijkstra's shortest path algorithm.
+
+  Cameron McCormack <cam (at) mcc.id.au>
+
+  Permission is hereby granted to use, copy, modify and distribute this
+  code for any purpose, without fee.
+
+  Revision 1: July 26, 2006
+    Changes from Andreas Neumann to get it working in Firefox and Opera.
+
+  Initial version: December 13, 2004
+  -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 600" onload="init()">
+
+  <title id="title">Demonstration of Dijkstra's shortest path algorithm</title>
+
+  <script type="text/ecmascript" xlink:href="dijkstra_fichiers/dijkstra.js"/><html:div xmlns:html="http://www.w3.org/1999/xhtml" id="_firebugConsole" style="display: none;" FirebugVersion="1.4X.2"/>
+  <script type="text/ecmascript"><![CDATA[
+    var NUMBER_NODES = 20;
+    var NUMBER_EDGES = 40;
+
+    var SVG_NAMESPACE_URI = "http://www.w3.org/2000/svg";
+
+    var nodes = new Array();
+    var adjacencyMatrix = new Array(NUMBER_NODES);
+
+    function init() {
+      // Create randomly positioned nodes
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        var newNode = { };
+        var again;
+        do {
+          again = false;
+          newNode.x = 700 * Math.random() + 50;
+          newNode.y = 470 * Math.random() + 80;
+          // Make sure they aren't too close together
+          for (var j = 0; j < i; j++) {
+            var dx = newNode.x - nodes[j].x;
+            var dy = newNode.y - nodes[j].y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 45) {
+              again = true;
+              break;
+            }
+          }
+        } while (again);
+        nodes.push(newNode);
+      }
+  
+      // Initialize an adjacency matrix
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        adjacencyMatrix[i] = new Array(NUMBER_NODES);
+        for (var j = 0; j < NUMBER_NODES; j++) {
+          adjacencyMatrix[i][j] = Infinity;
+        }
+      }
+  
+      // Create some edges and add them to the document
+      for (var j = 0; j < NUMBER_EDGES; j++) {
+        var from = j % NUMBER_NODES;
+        var min = Infinity;
+        var to = from;
+        for (var i = 0; i < NUMBER_NODES; i++) {
+          if (from != i && adjacencyMatrix[from][i] == Infinity) {
+            var dx = nodes[from].x - nodes[i].x;
+            var dy = nodes[from].y - nodes[i].y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < min) {
+              min = distance;
+              to = i;
+            }
+          }
+        }
+        adjacencyMatrix[from][to] = min;
+        adjacencyMatrix[to][from] = min;
+  
+        var l = document.createElementNS(SVG_NAMESPACE_URI, "line");
+        var id = "l";
+        if (to < from) {
+          id += String(to) + from;
+        } else {
+          id += String(from) + to;
+        }
+        l.setAttributeNS(null, "id", id);
+        l.setAttributeNS(null, "x1", nodes[from].x);
+        l.setAttributeNS(null, "y1", nodes[from].y);
+        l.setAttributeNS(null, "x2", nodes[to].x);
+        l.setAttributeNS(null, "y2", nodes[to].y);
+        document.documentElement.appendChild(l);
+      }
+  
+      divider = document.createElementNS(SVG_NAMESPACE_URI, "g");
+      document.documentElement.appendChild(divider);
+  
+      // Add the circles for the nodes
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        var c = document.createElementNS(SVG_NAMESPACE_URI, "circle");
+        c.setAttributeNS(null, "id", "c" + i);
+        c.setAttributeNS(null, "cx", nodes[i].x);
+        c.setAttributeNS(null, "cy", nodes[i].y);
+        c.setAttributeNS(null, "r", 20);
+        c.setAttributeNS(null, "onmouseover", "showPath(" + i + ")");
+        c.setAttributeNS(null, "onmouseout", "hidePath(" + i + ")");
+        c.setAttributeNS(null, "onclick", "setActive(" + i + ")");
+        document.documentElement.appendChild(c);
+      }
+  
+      // Start with node 0 as the active node
+      activeNode = 0;
+      document.getElementById("c0").setAttributeNS(null, "class", "current");
+      shortestPathInfo = shortestPath(adjacencyMatrix, NUMBER_NODES, 0);
+    }
+
+    // Hide the path highlights
+    function clearPath() {
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        for (var j = i + 1; j < NUMBER_NODES; j++) {
+          if (adjacencyMatrix[i][j] != Infinity) {
+            document.getElementById("l" + i + j)
+                    .setAttributeNS(null, "class", "");
+          }
+        }
+      }
+    }
+
+    // Show path from the active node to the given node
+    function showPath(to) {
+      clearPath();
+      if (activeNode != to) {
+        var c = document.getElementById("c" + to);
+        c.setAttributeNS(null, "class", "highlight");
+        var path = constructPath(shortestPathInfo, to);
+        var prev = activeNode;
+        var distance = 0;
+        for (var i = 0; i < path.length; i++) {
+          var id;
+          if (path[i] < prev) {
+            id = "l" + path[i] + prev;
+          } else {
+            id = "l" + prev + path[i];
+          }
+          var l = document.getElementById(id);
+          l.parentNode.removeChild( l);
+          l.setAttributeNS(null, "class", "highlight");
+          document.documentElement.insertBefore(l, divider);
+          distance += adjacencyMatrix[prev][path[i]];
+          prev = path[i];
+        }
+        document.getElementById("d").firstChild.nodeValue =
+          "Distance: " + distance;
+      }
+    }
+
+    // Unhighlight the path from the active node to the given node
+    function hidePath(to) {
+      clearPath();
+      if (activeNode != to) {
+        var c = document.getElementById("c" + to);
+        c.setAttributeNS(null, "class", "");
+      }
+    }
+
+    // Choose a new active node
+    function setActive(to) {
+      document.getElementById("c" + activeNode)
+              .setAttributeNS(null, "class", "");
+      clearPath();
+      activeNode = to;
+      shortestPathInfo = shortestPath(adjacencyMatrix, NUMBER_NODES, to);
+      document.getElementById("c" + activeNode)
+              .setAttributeNS(null, "class", "current");
+    }
+  ]]></script>
+
+  <style type="text/css">
+    circle {
+      fill: CornflowerBlue;
+      stroke-width: 2;
+      stroke: MidnightBlue;
+    }
+    circle.current {
+      fill: OrangeRed;
+      stroke: Firebrick;
+    }
+    circle.highlight {
+      fill: GreenYellow;
+      stroke: green;
+    }
+    line {
+      stroke-width: 2;
+      stroke: black;
+    }
+    line.highlight {
+      stroke-width: 4;
+      stroke: IndianRed;
+    }
+  </style>
+
+  <rect x="-100%" y="-100%" width="300%" height="300%" fill="PaleGoldenrod"/>
+  <g font-family="Arial,Helvetica" font-size="14">  
+    <text x="10" y="20" font-weight="bold" font-size="18">Demonstration of Dijkstra's shortest path algorithm</text>
+    <text x="10" y="38">Move the mouse over a circle to get the shortest path and distance to the highlighted circle</text>
+    <text x="10" y="55">Click on a circle to set it as a new starting point, reload to get a new random setup</text>
+    <text id="d" x="10" y="590">Distance: </text>
+    <a xlink:href="http://mcc.id.au/"><text x="790" y="590" text-anchor="end">Example provided by Cameron McCormack</text></a>
+ </g>
+<line id="l09" x1="475.9973697697384" y1="144.1638632492377" x2="441.1252613219606" y2="234.08947975105107"/><line id="l117" x1="365.6736732354117" y1="247.47493080077285" x2="345.12751599766744" y2="196.10886815364765"/><line id="l25" x1="440.3057052490584" y1="464.6157875865754" x2="397.2126435225558" y2="439.3950406282397"/><line id="l312" x1="64.62333541768356" y1="163.1364740265209" x2="121.32625530551536" y2="105.98052148963939"/><line id="l415" x1="172.86404911282784" y1="213.67585930199758" x2="204.32337126506502" y2="169.3250514175149"/><line id="l519" x1="397.2126435225558" y1="439.3950406282397" x2="438.6692923871658" y2="406.01283792439915"/><line id="l618" x1="594.0491018593774" y1="262.8004057740676" x2="538.8594944185616" y2="271.33631520138"/><line id="l719" x1="513.962606844415" y1="419.9233050837695" x2="438.6692923871658" y2="406.01283792439915"/><line id="l813" x1="247.43103059943178" y1="345.0685340431737" x2="278.0115210525302" y2="220.18629137331118"/><line id="l19" x1="441.1252613219606" y1="234.08947975105107" x2="365.6736732354117" y2="247.47493080077285"/><line id="l1018" x1="561.674062082315" y1="345.18960929024" x2="538.8594944185616" y2="271.33631520138"/><line id="l1011" x1="744.1443388065519" y1="380.88498695738485" x2="561.674062082315" y2="345.18960929024"/><line id="l1216" x1="121.32625530551536" y1="105.98052148963939" x2="205.78464529375913" y2="91.72838125137402"/><line id="l1317" x1="278.0115210525302" y1="220.18629137331118" x2="345.12751599766744" y2="196.10886815364765"/><line id="l514" x1="338.3510121668747" y1="517.8486760942976" x2="397.2126435225558" y2="439.3950406282397"/><line id="l1516" x1="204.32337126506502" y1="169.3250514175149" x2="205.78464529375913" y2="91.72838125137402"/><line id="l416" x1="205.78464529375913" y1="91.72838125137402" x2="172.86404911282784" y2="213.67585930199758"/><line id="l917" x1="345.12751599766744" y1="196.10886815364765" x2="441.1252613219606" y2="234.08947975105107"/><line id="l918" x1="538.8594944185616" y1="271.33631520138" x2="441.1252613219606" y2="234.08947975105107"/><line id="l219" x1="438.6692923871658" y1="406.01283792439915" x2="440.3057052490584" y2="464.6157875865754"/><line id="l017" x1="475.9973697697384" y1="144.1638632492377" x2="345.12751599766744" y2="196.10886815364765"/><line id="l113" x1="365.6736732354117" y1="247.47493080077285" x2="278.0115210525302" y2="220.18629137331118"/><line id="l27" x1="440.3057052490584" y1="464.6157875865754" x2="513.962606844415" y2="419.9233050837695"/><line id="l34" x1="64.62333541768356" y1="163.1364740265209" x2="172.86404911282784" y2="213.67585930199758"/><line id="l413" x1="172.86404911282784" y1="213.67585930199758" x2="278.0115210525302" y2="220.18629137331118"/><line id="l57" x1="397.2126435225558" y1="439.3950406282397" x2="513.962606844415" y2="419.9233050837695"/><line id="l610" x1="594.0491018593774" y1="262.8004057740676" x2="561.674062082315" y2="345.18960929024"/><line id="l710" x1="513.962606844415" y1="419.9233050837695" x2="561.674062082315" y2="345.18960929024"/><line id="l48" x1="247.43103059943178" y1="345.0685340431737" x2="172.86404911282784" y2="213.67585930199758"/><line id="l69" x1="441.1252613219606" y1="234.08947975105107" x2="594.0491018593774" y2="262.8004057740676"/><line id="l1019" x1="561.674062082315" y1="345.18960929024" x2="438.6692923871658" y2="406.01283792439915"/><line id="l611" x1="744.1443388065519" y1="380.88498695738485" x2="594.0491018593774" y2="262.8004057740676"/><line id="l1215" x1="121.32625530551536" y1="105.98052148963939" x2="204.32337126506502" y2="169.3250514175149"/><line id="l1315" x1="278.0115210525302" y1="220.18629137331118" x2="204.32337126506502" y2="169.3250514175149"/><line id="l214" x1="338.3510121668747" y1="517.8486760942976" x2="440.3057052490584" y2="464.6157875865754"/><line id="l315" x1="204.32337126506502" y1="169.3250514175149" x2="64.62333541768356" y2="163.1364740265209"/><line id="l1316" x1="205.78464529375913" y1="91.72838125137402" x2="278.0115210525302" y2="220.18629137331118"/><line id="l1517" x1="345.12751599766744" y1="196.10886815364765" x2="204.32337126506502" y2="169.3250514175149"/><line id="l018" x1="538.8594944185616" y1="271.33631520138" x2="475.9973697697384" y2="144.1638632492377"/><line id="l1419" x1="438.6692923871658" y1="406.01283792439915" x2="338.3510121668747" y2="517.8486760942976"/><g/><circle id="c0" cx="475.9973697697384" cy="144.1638632492377" r="20" onmouseover="showPath(0)" onmouseout="hidePath(0)" onclick="setActive(0)" class="current"/><circle id="c1" cx="365.6736732354117" cy="247.47493080077285" r="20" onmouseover="showPath(1)" onmouseout="hidePath(1)" onclick="setActive(1)"/><circle id="c2" cx="440.3057052490584" cy="464.6157875865754" r="20" onmouseover="showPath(2)" onmouseout="hidePath(2)" onclick="setActive(2)"/><circle id="c3" cx="64.62333541768356" cy="163.1364740265209" r="20" onmouseover="showPath(3)" onmouseout="hidePath(3)" onclick="setActive(3)"/><circle id="c4" cx="172.86404911282784" cy="213.67585930199758" r="20" onmouseover="showPath(4)" onmouseout="hidePath(4)" onclick="setActive(4)"/><circle id="c5" cx="397.2126435225558" cy="439.3950406282397" r="20" onmouseover="showPath(5)" onmouseout="hidePath(5)" onclick="setActive(5)"/><circle id="c6" cx="594.0491018593774" cy="262.8004057740676" r="20" onmouseover="showPath(6)" onmouseout="hidePath(6)" onclick="setActive(6)"/><circle id="c7" cx="513.962606844415" cy="419.9233050837695" r="20" onmouseover="showPath(7)" onmouseout="hidePath(7)" onclick="setActive(7)"/><circle id="c8" cx="247.43103059943178" cy="345.0685340431737" r="20" onmouseover="showPath(8)" onmouseout="hidePath(8)" onclick="setActive(8)"/><circle id="c9" cx="441.1252613219606" cy="234.08947975105107" r="20" onmouseover="showPath(9)" onmouseout="hidePath(9)" onclick="setActive(9)"/><circle id="c10" cx="561.674062082315" cy="345.18960929024" r="20" onmouseover="showPath(10)" onmouseout="hidePath(10)" onclick="setActive(10)"/><circle id="c11" cx="744.1443388065519" cy="380.88498695738485" r="20" onmouseover="showPath(11)" onmouseout="hidePath(11)" onclick="setActive(11)"/><circle id="c12" cx="121.32625530551536" cy="105.98052148963939" r="20" onmouseover="showPath(12)" onmouseout="hidePath(12)" onclick="setActive(12)"/><circle id="c13" cx="278.0115210525302" cy="220.18629137331118" r="20" onmouseover="showPath(13)" onmouseout="hidePath(13)" onclick="setActive(13)"/><circle id="c14" cx="338.3510121668747" cy="517.8486760942976" r="20" onmouseover="showPath(14)" onmouseout="hidePath(14)" onclick="setActive(14)"/><circle id="c15" cx="204.32337126506502" cy="169.3250514175149" r="20" onmouseover="showPath(15)" onmouseout="hidePath(15)" onclick="setActive(15)"/><circle id="c16" cx="205.78464529375913" cy="91.72838125137402" r="20" onmouseover="showPath(16)" onmouseout="hidePath(16)" onclick="setActive(16)"/><circle id="c17" cx="345.12751599766744" cy="196.10886815364765" r="20" onmouseover="showPath(17)" onmouseout="hidePath(17)" onclick="setActive(17)"/><circle id="c18" cx="538.8594944185616" cy="271.33631520138" r="20" onmouseover="showPath(18)" onmouseout="hidePath(18)" onclick="setActive(18)"/><circle id="c19" cx="438.6692923871658" cy="406.01283792439915" r="20" onmouseover="showPath(19)" onmouseout="hidePath(19)" onclick="setActive(19)"/></svg>

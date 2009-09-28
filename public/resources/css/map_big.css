@@ -1,0 +1,17 @@
+#map {
+	/* cursor: none; */
+	cursor: url(file:///usr/local/share/openclipart-0.19/babayasin/babayasin_Hand_cursor.png);
+}
+
+#map polygon {
+	fill: transparent;
+	stroke: transparent;
+}
+
+#map polygon.hover {
+	stroke: black;
+}
+
+#map polygon.grass {
+	fill: #080;
+}

@@ -1,0 +1,1195 @@
+<html><head>
+
+<script language="JavaScript">
+<!-- hide from JavaScript-challenged browsers
+
+function openWindow(url) {
+  popupWin = window.open(url, 'new_page', 'width=500,height=400')
+}
+
+function textCounter(field, maxlimit) {
+if (field.value.length > maxlimit) // if too long...trim it!
+field.value = field.value.substring(0, maxlimit);
+// otherwise, update 'characters left' counter
+}
+
+// done hiding -->
+</script>
+
+<style>
+.jc{
+position:relative; font-weight: bold;
+}
+</style>
+
+<script language="JavaScript1.2">
+<!--
+//Trembling message script- © Dynamic Drive (www.dynamicdrive.com)
+//For full source code, 100's more DHTML scripts, and TOS,
+//visit http://www.dynamicdrive.com
+
+var ns6 = document.getElementById&&!document.all
+var ie=document.all
+
+var customcollect=new Array()
+var i = 0;
+var p = 0;
+
+function jiggleit(num)
+{
+	customcollect[num].style.fontSize=15;
+	customcollect[num].style.left=Math.sin(p) * 10;
+	p++;
+}
+
+function init_jiggle()
+{
+i = 0;
+if (ie){
+	while ( eval("document.all.jiggle"+i) != null)
+	{
+		customcollect[i]= eval("document.all.jiggle"+i)
+		i++
+	}
+}
+else if (ns6){
+	while (document.getElementById("jiggle"+i)!=null)
+	{
+		customcollect[i]= document.getElementById("jiggle"+i)
+		i++
+	}
+}
+
+if (customcollect.length==1)
+	setInterval("jiggleit(0)",80)
+else if (customcollect.length>1)
+for (y=0;y<customcollect.length;y++){
+	var tempvariable='setInterval("jiggleit('+y+')",'+'100)'
+	eval(tempvariable)
+}
+}
+
+-->
+
+</script>
+
+
+
+
+<title>World map: Hex or Square - GameDev.Net Discussion Forums</title>
+
+
+<meta name="Keywords" content="game development, game programming, game jobs, video game jobs, games jobs, graphics programming, OpenGL, DirectX, Direct3D, AI, artificial intelligence, game design, game, gamedev, development, programming, c++, games, program, create, design, gouraud, shading, tutorial, art, gdnet">
+<meta name="Description" content="Gamedev.net is the leading resource for game developers, featuring daily news updates, over 1500 featured articles and tutorials, and the most active game development forums anywhere!"> 
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link rel="stylesheet" type="text/css" href="hexagons_fichiers/theme.css">
+
+<link rel="stylesheet" type="text/css" href="hexagons_fichiers/source.css">
+<!-- GAM -->
+<script type="text/javascript" src="hexagons_fichiers/google_service.js"></script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-3167291168602081");
+  GS_googleEnableAllServices();
+</script><script src="hexagons_fichiers/test_gam_domain.js"></script><script src="hexagons_fichiers/google_ads.js"></script>
+
+<script type="text/javascript">
+  GA_googleAddSlot("ca-pub-3167291168602081", "Banner_Main");
+</script>
+<script type="text/javascript">
+  GA_googleFetchAds();
+</script>
+
+<!--RJF 20070106 - fix for source boxes under IE, as it seems to be lacking support for the max-height CSS2 property -->
+<!--[if IE]>
+<style>
+.source {background: #ffffff; border: solid 2px; font-family: Courier New; color: black; font-size: 9pt; width: 95%; height: 250px; overflow: auto; padding: 3px;}
+</style>
+<![endif]-->
+<script type="text/javascript" src="hexagons_fichiers/prototype-1.js"></script>
+<script type="text/javascript" src="hexagons_fichiers/clientscripts.js"></script>
+<script type="text/javascript" src="hexagons_fichiers/menu.js"></script>
+</head><body>
+
+<div id="header"><!-- style="width: 800px">-->
+<!--<div class="hdrtoplinks">
+<a href="">advertise</a> | <a href="">write</a> | <a href="">about us</a>&nbsp;&nbsp;</span>
+</div>-->
+<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr valign="top">
+		<td id="CM_Logo" rowspan="4"><a href="http://www.gamedev.net/"><img src="hexagons_fichiers/clear.gif" alt="" border="0" height="100%" width="100%"></a></td>
+		<td id="CM_SponsoredBy" style="text-align: center; vertical-align: middle; width: 180px;">
+<!--			<a href="https://www.adobe.com/cfusion/tdrc/index.cfm?loc=en%5Fus&product=director&sdid=EUOYD" border="0"><img src="http://images.gamedev.net/PPBU_Q309_Di11.5_Gamedev_SiteBranding_ 180x60.jpg" border="0"></a>-->
+		</td>
+		<td id="CM_AdSpace">
+			<div id="CM_AdContainer">
+			<script type="text/javascript">
+			        GA_googleFillSlot("Banner_Main");
+			        </script><script src="hexagons_fichiers/ads"></script>
+<!-- Begin -  Site: GameDev.net Zone: GameDev.net Main 468x60 -->
+<script language="javascript" type="text/javascript">
+<!--
+var browName = navigator.appName;
+var browDateTime = (new Date()).getTime();
+var browVersion = parseInt(navigator.appVersion);
+var ua=navigator.userAgent.toLowerCase();
+var adcode='';
+if (browName=='Netscape'){
+     if (browVersion>=5) 
+          { document.write('<ifr'+'ame src="http://www.gamedev.net/banman/a.aspx?ZoneID=2&amp;Task=Get&amp;Browser=NETSCAPE6&amp;SiteID=1&amp;X=' + browDateTime + '" width=468 height=60 Marginwidth=0 Marginheight=0 Hspace=0 Vspace=0 Frameborder=0 Scrolling=No></ifr'+'ame>'); }
+     else if ((browVersion>=4)&&(ua.indexOf("mac")==-1))
+          { document.write('<s'+'cript src="http://www.gamedev.net/banman/a.aspx?ZoneID=2&amp;Task=Get&amp;Browser=NETSCAPE4&amp;SiteID=1">');
+          document.write('</'+'scr'+'ipt>');
+          document.write(adcode); }
+     else if (browVersion>=3) 
+          { document.write('<a href="http://www.gamedev.net/banman/a.aspx?ZoneID=2&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=' + browDateTime + '&RandomNumber=' + browDateTime + '" target="_blank"><img src="http://www.gamedev.net/banman/a.aspx?ZoneID=1&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&PageID=' + browDateTime + '&RandomNumber=' + browDateTime + '" width="468" height="60" border="0" alt=""></a>'); } }
+else
+     { document.write('<ifr'+'ame src="http://www.gamedev.net/banman/a.aspx?ZoneID=2&amp;Task=Get&amp;SiteID=1&amp;X=' + browDateTime + '" width=468 height=60 Marginwidth=0 Marginheight=0 Hspace=0 Vspace=0 Frameborder=0 Scrolling=No></ifr'+'ame>'); }
+// --> 
+</script><iframe src="hexagons_fichiers/a.html" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" height="60" scrolling="no" width="468"></iframe>
+<noscript> <a
+href="http://www.gamedev.net/banman/a.aspx?ZoneID=2&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=70147"
+target="_blank"> <img
+src="http://www.gamedev.net/banman/a.aspx?ZoneID=2&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&amp;PageID=70147"
+width="468" height="60" border="0" alt=""></a>
+</noscript>
+<!-- End -  Site: GameDev.net Zone: GameDev.net Main 468x60 -->
+			</div>
+		</td>
+		<td id="CM_AdSpaceTrailer"><img src="hexagons_fichiers/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+	<tr>
+		<td id="CM_MidSpace" colspan="2"><img src="hexagons_fichiers/clear.gif" alt="" height="100%" width="100%"></td>
+		<td id="CM_MidSpaceTrailer"><img src="hexagons_fichiers/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+	<tr>
+		<td id="CM_NavSpace" colspan="2">
+			<ul id="lw_menu">
+				<li style="width: 0pt;">&nbsp;</li>
+				<li id="l1f">Features
+					<ul>
+						<li id="l2fa"><img src="hexagons_fichiers/jobs.gif" align="middle"> <a href="http://www.gamedev.net/gamejobs/">Game Jobs</a></li>
+						<li id="l2fb"><img src="hexagons_fichiers/prodreview.gif" align="middle"> <a href="http://www.gamedev.net/features/reviews/">Product Reviews</a></li>
+						<li id="l2fc"><img src="hexagons_fichiers/users.gif" align="middle"> <a href="http://www.gamedev.net/community/contest/">Contests</a></li>
+			
+						<li id="l2fd"><img src="hexagons_fichiers/gds.gif" align="middle"> <a href="http://www.gamedev.net/community/gds/">GD Showcase</a></li>
+						<li id="l2fe"><img src="hexagons_fichiers/newsletter.gif" align="middle"> <a href="http://www.gamedev.net/info/newsletter.asp">Newsletter</a></li>
+					</ul>
+				</li>
+				<li id="l1r">Resources
+					<ul>
+						<li id="l2ra"><img src="hexagons_fichiers/articles.gif" align="middle"> <a href="http://www.gamedev.net/reference/">Articles &amp; Resources</a></li>
+			
+						<li id="l2rb"><img src="hexagons_fichiers/columns.gif" align="middle"> <a href="http://www.gamedev.net/columns/">Columns</a></li>
+						<li id="l2rc"><img src="hexagons_fichiers/books.gif" align="middle"> <a href="http://www.gamedev.net/columns/books/">Books</a></li>
+						<li id="l2rd"><img src="hexagons_fichiers/beginners.gif" align="middle"> <a href="http://www.gamedev.net/reference/start_here/">For Beginners</a></li>
+						<li id="l2re"><img src="hexagons_fichiers/gamedict.gif" align="middle"> <a href="http://www.gamedev.net/dict/">Game Dictionary</a></li>
+						<li id="l2rf"><img src="hexagons_fichiers/newsletter.gif" align="middle"><a href="http://wiki.gamedev.net/">Wiki</a></li>
+					</ul>
+			
+				</li>
+				<li id="l1c">Community
+					<ul>
+						<li id="l2ca"><img src="hexagons_fichiers/chat.gif" align="middle"> <a href="http://www.gamedev.net/community/forums/">Forums</a></li>
+						<li id="l2cb"><img src="hexagons_fichiers/users.gif" align="middle"> <a href="http://www.gamedev.net/community/gathering/">GD Gathering</a></li>
+						<li id="l2cc"><img src="hexagons_fichiers/ircchat.gif" align="middle"> <a href="http://www.gamedev.net/community/chat/">Online Chat</a></li>
+						<li id="l2cd"><img src="hexagons_fichiers/books.gif" align="middle"><a href="http://www.gamedev.net/community/forums/?cid=17,11&amp;nofavs=t">Workshops</a></li>
+					</ul>
+				</li>
+				<li id="l1m">Members
+					<ul>
+						<li id="l2ma"><img src="hexagons_fichiers/controlpanel.gif" align="middle"> <a href="http://www.gamedev.net/community/forums/cpanel.asp">Control Panel</a></li>
+						<li id="l2mb"><img src="hexagons_fichiers/new1-08.gif" align="middle"> <a href="http://www.gamedev.net/subscribe/">GDNet+ Signups</a></li>
+						<li id="l2mc"><img src="hexagons_fichiers/journals.gif" align="middle"> <a href="http://www.gamedev.net/community/journals/">Developer Journals</a></li>
+						<li id="l2md"><img src="hexagons_fichiers/membersearch.gif" align="middle"> <a href="http://www.gamedev.net/profile/">Member Search</a></li>
+					</ul>
+				</li>
+			</ul>
+		
+		</td>
+		<td id="CM_NavSpaceTrailer"><img src="hexagons_fichiers/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+	<tr>
+		<td id="CM_ExOptA" colspan="2"><img src="hexagons_fichiers/clear.gif" alt="" height="100%" width="100%"></td>
+		<td id="CM_ExOptB"><img src="hexagons_fichiers/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+</tbody></table>
+</div>
+
+<script language="Javascript">
+	startList();
+</script>
+
+<table class="contextNav" align="center" border="0" width="95%">
+	<tbody><tr>
+		<td valign="bottom" width="90%">
+			<div class="hdrbreadcrumbs">
+			<strong><a href="http://www.gamedev.net/">Home</a> » <a href="http://www.gamedev.net/community">Community</a> » <a href="http://www.gamedev.net/community/forums/">Forums</a> » <a href="http://www.gamedev.net/community/forums/forum.asp?forum_id=17">Game Design</a> » <strong>World map: Hex or Square</strong></strong>
+			</div>
+		</td>
+		<td class="hdrSearchBox" nowrap="nowrap" valign="middle" width="10%">
+			<form style="margin: 0pt; padding: 0pt;" action="/community/forums/search.asp">&nbsp;&nbsp;<strong>search:</strong>&nbsp;<input size="20" name="terms" class="searchinput" type="text">&nbsp;&nbsp;<input src="hexagons_fichiers/hdr3srchbtn.gif" class="searchbutton" type="image"><span class="mediumfont"><input name="area" value="site" type="hidden">
+		</span></form></td>
+	</tr>
+</tbody></table>
+
+<table class="contextNav" align="center" border="0" width="95%">
+	<tbody><tr>
+		<td align="center" valign="bottom"><script language="javascript" type="text/javascript">
+<!--
+var browName = navigator.appName;
+var SiteID = 1;
+var ZoneID = 19;
+var browDateTime = (new Date()).getTime();
+if (browName=='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://www.gamedev.net/banman/a.aspx?ZoneID=' + ZoneID + '&amp;Task=Get&amp;IFR=False&amp;Browser=NETSCAPE4&amp;PageID=79488&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime + '">'); document.write('</'+'scr'+'ipt>');
+}
+if (browName!='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://www.gamedev.net/banman/a.aspx?ZoneID=' + ZoneID + '&amp;Task=Get&amp;IFR=False&amp;PageID=79488&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime + '">'); document.write('</'+'scr'+'ipt>');
+}
+// --> 
+</script><script language="javascript" src="hexagons_fichiers/a.js"></script> 
+<noscript> <a
+href="http://www.gamedev.net/banman/a.aspx?ZoneID=19&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=79488"
+target="_blank"> <img
+src="http://www.gamedev.net/banman/a.aspx?ZoneID=19&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&amp;PageID=79488"
+width="0" height="0" border="0" alt=""></a>
+</noscript>
+</td>
+	</tr>
+</tbody></table>
+
+<div align="center">
+<table border="0" cellpadding="2" cellspacing="0" width="95%">
+  <tbody><tr valign="top">
+    <td width="120">
+      <!-- Begin -  Site: GameDev.net Zone: Mini: GameDev.net 120x60 -->
+<script language="javascript" type="text/javascript">
+  <!--
+var browName = navigator.appName;
+var browDateTime = (new Date()).getTime();
+var browVersion = parseInt(navigator.appVersion);
+var ua=navigator.userAgent.toLowerCase();
+var adcode='';
+if (browName=='Netscape'){
+     if (browVersion>=5) 
+          { document.write('<ifr'+'ame src="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Get&amp;Browser=NETSCAPE6&amp;SiteID=1&amp;X=' + browDateTime + '" width=120 height=60 Marginwidth=0 Marginheight=0 Hspace=0 Vspace=0 Frameborder=0 Scrolling=No></ifr'+'ame>'); }
+     else if ((browVersion>=4)&&(ua.indexOf("mac")==-1))
+          { document.write('<s'+'cript src="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Get&amp;Browser=NETSCAPE4&amp;SiteID=1">');
+          document.write('</'+'scr'+'ipt>');
+          document.write(adcode); }
+     else if (browVersion>=3) 
+          { document.write('<a href="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=' + browDateTime + '&RandomNumber=' + browDateTime + '" target="_blank"><img src="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&PageID=' + browDateTime + '&RandomNumber=' + browDateTime + '" width="120" height="60" border="0" alt=""></a>'); } }
+else
+     { document.write('<ifr'+'ame src="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Get&amp;SiteID=1&amp;X=' + browDateTime + '" width=120 height=60 Marginwidth=0 Marginheight=0 Hspace=0 Vspace=0 Frameborder=0 Scrolling=No></ifr'+'ame>'); }
+// -->
+</script><iframe src="hexagons_fichiers/a_002.html" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" height="60" scrolling="no" width="120"></iframe>
+<noscript> <a
+href="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=92950"
+target="_blank"> <img
+src="http://www.gamedev.net/banman/a.aspx?ZoneID=23&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&amp;PageID=92950"
+width="120" height="60" border="0" alt=""> </a>
+</noscript>
+<!-- End -  Site: GameDev.net Zone: Mini: GameDev.net 120x60 -->
+    </td>
+    <td align="right">
+      <table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td><a href="http://www.gamedev.net/community/forums/logincheck.asp"><img src="hexagons_fichiers/clear.gif" class="img_login" alt="[Login]" border="0"></a> </td>
+<td><a href="http://www.gamedev.net/community/forums/cpanel.asp"><img src="hexagons_fichiers/clear.gif" class="img_panel" alt="[Control Panel]" title="View your control panel." border="0"></a></td>
+
+<td><a href="http://www.gamedev.net/community/forums/register.asp"><img src="hexagons_fichiers/clear.gif" class="img_register" alt="[Register]" title="Registration is free!" border="0"></a></td>
+
+<td><a href="http://www.gamedev.net/community/forums/track.asp"><img src="hexagons_fichiers/clear.gif" class="img_bookmarks" alt="[Bookmarks]" title="View bookmarks." border="0"></a></td>
+<td><a href="http://www.gamedev.net/community/forums/activeusers.asp"><img src="hexagons_fichiers/clear.gif" class="img_whosonline" alt="[Who's Online]" title="View who is currently online" border="0"></a></td>
+<td><a href="http://www.gamedev.net/community/forums/activetopics.asp"><img src="hexagons_fichiers/clear.gif" class="img_activetopics" alt="[Active Topics]" title="View the most recently active topics" border="0"></a></td>
+<td><a href="http://www.gamedev.net/community/forums/activestats.asp"><img src="hexagons_fichiers/clear.gif" class="img_stats" alt="[Stats]" title="View our forum stats" border="0"></a></td>
+<td><a href="http://www.gamedev.net/community/forums/faq.asp"><img src="hexagons_fichiers/clear.gif" class="img_faq" alt="[FAQ]" title="Frequently Asked Questions" border="0"></a></td>
+<td><a href="http://www.gamedev.net/community/forums/search.asp"><img src="hexagons_fichiers/clear.gif" class="img_search" alt="[Search]" title="Perform a search by keyword, date, or name." border="0"></a></td>
+
+</tr>
+
+<tr>
+<td colspan="8" class="smallfont" align="right">
+
+<script language="Javascript">init_jiggle();</script>
+</td>
+</tr>
+</tbody></table>
+
+    </td>
+  </tr>
+</tbody></table>
+<table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" width="95%">
+<tbody><tr valign="bottom">
+<td align="left" nowrap="nowrap" width="99%"><span class="smallfont"><br><b><a href="http://www.gamedev.net/community/forums/favorites.asp?mode=addforum&amp;forum_id=17&amp;gforum_id=0" title="Add Forum to Favorites">Add Forum to Favorites</a></b>&nbsp;|&nbsp;
+<a href="http://www.gamedev.net/community/forums/post_page.asp?page=http://www.gamedev.net/community/forums/topic.asp?topic%5Fid%3D481787%26whichpage%3D1%26"><b>Send Topic To a Friend</b></a>&nbsp;|&nbsp;<a href="http://www.gamedev.net/community/forums/showfaq.asp?forum_id=17"><b>View Forum FAQ</b></a> | <a href="http://www.gamedev.net/community/forums/track.asp?topic_id=481787"><b>Track this topic</b></a></span><br><span class="smallfont"></span></td>
+<td align="center" nowrap="nowrap" width="1%"><span class="smallfont"><br><a href="http://www.gamedev.net/community/forums/goto.asp?topic_id=481787&amp;forum_id=17&amp;gforum_id=0&amp;move=prev"><img src="hexagons_fichiers/clear.gif" class="img_post_prevarrow" border="0">&nbsp;<u>Last Thread</u></a>&nbsp;<a href="http://www.gamedev.net/community/forums/goto.asp?topic_id=481787&amp;forum_id=17&amp;gforum_id=0&amp;move=next"><u>Next Thread</u>&nbsp;<img src="hexagons_fichiers/clear.gif" class="img_post_nextarrow" border="0"></a></span></td>
+</tr>
+</tbody></table>
+<table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr id="threadTitleHeader" valign="middle">
+<td class="head" width="96%">&nbsp;<span class="regularfont"><b>World map: Hex or Square</b></span><br></td>
+<td class="head">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td><a href="http://www.gamedev.net/community/forums/post.asp?forum_id=17&amp;gforum_id=0&amp;method=post"><img src="hexagons_fichiers/clear.gif" class="img_post_newthread" alt="Post New Topic" border="0"></a>&nbsp;</td>
+<td><a href="http://www.gamedev.net/community/forums/post.asp?forum_id=17&amp;method=reply&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_postreply" alt="Post Reply" border="0"></a>&nbsp;</td>
+</tr></tbody></table>
+</td>
+</tr>
+</tbody></table><a name="-1" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=2"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editTopic&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=116251" target="_new"><span class="regularfont">&nbsp;<b>Hodgman</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;2/14/2007&nbsp;&nbsp;<b>From:</b>&nbsp;Melbourne, Australia</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/5/2008 1:31:38 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">I've been thinking about designing a
+simple empire-building/strategy game for a while, and I'm currently
+brainstorming ideas for the world-map.<br>
+<br>
+The programmer in me wants to implement it as a grid of squares for
+simplicity, but the turn-based strategy lover in my wants to implement
+it as a grid of hexagons for... I'm not sure why for - familiarity
+perhaps?<br>
+<br>
+<br>
+So my question/discussion-point is: <b>Does a grid of hexagons (or squares) have any special properties that are useful from a game-play-design point of view?</b><br>
+<br>
+<br>
+e.g. If I was making a board-game, then a hex-grid may be useful
+because it has the property of each cell having 6 neighbours, which
+means a D6 can be used for decisions (but I'm not making a board-game,
+so that property doesn't seem useful to me)...<br>
+Or if I was making a console game with an 8-way D-Pad input device, it would favour a square grid...<br>
+Surely there's some better reasons for choosing different grid styles?<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1611</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=116251">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=116251"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=116251"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?topic_id=481787">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/topic.asp?topic_id=481787">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153023" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153023"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153023&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=98944" target="_new"><span class="regularfont">&nbsp;<b>alfith</b></span>&nbsp;<span class="premiumusernames">&nbsp;<b></b></span></a><b><a href="http://www.gamedev.net/subscribe/"><span class="premium">GDNet+</span></a></b><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;3/13/2006&nbsp;&nbsp;<b>From:</b>&nbsp;LYON, France</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon200.gif" alt="" align="left" border="0">&nbsp;Posted - 2/5/2008 2:35:15 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">With hex, each surrounding hex is at
+the same distance from the hex in the middle. With squares, the 4 at
+the corners are farther.<br>
+<br>
+<i><a href="http://members.gamedev.net/alfith/">my web site</a></i><br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1069</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=98944">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=98944"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=98944"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a><a href="http://www.gamedev.net/community/forums/mod/journal/journal.asp?userid=98944"><img src="hexagons_fichiers/clear.gif" class="img_post_journal" alt="View Journal" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153023">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153023">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153025" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153025"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153025&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=39125" target="_new"><span class="regularfont">&nbsp;<b>Iron Chef Carnage</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;12/6/2002&nbsp;&nbsp;<b>From:</b>&nbsp;Erie, PA, United States</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/5/2008 2:38:46 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">Hexes have the advantage of not
+warping space as badly as squares do. In order to go diagonally, you
+have to make two moves, which makes angled travel a much greater
+distance than it actually would be in real space. Hexes have the same
+problem, but to a lesser degree. It also grants greater freedom to
+choose a complex path through the world.<br>
+<br>
+Squares, as you noted, are easier to steer in, since 4- or 8-way
+controls are common, accepted and universally understood. 6-way is
+unintuitive. Also, your playing screen is likely to be a square or
+rectangle or parallelogram of some kind, making four-way orienteering
+even more natural.<br>
+<br>
+Strengths, weaknesses, your best judgement.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1499</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=39125">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=39125"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=39125"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153025">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153025">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153041" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153041"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153041&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=129484" target="_new"><span class="regularfont">&nbsp;<b>Merluche</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;10/1/2007&nbsp;&nbsp;<b>From:</b>&nbsp;Montpellier, France</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/5/2008 3:59:05 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">Let's think out of the box, will you? We are not constrained by the Board...<br>
+<br>
+So, what about... circles?<br>
+<br>
+Theoretically, every point of the circle is at equal distance of the
+center, and you don't have to limit yourself to 4, 6 or eight
+directions.<br>
+<br>
+In practice, you WILL want to limit yourself to 8 directions at most, because it is easier, right?<br>
+<br>
+So how can we make that happen? I am not a specialist of path finding
+and intricate mapping systems, but maybe, if we layer TWO overlapping
+square-maps, we can probably get something that will resemble circles,
+provided no one looks too closely.<br>
+<br>
+So, you'll be moving from intersection to intersection, and potentially
+from one map-layer to another map-layer. Provided each corner of a
+square on layer TWO is linked to four corners of the square it appears
+at the center of on layer ONE, you basically have a system that can be
+topped with a visual interface of circles without many people noticing
+something is strange. At least, if you're using isometric 3D, because
+in eagle-eye view, it will be rather plain, although not really
+dsiturbing, I think...<br>
+<br>
+Just show circles, overlapping circles, and you can get yourself a pretty nifty innovative system...<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1024</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=129484">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=129484"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=129484"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153041">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153041">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153145" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153145"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153145&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=96085" target="_new"><span class="regularfont">&nbsp;<b>Talin</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;1/17/2006&nbsp;&nbsp;<b>From:</b>&nbsp;Podgorica, Montenegro</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/5/2008 9:40:24 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2"><!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE--><i>Iron Chef Carnage</i><br>
+Hexes have the advantage of not warping space as badly as squares do.<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+<br>
+Which means that hexes are in fact more intuitive than squares, not less. <br>
+<br>
+The less apparent distortion along with the fact that you can only move
+into obviously connecting squares in a hex grid are the two qualities
+that beat 8-direction movement in a square grid (which is rather
+awkward) anytime. <br>
+<br>
+Just because squares were implemented more often doesn't make hexes
+less intuitive by definition. Square grid is simply easier to
+implement. <br>
+<br>
+The choice is still valid between a hex-based map and square-based one
+with 4-direction movement though. Then it really depends on the game.<br>
+ <br>
+<br>
+<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1038</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=96085">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=96085"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=96085"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153145">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153145">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153159" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153159"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153159&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=58664" target="_new"><span class="regularfont">&nbsp;<b>stonemetal</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;4/13/2004</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/5/2008 10:14:41 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">I would say use the shape that
+represents the number of directions you allow characters move to make
+it obvious that they can move in that direction. hexagon, octagon, or
+square should work fine.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1053</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=58664">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=58664"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=58664"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153159">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153159">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153834" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153834"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153834&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=96085" target="_new"><span class="regularfont">&nbsp;<b>Talin</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;1/17/2006&nbsp;&nbsp;<b>From:</b>&nbsp;Podgorica, Montenegro</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 9:54:15 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">You cannot really have an octagon grid.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1038</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=96085">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=96085"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=96085"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153834">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153834">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153850" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153850"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153850&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=129484" target="_new"><span class="regularfont">&nbsp;<b>Merluche</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;10/1/2007&nbsp;&nbsp;<b>From:</b>&nbsp;Montpellier, France</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 10:19:15 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2"><!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE--><i>Original post by Talin</i><br>
+You cannot really have an octagon grid.<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+<br>
+I thought I had proposed a way of providing a faked octogonal grid,
+hadn't I? Get two overlapping and interconnected square grids, and what
+you have, as far as you don't look too closely is a grid that allows
+you to move in eight directions, with roughly the same lengths in each.
+Of course, it won't be as accurate as if it were four or six
+directions, but it will be far more accurate than a perfect
+eight-directional map, since one cannot exist AT ALL...<br>
+<br>
+Or maybe I'm wrong? Can anyone contradict me or point me to someone who could explain better?<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1024</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=129484">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=129484"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=129484"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153850">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153850">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3153861" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3153861"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3153861&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=96085" target="_new"><span class="regularfont">&nbsp;<b>Talin</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;1/17/2006&nbsp;&nbsp;<b>From:</b>&nbsp;Podgorica, Montenegro</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 10:43:26 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">Uh, could you illustrate that graphically? <br>
+<br>
+I think you still run into the same geometrical issues with connecting squares as if you would when connecting octagons. <br>
+<br>
+Granted, you can still have an octagon grid like this: http://incompetech.com/graphpaper/octagon/thumbnail.gif<br>
+<br>
+But I don't think you can ever get a "clean" one that doesn't warp the space terribly, even with your idea.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1038</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=96085">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=96085"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=96085"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3153861">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3153861">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3154098" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3154098"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3154098&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=47654" target="_new"><span class="regularfont">&nbsp;<b>Platinum314</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;7/7/2003&nbsp;&nbsp;<b>From:</b>&nbsp;USA</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 4:04:14 PM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">The only space that doesn't 'warp'
+would be one that is invariant under all rotations (No matter direction
+you are looking, it is just as valid.). Problem is that this can't be
+done with any kind of grid. A square grid looks like the same kind of
+square grid when rotated by multiples of 90 degrees, 60 degrees for a
+hex grid, and 120 degrees for a triangular grid. But these are the only
+ones that tessellate.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1031</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=47654">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=47654"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=47654"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3154098">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3154098">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3154209" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3154209"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3154209&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=43550" target="_new"><span class="regularfont">&nbsp;<b>polyfrag</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;3/20/2003&nbsp;&nbsp;<b>From:</b>&nbsp;Vancouver, Canada</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 6:53:32 PM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">Wouldn't hex grid be very hard to
+program, in terms of figuring out where the mouse clicks (on which hex
+it falls on) and in terms of AI. For example, calculating the shortest
+path from A to B? And how would you represent it in memory? Well, I
+guess with a 2D array but with each second row shifted... But there's
+probably a solution I'm just not aware of... And plus, what about game
+art. Wouldn't you have to do extra work for a hex grid? For example,
+for a coast, you'd have to make more sides than you'd have to do for a
+square grid. Or not? I guess it depends on how you do the art... in a
+square grid you'd actually do 8 tiles for the coast (4 for the sides
+and 4 for the corners). But which would be harder to do art for?<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>997</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=43550">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=43550"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=43550"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3154209">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3154209">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3154284" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3154284"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3154284&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=116251" target="_new"><span class="regularfont">&nbsp;<b>Hodgman</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;2/14/2007&nbsp;&nbsp;<b>From:</b>&nbsp;Melbourne, Australia</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 8:58:39 PM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">Thanks for all the ideas so far ;)<br>
+<br>
+<!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE--><i>Original post by Merluche</i><br>
+I thought I had proposed a way of providing a faked octogonal grid,
+hadn't I? Get two overlapping and interconnected square grids, and what
+you have, as far as you don't look too closely is a grid that allows
+you to move in eight directions, with roughly the same lengths in each.
+<br>
+Or maybe I'm wrong? Can anyone contradict me or point me to someone who could explain better?<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+I like your 'fake grid' idea, but I don't think it will work in all circumstances.<br>
+As it's mostly made up of edges/intersections, it works well for
+movement along it's connected pathways, but gets complicated when you
+start thinking about area. Particularly, because it doesn't actually
+tile properly, a point on the map could possibly be 'inside' two
+octagons/circles/etc at once.<br>
+<br>
+You could get around this by having each cell represent an isolated
+piece of land (ignoring the fact that it would actually overlap it's
+neighbours), but in my game I need to render the contents of
+neighbouring cells at the same time in a continuous space - so
+overlapping spaces become a problem.<br>
+<br>
+<br>
+<!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE--><i>Original post by polyfrag</i><br>
+Wouldn't hex grid be very hard to program, in terms of figuring out where the mouse clicks (on which hex it falls on)...<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+It's more complicated than squares, but a good game framework should be
+able to determine if a click is inside a convex-polygon (it's just a
+bunch of dot-products), so clicks aren't really a problem.<br>
+<br>
+<!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE-->And
+how would you represent it in memory? Well, I guess with a 2D array but
+with each second row shifted... But there's probably a solution I'm
+just not aware of...<!--QUOTE--> </td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+Yeah, if you draw the bounding-boxes of each hex, it's basically a 2D
+array of horizontally-overlapping rectangles, with every 2nd column
+shifted vertically by half a cell.<br>
+<br>
+<!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE-->...and in terms of AI. For example, calculating the shortest path from A to B?<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+As long as you know the center position of each cell, you can still measure euclidean distance (<i>as the crow flies</i>) as usual between two points - this distance can still be used as a heuristic in A*.<br>
+Finding the neighbours of each cell isn't too hard either, e.g.
+assuming every 2nd column of cells is shifted "cell_height/2" upwards: <pre>void neighbours( int x, int y, vector&lt;pair&lt;int,int&gt; &gt;&amp; out )
+{
+  out.push_back( make_pair(x,   y+1) );
+  out.push_back( make_pair(x,   y-1) );
+  out.push_back( make_pair(x+1, y  ) );
+  out.push_back( make_pair(x-1, y  ) );
+  int offs = ( x%2 ) ? 1 : -1;
+  out.push_back( make_pair(x+1, y+offs) );
+  out.push_back( make_pair(x-1, y+offs) );
+}</pre><br>
+<!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE-->And
+plus, what about game art. Wouldn't you have to do extra work for a hex
+grid? For example, for a coast, you'd have to make more sides than
+you'd have to do for a square grid. Or not? I guess it depends on how
+you do the art... in a square grid you'd actually do 8 tiles for the
+coast (4 for the sides and 4 for the corners). But which would be
+harder to do art for?<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+Yeah, if you're doing tile based art you'd have to make more tiles (but in the end, that will mean it looks better!).<br>
+Originally I was planning on using a square grid for the world-art
+(pre-rendered), but overlay a hex-grid for game-play purposes - so each
+square tile of world-art might have a dozen hex's drawn over the top of
+it.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1611</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=116251">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=116251"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=116251"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3154284">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3154284">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3154286" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3154286"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3154286&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=43550" target="_new"><span class="regularfont">&nbsp;<b>polyfrag</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;3/20/2003&nbsp;&nbsp;<b>From:</b>&nbsp;Vancouver, Canada</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/6/2008 9:02:51 PM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">Ahhh, I see. Very educational. I see
+you have this all worked out. I guess I was considering it more from
+the programming point of view than the game-play point of view, which
+is what you wanted.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>997</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=43550">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=43550"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=43550"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3154286">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3154286">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3154493" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3154493"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3154493&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=135213" target="_new"><span class="regularfont">&nbsp;<b>loom_weaver</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;2/2/2008&nbsp;&nbsp;<b>From:</b>&nbsp;Victoria, Canada</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/7/2008 3:03:59 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2">&gt; Does a grid of hexagons (or squares) have any special properties that are useful from a game-play-design point of view?<br>
+<br>
+In my opinion, hexagons are superior if position and blocking maneuvers
+are valid strategies in your game. Also each adjacent cell has the same
+length shared edge.<br>
+<br>
+It also makes distance calculations a bit more realistic than pure grid
+offsets (a + b) because a hexagonal grid acts more like circles of
+increasing radii than a square grid would.<br>
+<br>
+Of course if you use pythagoras (sqrt(a^2 + b^2) for your distance
+calculations then the above becomes moot. Computers are good at that.
+Humans not so good in real time.<br>
+<br>
+I think turn-based games are more suited to hexagonal grids than real-time ones are.<br>
+<br>
+As for hexagonal graphical tiles, one interesting property is that the
+tiles do not have to be perfect hexagons i.e. 60 degrees at each angle.
+That is because, as Hodgman put it, a hexagonal grid is really just a
+square grid with every other row/column being offset. I was reading on
+the Wesnoth forums and they had a good argument that if you use
+graphical tiles, it is better to have the top and bottom of the
+hexagonal tile be flat as opposed to the left and right. That is
+because tiling isometric views are easier with this orientation.<br>
+<br>
+One more thing to consider is that hexagonal grids would work better
+with mouse points and clicks for movement but not so good with keyboard
+movement.<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1026</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=135213">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=135213"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=135213"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3154493">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3154493">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div><a name="3154503" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"></a><table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" cellpadding="2" cellspacing="0" width="95%">
+<tbody><tr valign="middle">
+<td rowspan="2" class="post_dateline" align="center" height="50" nowrap="nowrap" width="54"><img src="hexagons_fichiers/default.png" border="0"></td>
+<td class="post_author" valign="middle" width="100%"><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787&amp;Quote=1&amp;reply_id=3154503"><img src="hexagons_fichiers/clear.gif" class="img_post_quote" alt="Reply Quoting This Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/post.asp?method=editreply&amp;reply_id=3154503&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_edit" alt="Edit Message" align="right" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=129484" target="_new"><span class="regularfont">&nbsp;<b>Merluche</b></span>&nbsp;<span class="regularfont">&nbsp;<b></b></span></a><span class="smallfont">&nbsp;&nbsp;<b>Member since:</b>&nbsp;10/1/2007&nbsp;&nbsp;<b>From:</b>&nbsp;Montpellier, France</span></td>
+</tr>
+<tr>
+<td class="post_dateline" colspan="1" width="100%">
+<table align="right" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><span class="smallfont"></span></td></tr></tbody></table><img src="hexagons_fichiers/icon1.gif" alt="" align="left" border="0">&nbsp;Posted - 2/7/2008 3:29:01 AM</td>
+</tr>
+<tr>
+<td class="post_body" colspan="2"><!--QUOTE--><blockquote><span class="smallfont">Quote:</span><table border="0" cellpadding="4" cellspacing="0" width="95%"><tbody><tr><td class="quote"><!--/QUOTE--><!--STARTQUOTE--><i>Original post by Talin</i><br>
+Uh, could you illustrate that graphically? <br>
+<br>
+I think you still run into the same geometrical issues with connecting squares as if you would when connecting octagons. <br>
+<br>
+Granted, you can still have an octagon grid like this: http://incompetech.com/graphpaper/octagon/thumbnail.gif<br>
+<br>
+But I don't think you can ever get a "clean" one that doesn't warp the space terribly, even with your idea.<!--QUOTE--></td></tr></tbody></table></blockquote><!--/QUOTE--><!--ENDQUOTE--><br>
+<br>
+Graphically? No. And that's a BIG no. I am not only way below par with
+graphics, but I am actually so bad it could end up showing absolutely
+anything, including something that wasn't intended in the first place.
+A geometrical descritpion might be way better.<br>
+<br>
+Let's take four squares ABCD, DCEF, DFGH and DHIA. They all share sides with the neighbours.<br>
+Consider A' to be the geometrical center of ABCD, D' to be the center
+of DCEF, H' to be the geometrical center of DFGH and I' to be the
+center of ADHI.<br>
+I'A'D'H' is a square with EXACTLY identical dimensions to IADH, but moved for a squareroot of 2 in the ID direction.<br>
+<br>
+Apply the same reasoning to ALL squares of you original grid.<br>
+<br>
+What you now have is TWO overlapping square grids.<br>
+<br>
+Now, consider M to be the intersection point of HD and I'H', N to be
+the intersection point of I'A' and AD, O to be the intersection point
+of DC and A'D', and P to be the intersection point of DF and H'D'<br>
+<br>
+If D is at the center of your original square grid, then I', A', H' and
+D' are situated at a distance of a square root of 2 from D, whereas
+M,N,O and P are at a distance of 1/2 from D.<br>
+<br>
+What you have, in practice, is a warped map, with intersecting
+diagonals, and you're not moving from square to square, but from
+intersection point to intersection point.<br>
+<br>
+Provided you overlay a graphical interface showing a CIRCLE around each
+point, of a radius of a square root of 2 for the original grid, and
+with a radius of 1/2 for each point of the overlapping grid, you have
+the illusion that whatever move you intend to make is EXACTLY the same
+distance, since both circles always overlap at the same distance from
+the origin point.<br>
+<br>
+I'll grant you it's not perfect, but it's probably easier than finding
+new rules for non-euclidian mathematics, in order to be able to draw a
+perfect octogonal grid...<br>
+<br><br><x x=""></x><x x=""></x></td>
+</tr>
+<tr>
+<td class="post_trailer" colspan="2" width="100%">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr valign="middle">
+<td nowrap="nowrap">&nbsp;<span class="smallfont">User Rating:  <strong>1024</strong>&nbsp;&nbsp;
+							| &nbsp;<a href="http://www.gamedev.net/community/forums/moderateuser.asp?userid=129484">Rate This User</a></span>&nbsp;</td>
+<td align="left" width="90%"><a href="http://www.gamedev.net/community/forums/pmcompose.asp?sendto=129484"><img src="hexagons_fichiers/clear.gif" class="img_post_pm" alt="Send Private Message" border="0"></a><a href="http://www.gamedev.net/community/forums/profile.asp?mode=display&amp;id=129484"><img src="hexagons_fichiers/clear.gif" class="img_post_profile" alt="View Profile" border="0"></a></td>
+<td align="right" nowrap="nowrap"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/flagpost.asp?reply_id=3154503">Report this Post to a Moderator</a>&nbsp;| <a href="http://www.gamedev.net/community/forums/viewreply.asp?ID=3154503">Link</a></span></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<div class="post_separator" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/"><br></div>
+<table xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:xasp="urn:asp-objects" xmlns:xtend="http://www.gamedev.net/" border="0" width="95%">
+<tbody><tr valign="top">
+<td align="left" valign="top" width="50%"><span class="smallfont">All times are ET (US)</span><br><br><a href="http://www.gamedev.net/community/forums/post.asp?method=reply&amp;topic_id=481787"><img src="hexagons_fichiers/clear.gif" class="img_post_postreply" alt="Post Reply" border="0"></a></td>
+<td align="right" nowrap="nowrap" valign="top" width="60%"><span class="smallfont"><a href="http://www.gamedev.net/community/forums/goto.asp?topic_id=481787&amp;forum_id=17&amp;gforum_id=0&amp;move=prev"><img src="hexagons_fichiers/clear.gif" class="img_post_prevarrow" border="0">&nbsp;<u>Last Thread</u></a>&nbsp;<a href="http://www.gamedev.net/community/forums/goto.asp?topic_id=481787&amp;forum_id=17&amp;gforum_id=0&amp;move=next"><u>Next Thread</u>&nbsp;<img src="hexagons_fichiers/clear.gif" class="img_post_nextarrow" border="0"></a></span><br></td>
+</tr>
+</tbody></table>
+
+
+<center>
+<table border="0" width="95%">
+  <tbody><tr valign="top">
+    <td class="smallfont" align="left" valign="top" width="50%">
+
+<table border="0" cellpadding="4" cellspacing="0">
+<tbody><tr><td>
+<span class="smallfont">
+<b>Forum Rules:</b>
+</span>
+</td></tr>
+<tr><td class="forumrules">
+You <b>may not</b> post new threads<br>
+You <b>may</b> post replies<br>
+You <b>may not</b> edit your posts<br>
+You <b>may not</b> use HTML in your posts<br>
+</td>
+</tr>
+</tbody></table>
+
+    </td>
+    <td align="right" nowrap="nowrap" valign="top" width="60%">
+<form action="goto.asp" method="get">
+<table border="0">
+<tbody><tr><td>
+<font face="" size="2">
+<b>Jump To:</b>
+<select name="redir" size="1">
+<option value="default.asp" selected="selected">Specific Forum</option>
+		<option value="default.asp"></option>
+
+		<option value="default.asp">Active Workshops</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D83">C# Workshop (old forum)</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">    The Technical Side</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D31">For Beginners</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D34">Software Engineering</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D39">Consoles, PDAs, and Cell Phones</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D41">Scripting Languages and Game Mods</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D61">Alternative Game Libraries</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D9">Artificial Intelligence</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D10">DirectX and XNA</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D11">Game Programming</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D12">Graphics Programming and Theory</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D13">Isometric Land</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D15">Multiplayer and Network Programming</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D20">Math and Physics</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D21">General Programming</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D25">OpenGL</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">  Community Interaction</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D2">Article Proposals and Requests</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D3">GDNet Lounge</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D4">GDNet Comments, Suggestions and Ideas</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D5">The Business and Law of Game Development</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D6">Your Announcements</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D8">Help Wanted</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D70">GD Gathering Forums</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">   The Creative Side</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D17">Game Design</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D18">Visual Arts</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D19">Music and Sound</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D32">Writing for Games</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp"> Special Interest</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D14">Everything Unix</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D24">Java Development</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D58">.NET</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D59">Web Development</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D82">Hardware Discussion</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D68">Eating fondue while sipping Gato Negro and listening to Vaya Con Dios</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">Affiliates</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D16">Power Render API</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D27">NeHe Productions</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D30">turbo</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D36">Real Soon Now</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D40">NeXe</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D49">AngelCode</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D67">Gamedev: The comic / Gamedev: Humour Portal</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">Interactive Discussion</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D62">Image of the Day</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D71">GDNet Contests</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D74">Nehe News</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D81">Developer Journals v2</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D35">Article Feedback</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D53">Developer Journals</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D52">GDS</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D55">News Discussion</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D56">GDS News</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D57">Book Discussion</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D80">4E5 Entries</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D100">4E6 Entries</option>
+
+		<option value="default.asp">               </option>
+
+		<option value="default.asp">Completed Workshops</option>
+
+		<option value="default.asp">--------------------------</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D76">CPP Workshop</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D84">C# Workshop</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D78">Freehand Drawing Workshop</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D33">Hands-On Interactive Game Development</option>
+
+		<option value="goto.asp?redir=forum%2Easp%3Fforum%5Fid%3D79">SICP Workshop</option>
+
+		<option value="default.asp">               </option>
+
+</select>
+<input value="Go" type="submit">
+</font>
+</td></tr></tbody></table>
+</form>
+
+
+<form action="modpost.asp" name="modpost" method="get">
+<span class="smallfont"><b>Administrative Options:</b><br>
+<input name="topic_id" value="481787" type="hidden">
+<select name="method" onchange="document.modpost.submit();" class="smallfont">
+<option value="showintro" selected="selected">--- Topic Options ---
+</option><option value="closetopic">Open / Close Topic
+</option><option value="movetopic">Move Topic
+</option><option value="deletetopic">Delete Topic
+</option><option value="stick">Stick / Unstick Topic
+</option></select>
+</span>
+    </form></td>
+	
+  </tr>
+</tbody></table>
+</center>
+
+	</div><p>
+
+</p><p class="smallfont" align="center">               
+</p></body></html>

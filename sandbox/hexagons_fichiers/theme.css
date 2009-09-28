@@ -1,0 +1,756 @@
+   .dummy {font-size: 10px}
+  
+  
+	body {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; margin: 0px; background: #F0F0F0; color: #000000; background-image: url('/pics/watermark.gif')}
+	P, TD, OL, UL, DL {font-family: verdana,arial; font-size: 10pt;}
+	
+	A:link {text-decoration: none; color: /*#1476B5*//*#2E4B8F*//*#1D3A8D;*//*#3054AE;*/#2E4B8F;} /* 1D3A7F */
+	A:visited {text-decoration: none; color: /*#1476B5*//*#2E4B8F*//*#1D3A8D;*//*#001C6F*//*#3054AE;*/#2E4B8F}
+	A:active {text-decoration: none; color: #000000}
+	A:hover {text-decoration: underline; color: #5086B4}
+	
+	#recentthreadslink {text-decoration:none; color: #FFFFFF}
+	#recentthreadslink:hover { text-decoration:underline; color:#CCCCCC}
+
+	a.rss, a.rss:link, a.rss:visited {color: #0000FF; width: 30px; height: 14px; background-color: #FFDD66; font-weight: bold; font-face: Tahoma; line-height: 11px; font-size: 11px; text-decoration: none; padding: 0 2px; 0 2px; border: 1px solid; border-color: #FFDD33 #887711 #442200 #FFDD33;}
+    	a.rss:hover {background-color: #FFEEAA; text-decoration: none;}
+	
+	/* Font sizing */
+	.maintext {font-size: 10pt}
+	.maintext1 {font-size: 15px}
+	.maintext2 {font-size: 16px}
+	.maintext3 {font-size: 18px}
+	.maintext4 {font-size: 20px}
+	.maintext5 {font-size: 19pt}
+	.maintext6 {font-size: 28px}
+	.maintext-1 {font-size: 12px}
+	.maintext-2 {font-size: 11px}
+	.caption {font-size: 11px; font-weight: bold}
+	.maintext-3 {font-size: 8px}
+	.maintext-4 {font-size: 10px}	   
+
+	H1 {font-size: 18px; font-weight: bold; color: black}
+	H2 {font-size: 15px; font-weight: bold; color: black}
+	H3 {font-size: 10pt; font-weight: bold; color: black}	
+	
+	/* MAIN PRESENTATION CSS */
+	
+	.feathdr {font-weight: bold; background: #993333; color: #FFFFFF}
+	.feattitle {font-size: 10pt; font-weight: bold;}
+	.featbody {font-size: 11px; background: #1B1B3D}
+	  
+	.boxheader { font-family: verdana, arial; font-size: 9pt; font-weight: bold; background: #5B82B6; border-top: solid 1px #88BBEE; border-left: solid 1px #88BBEE; border-right: solid 1px #336699; border-bottom: solid 1px #336699; color: white}
+	.boxbody, .boxtext { font-family: verdana, arial; font-size: 8pt; border: 0px; background: #EEEEF3 }
+	.headerlink { color: white }
+	.menuheadr, .boxheadr { font-family: verdana, arial; font-size: 9pt; font-weight: bold; background: #5B82B6; background-image: url('/pics/themes/gdwhite_boxes/int_drk_bkg_bdy2.gif'); border-top: solid 1px #88BBEE; border-left: solid 1px #88BBEE; border-right: solid 1px #336699; border-bottom: solid 1px #336699; color: white}
+	.spotlighthdr { font-family: verdana, arial; font-size: 9pt; font-weight: bold; background: #64A364; background-image: url('/pics/spotlight_bkg.png'); border-top: solid 1px #99DD99; border-left: solid 1px #99DD99; border-right: solid 1px #559955; border-bottom: solid 1px #559955; color: white}
+	
+	/* featbody, spotlightbody are legacy styles */
+	.featbox, .featbody, .spotlightbody, .featmenu { font-family: verdana, arial; font-size: 8pt; background: #EEEEF3; border-left: solid 1px #F3F3F9; border-top: solid 1px #F3F3F9; border-right: solid 1px #BBBBC3; border-bottom: solid 1px #BBBBC3}
+	.spotlightbox { font-family: verdana, arial; font-size: 8pt; background: #DDE3DD; border-left: solid 1px #EEF3EE; border-top: solid 1px #EEF3EE; border-right: solid 1px #88A388; border-bottom: solid 1px #88A388}
+
+
+	.purplehdr { font-family: verdana, arial; font-size: 17px; font-weight: bold; color: #9B5952 }
+	.tblhdr {font-family: Verdana, sans-serif; font-size: 10pt; color: #FFFFFF; font-weight: bold; background: #666699; border-top: solid 1px #434376; border-left: solid 1px #434376; border-bottom: solid 1px #232356; border-right: solid 1px #232356;}
+	
+	.articletitle { font-family: trebuchet MS, tahoma, verdana, arial; font-size: 23px; font-weight: bold; color: #9B5952 }
+	.articleauthor { font-family: trebuchet MS, verdana; font-size: 13px}
+	.articlehr, .sectionhr { height: 1px; color: #FFFFFF; border-top: 0px; border-bottom: 1px solid #0B315D; margin-bottom: 15px; }
+	.newshr { height: 1px; color: #FFFFFF; border-top: 0px; border-bottom: 1px solid #CCCCCC;}
+	
+	.sectiontitle { font-family: tahoma, verdana, arial; font-size: 25px; font-weight: bold; color: #9B5952 }
+	.subsectiontitle { font-family: verdana, arial; font-size: 17px; font-weight: bold; color: #9B5952 }
+
+	.threadmessage {font-family: verdana, arial; font-size: 8pt;}
+	.threadtime {font-size: 11px; color: #444444}
+	
+	.submitbutton {/*font-family: Verdana, sans-serif; font-size: 11px; font-weight: bold; background: #666666; color: white*/}
+	.textfield {background: #000000; color: #FFFFFF; font-family: Verdana, sans-serif; font-size: 11px}
+	
+	.inlinebox { padding: 10px; background: #EAEAEA; border-top: solid 1px #F3F3F7; border-left: solid 1px #F3F3F7; border-bottom: solid 1px #E7E7EF; border-right: solid 1px #E7E7EF;}
+
+	.subtle {font-size: 11px; color: #666666; font-weight: normal}
+
+	/* TEMPORARY FOR DEMONSTRATION OF LEGACY NEWS */  	
+	.ZWNewsFmt01-Date { position: relative; font-family: verdana, arial; padding-bottom: 2px; padding-top: 2px; font-size: 11pt; font-weight: bold; color: white; background-image: url('/pics/themes/gdwhite_boxes/int_drk_bkg_bdy2.gif'); border: none;}/*solid 1px black;}*/
+	.ZWNewsFmt01-Headline { font-family: verdana, arial; width: 100%; font-size: 10pt; font-weight: bold; padding: 3px; border-bottom: solid 1px #DDDDDD; border-right: solid 1px #DDDDDD; background-image: url('/pics/themes/gdwhite_boxes/int_hdbkg.png'); padding-bottom: 2px; }
+	.ZWNewsFmt01-Byline { font-family: verdana, arial; font-size: 10px }
+	.ZWNewsFmt01-Story { font-family: Verdana, Tahoma, Arial; font-size: 10pt }
+	/* END TEMPORARY FOR DEMONSTRATION OF LEGACY NEWS */
+	
+	.BlockNews-Date { position: relative; font-family: verdana, arial; padding-bottom: 2px; padding-top: 2px; font-size: 11pt; font-weight: bold; color: white; background-image: url('/pics/themes/gdwhite_boxes/int_drk_bkg_bdy2.gif'); border: solid 1px black;}
+	.BlockNews-Headline { font-family: verdana, arial; width: 100%; font-size: 9pt; font-weight: bold; background-image: url('/pics/themes/gdwhite_boxes/pics/int_hdbkg.png'); padding: 5px; border-bottom: solid 1px #DDDDDD; border-right: solid 1px #DDDDDD}
+	.BlockNews-Byline { font-family: verdana, arial; font-size: 11px }
+
+	.news-table {}
+	.news-headline {font-family: verdana, tahoma, arial; font-size: 16pt; font-weight: bold; color: #9B5952}
+	.news-byline {font-family: verdana, arial; font-size: 8pt }
+	.news-author {font-family: verdana, arial; font-size: 8pt}
+	.news-date {font-family: verdana, arial; font-size:8pt;}
+	.news-story {font-family: Verdana, Arial; font-size: 10pt}
+
+	.Newsbody { font-family: verdana, arial; font-size: 8pt; padding: 5px; background-color: #FAFAFA; border-left: solid 1px #F3F3F9; border-top: solid 1px #F3F3F9; border-right: solid 1px #BBBBC3; border-bottom: solid 1px #BBBBC3}
+	.news_headline {font-family: verdana, arial; font-size: 8pt; font-weight:bold;}
+	.news_comment {font-family:verdana, arial; font-size:7pt; font-weight:none;}
+	.news_body {}
+	.news_author {font-family: verdana, arial; font-size: 7pt; font-weight:none; color: #999999}
+	.news_date {font-family: verdana, arial; font-size:10pt; font-weight:bold; color: #4D96E3;}
+	  
+	.jobs_count {font-family:verdana, arial; font-size:7pt; font-weight:none;}
+	.jobs_jobtype {font-family:verdana, arial; font-size:7pt; font-weight:none;}
+	.jobs_jobtypecount {font-family:verdana, arial; font-size:7pt; font-weight:none; color: #999999;}
+	
+	.events_date {font-family: verdana, arial; font-size:7pt; font-weight:none; color: #999999;}
+	
+	.stats_bold {font-family: verdana, arial; font-size:8pt; font-weight:bold; color: #4D96E3;}
+  
+  	
+	/* Top searchbar */  
+	.contextNav {
+		position: relative; 
+		top: -6px;
+		}
+		  
+	.hdrTopLinks, .hdrSearchBox {
+		font-size: 10px;
+		font-family: verdana, arial;
+		color: #002266;
+		width: 100%;
+/*		height: 15px; */
+		vertical-align: top;
+		text-align: right;
+	}
+	
+
+	.hdrbreadcrumbs	
+	{
+		font-size: 10px;
+	}
+	
+	.searchinput { font-size: 10px; height: 17px }
+	.searchbutton { position: relative; top: 2px }
+
+	
+	/* Javascript Pulldown Menu Styles - OBSOLETE - */
+	
+	.topMenuHdr {
+	  text-align: center;
+	}
+	
+	.topMenu {
+	  background: transparent; 
+	  text-align: center;
+	  font-family: Verdana;
+	  font-size: 12px;
+	  font-weight: bold;
+	  text-decoration: none;	  
+	}
+	
+	.submenu {
+	  background-color: #FFFFFF;
+	  border-width: 1px;
+	  border-style: solid;
+	  border-color: #AAAAAA;
+	}
+	
+	.topItemNormal {
+	  font-family: Verdana;
+	  font-size: 12px;
+	  font-weight: bold;
+	  text-decoration: none;
+	  color: #1D3A7F;
+	  border-right: solid 1px #848CA3;
+	  text-indent: 3px;
+	  cursor: pointer;
+	}
+	
+	.topItemNormal_Start
+	{
+	  font-family: Verdana;
+	  font-size: 12px;
+	  font-weight: bold;
+	  text-decoration: none;
+	  color: #1D3A7F;
+	  border-left: solid 1px #848CA3;
+	  border-right: solid 1px #848CA3;
+	  text-indent: 2px;
+	  cursor: pointer;
+	}
+	
+	.topItemOver {
+	  font-family: Verdana;
+	  font-size: 12px;
+	  font-weight: bold;
+	  text-decoration: none;
+	  background-color: #0A7CC3;/*#004D7E;*/
+	  text-indent: 3px;
+	  color: #FFFFFF;
+	  cursor: pointer;
+	  border-right: solid 1px #5064A6;  
+	}
+	
+	.itemNormal {
+	  font-family: Verdana;
+	  font-size: 11px;
+	  color: #FFFFFF;
+	  cursor: pointer;
+	  background-color:#396094; /*#004D7E;*/
+	  border-bottom: solid 1px #6175B7;
+	}
+	
+	.itemOver {
+	  font-family: Verdana;
+	  font-size: 11px;
+	  color: #FFFFFF;
+	  cursor: pointer;
+	  background-color: #0A7CC3;
+	  border-bottom: solid 1px #11aadd;
+	}
+
+        
+        /* New CSS by Sander */
+
+	#lw_menu { 	
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		z-index: 2000;
+	}
+	
+	#lw_menu li { 
+		position: relative;
+		float: left; 
+		width: 95px;
+		height: 18px;
+		padding: 2px 0px 1px 1px;
+		margin: 0;
+		border-right: solid 1px #848CA3;
+		font-family: Verdana;
+		font-size: 12px;
+		font-weight: bold;
+		text-decoration: none;
+		color: #1D3A7F;
+		text-indent: 3px;
+		z-index: 2000;
+	}
+	
+	#lw_menu li:hover, #lw_menu li.over { 
+		background-color: #0A7CC3;/*#004D7E;*/
+		padding: 1px 0px 0px 0px;
+		color: #FFFFFF;
+		border-left: solid 1px #5064A6;
+		border-right: solid 1px #5064A6;  
+		border-top: solid 1px #5064A6;  
+		border-bottom: solid 1px #004D7E;
+	}
+	
+
+
+	/**
+	 * Two hacks in this bit. The first margin is for IE5/5.5. The margin
+	 * after the voice family hack is for IE6. All IE's also need a wrong
+	 * top/left setting. The proper margin and top/left is set through a
+	 * child select.
+	 */
+	#lw_menu li ul {
+		display: none;
+		list-style-type: none;
+		position: absolute;
+		top: 1em;
+		left: 0;
+		left: 0;	
+		padding: 0;
+		z-index: 2000;
+		margin: 4px 0 0 -18px;
+		voice-family: "\"}\""; 
+		voice-family:inherit;
+		margin: 4px 0 0 -2px;
+	}
+	#lw_menu li > ul {
+		top: auto;
+		left: auto;
+		margin: 3px 0 0 -2px;
+	}
+	
+	#lw_menu li:hover ul, #lw_menu li.over ul{
+		display: block;
+	}
+	
+	/**
+	 * Again two hacks in this bit. I started out with the spaced comment hack
+	 * in the hopes of targetting IE5.0 separately from IE5.5. the first margin is
+	 * for all IE's, the second one for IE6 and the third one for IE5.5 and 6. The 
+	 * IE's also need an extra padding. I correct everything though the child selector.
+	 */
+	#lw_menu li ul li {
+		vertical-align: middle;
+		float: none;
+		width: 160px;
+		background-color:#396094;
+		padding: 2px 2px 1px 2px;
+		border-bottom: solid 1px #6175B7;
+		margin-bottom: -1px; 
+		margin-bottom/* */:/**/0px; 
+		margin-bottom: /**/0px;
+	}
+	#lw_menu li ul > li {
+		padding: 1px 1px 0px 1px;
+		margin-bottom: 0px; 
+	}
+	
+	#lw_menu li ul li:hover {
+		padding: 0;
+	}
+	#lw_menu li ul li.over {
+		padding: 1;
+	}
+	
+	#lw_menu li ul li a {
+		font-family: Verdana;
+		font-size: 12px;
+		font-weight: normal;
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+	
+	
+	/* Informative textbox decoration */	
+
+	.roundedBox {
+	  position: relative;
+	  left: 0;
+	  top: 0;
+	  width: 100%;
+	}
+	
+	.boxCorners {
+	  text-align: right;
+	  background-image: url('/pics/themes/gdwhite_boxes/int_hdbkg.png')
+	}
+	.boxCorners_MM {
+	  text-align: right;
+	  background-image: url('/pics/themes/gdwhite_boxes/int_drk_bkg_hdr.gif')
+	}
+	
+	.boxLeft {
+	  position: absolute;
+	  top: 0px;
+	  left: 0px;
+	}
+	.boxContentHeadr {
+	  padding-bottom: 2px;
+	  text-indent: 8px;
+	  color: #000000;
+	  font-family: verdana, arial;
+	  font-size: 12px;
+	  font-weight: bold;
+	  vertical-align: top;
+	  background-image: url('/pics/themes/gdwhite_boxes/int_hdbkg_wrt.png');
+	  border-bottom: solid 1px #DDDDDD;
+	}
+	
+	.boxCImgR {
+		position: absolute; right: 0px; top: 0px; 
+	}
+	
+	.boxCImgL {
+		position: absolute; left: 0px; top: 0px
+	}
+	
+	
+	.boxContentHeadr_MM {
+	  background-image: url('/pics/themes/gdwhite_boxes/int_drk_bkg_bdy2.gif');
+	  border-bottom: solid 1px white;
+	  border-right: solid 3px white;
+	  height: 21px;
+	}
+	
+	.boxContentHeadr_Title {
+	  text-indent: 8px;
+	  color: #FFFFFF;
+	  font-family: verdana, arial;
+	  font-size: 12px;
+	  font-weight: bold;
+	  vertical-align: middle;
+	  padding-top: 3px;
+	}
+	
+	.boxContent_MM {
+	  padding: 7px;
+	  color: #000000;
+	  font-family: verdana, arial;
+	  font-size: 11px;
+	  vertical-align: top;
+	  background-color: #EEEEF3;  
+	  border-left: solid 1px #CCCCCC;
+	  border-top: solid 1px #EEEEEE;
+	  border-bottom: solid 1px #999999;
+	  border-right: solid 1px #AAAAAA;
+	}
+	
+	.boxContent {
+	  padding: 7px;
+	  color: #000000;
+	  font-family: verdana, arial;
+	  font-size: 11px;
+	  vertical-align: top;
+	  background-color: /*#F5F5F5;  */#EEEEF3;
+	  border-left: solid 1px #CCCCCC;
+	  border-right: solid 1px #AAAAAA;
+	  border-top: solid 1px #EEEEEE;
+	  border-bottom: solid 1px #999999;
+	}
+
+
+/* Specific textbox formatting, for left hand navigation menu */
+
+	/* Based off of .roundedBox */
+	#CMS_Features, #CMS_Resources, #CMS_Community, #CMS_Members {
+	  position: relative;
+	  left: 0;
+	  top: 0;
+	  width: 99%;
+	}
+	
+	.CMS_Spacer {
+		font-size: 5px;
+	}
+	
+	#CMS_LogoAlt {
+	display: none;
+	}
+	
+
+/* Quote of the day */
+	.qotd {
+	 position: static; float: left; font-size: 11px; font-family: verdana, arial; width: 100%; margin-top: 15px; margin-bottom: 15px; text-align: center;
+	}
+
+
+/* Layout markup */
+
+	.leftcolumn	{
+		float:left;
+		width:135px;
+		margin-left:5px;
+		margin-top:38px;	/* comment this line out if we're not lining up the tops of all columns */
+	}
+	
+	#centercolumn {
+		margin-right:180px;
+		font-family:"\"}\"";
+		font-family:inherit;
+		margin-right:183px;
+	}
+
+	#centercolumn_2col {
+		margin-left:135px;
+		font-family:"\"}\"";
+		font-family:inherit;
+		margin-left:138px;
+	}
+	
+	.centerpadding {
+	 margin-left: 0px;
+	 margin-right: 0px;
+	 padding: 5px; 
+	 width: 99%
+	}
+	
+	#rightcolumn {
+		float:right;
+		width:180px;
+		/*margin:0px 0px 0px 0px;*/
+		margin-top: 5px;
+	}
+	* html #rightcolumn {
+		/*margin:0px 0px 0px 0px;*/
+		width:180px;
+		margin-top: 5px;
+	}
+	body>div #rightcolumn {
+		/*margin:0px 0px 0px 0px;*/
+	}
+
+	
+	/* Central page boxes, for making one, two, and three equal width boxes */
+	.wrapper { position: static; }
+	.singlebox {/*float: left;*/ position:static; display:block; width:100%; margin:0; padding:0;}
+	.wrapper>.singlebox { width: 100% }
+	
+	.doublebox { /*float: left;*/ position: static; display: block; width: 48%; margin: 0;}
+	.wrapper>.doublebox { width: 100% }
+	.triplebox { float: left; position: static; display: block; width: 32.5%; margin-right: 4px; padding: 0;}
+	.wrapper>.triplebox { width: 33.3% }
+
+	
+	
+/* Graphical header CSS for table */
+
+	#header {
+		background-image: url('/pics/themes/gdwhite_header/backdrop.gif');
+		background-repeat: repeat-x;
+	}
+
+	#CM_Wrapper {
+	  position: relative;
+	  height: 99px;
+	  margin: 0px;
+	  padding: 0px;
+	  border: 0px;
+	 /* overflow: hidden;*/
+	}
+	
+	#CM_Logo {
+	  width: 325px;/*296px;*/
+	  height: 99px;
+	  padding: 0px;
+	  margin: 0px;
+	  border: 0px;  
+	  background-image: url('/pics/themes/gdwhite_header/hdrmain-new4.gif');
+	  background-repeat: no-repeat;
+	   /*.gif');*/
+	}
+	
+	#CM_SponsoredBy 
+	{
+		background-image: url('/pics/themes/gdwhite_header/default8_02.gif');
+	}
+	
+	#CM_AdSpace {
+	  padding-right: 4px;
+	  height: 73px;
+	  width: 470px;
+	  text-align: right;
+	  vertical-align: middle;
+	  background-image: url('/pics/themes/gdwhite_header/default8_02.gif');
+	}
+	
+	#CM_AdSpaceTrailer {
+	  margin: 0px;
+	  padding: 0px;
+	  width: 4px;
+	  height: 73px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_03.gif');
+	  background-repeat: no-repeat;
+	}
+	
+	#CM_AdContainer {
+	position: relative;
+	top: 0px;
+	right: 2px;
+	}
+	
+	#CM_MidSpace {
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-size: 1px;
+	  height: 3px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_05.gif');
+	}
+	
+	#CM_MidSpaceTrailer {
+	  width: 4px;
+	  height: 3px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_06.gif');
+	  background-repeat: no-repeat;
+	}
+	
+	#CM_NavSpace {
+	  padding: 0px;
+	  height: 22px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_08.gif');
+	}
+	
+	#CM_NavSpaceTrailer {
+	  width: 4px;
+	  height: 22px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_09.gif');
+	}
+	
+	#CM_ExOptA {
+	  height: 4px;
+	  font-size: 1px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_11.gif');
+	}
+	
+	 
+	#CM_ExOptB {
+	  width: 4px;
+	  height: 4px;
+	  font-size: 1px;
+	  background-image: url('/pics/themes/gdwhite_header/default8_12.gif');
+	}
+
+
+/* Footer */
+
+	#footer {
+		font-size: 11px; 
+		font-family: verdana, arial; 
+		color: black;
+		text-align: center;
+	}
+	
+	
+/* Site images */
+
+.img_search_go { background: transparent url('/pics/hdr3srchbtn.gif') no-repeat scroll center left; width: 38px; height: 17px; }
+
+/* Forum images / buttons */
+
+.img_login  { background: transparent url('/community/forums/themes/theme1/top_login.gif') no-repeat scroll center left; width: 49px; height: 25px; }
+.img_logout  { background: transparent url('/community/forums/themes/theme1/top_logout.gif') no-repeat scroll center left; width: 57px; height: 25px; }
+.img_register  { background: transparent url('/community/forums/themes/theme1/top_register.gif') no-repeat scroll center left; width: 64px; height: 25px; }
+.img_panel  { background: transparent url('/community/forums/themes/theme1/top_cp.gif') no-repeat scroll center left; width: 90px; height: 25px; }
+.img_bookmarks  { background: transparent url('/community/forums/themes/theme1/top_bookmarks.gif') no-repeat scroll center left; width: 75px; height: 25px; }
+.img_whosonline  { background: transparent url('/community/forums/themes/theme1/top_whosonline.gif') no-repeat scroll center left; width: 88px; height: 25px; }
+.img_activetopics  { background: transparent url('/community/forums/themes/theme1/top_active.gif') no-repeat scroll center left; width: 76px; height: 25px; }
+.img_stats  { background: transparent url('/community/forums/themes/theme1/top_stats.gif') no-repeat scroll center left; width: 52px; height: 25px; }
+.img_faq  { background: transparent url('/community/forums/themes/theme1/top_faq.gif') no-repeat scroll center left; width: 43px; height: 25px; }
+.img_search  { background: transparent url('/community/forums/themes/theme1/top_search.gif') no-repeat scroll center left; width: 59px; height: 25px; }
+.img_on  { background: transparent url('/community/forums/themes/theme1/on.gif') no-repeat scroll center left; width: 21px; height: 21px; }
+.img_off  { background: transparent url('/community/forums/themes/theme1/off.gif') no-repeat scroll center left; width: 21px; height: 21px; }
+.img_topics_newposts  { background: transparent url('/community/forums/themes/theme1/new_t.gif') no-repeat scroll center left; width: 13px; height: 16px; }
+.img_topics_nonewposts  { background: transparent url('/community/forums/themes/theme1/old_t.gif') no-repeat scroll center left; width: 13px; height: 16px; }
+.img_topics_closed  { background: transparent url('/community/forums/themes/theme1/no_t.gif') no-repeat scroll center left; width: 13px; height: 16px; }
+.img_topics_retired  { background: transparent url('/community/forums/themes/theme1/tombstone.gif') no-repeat scroll center left; width: 13px; height: 16px; }
+.img_post_newthread  { background: transparent url('/community/forums/themes/theme1/post.gif') no-repeat scroll center left; width: 110px; height: 32px; }
+.img_post_postreply  { background: transparent url('/community/forums/themes/theme1/reply.gif') no-repeat scroll center left; width: 110px; height: 32px; }
+.img_post_edit  { background: transparent url('/community/forums/themes/theme1/edit.gif') no-repeat scroll center left; width: 40px; height: 17px; }
+.img_post_quote  { background: transparent url('/community/forums/themes/theme1/quote.gif') no-repeat scroll center left; width: 52px; height: 17px; }
+.img_post_closed  { background: transparent url('/community/forums/themes/theme1/closed.gif') no-repeat scroll center left; width: 110px; height: 32px; }
+.img_post_pm  { background: transparent url('/community/forums/themes/theme1/butn_pm.gif') no-repeat scroll center left; width: 27px; height: 17px; }
+.img_post_profile  { background: transparent url('/community/forums/themes/theme1/butn_profile.gif') no-repeat scroll center left; width: 46px; height: 17px; }
+.img_post_showcase  { background: transparent url('/community/forums/themes/theme1/butn_showcase.gif') no-repeat scroll center left; width: 60px; height: 17px; }
+.img_post_journal  { background: transparent url('/community/forums/themes/theme1/butn_journal.gif') no-repeat scroll center left; width: 46px; height: 17px; }
+.img_post_email  { background: transparent url('/community/forums/themes/theme1/butn_email.gif') no-repeat scroll center left; width: 46px; height: 17px; }
+.img_post_prevarrow  { background: transparent url('/community/forums/themes/theme1/prev.gif') no-repeat scroll center left; width: 6px; height: 9px; }
+.img_post_nextarrow  { background: transparent url('/community/forums/themes/theme1/next.gif') no-repeat scroll center left; width: 6px; height: 9px; }
+
+
+/* Forum Style */
+
+  .img { border: 0px solid #000; vertical-align: middle; }
+  .smallfont {font-size: 10px}
+  .mediumfont {font-size: 11px}
+  .largefont {font-size: 18px}
+  .regularfont {font-size: 10pt; font-family: Verdana, Arial, Helvetica, sans-serif}
+  .path {font-size: 10px; color: silver}
+  .smallfontwhite { font-size:10px; color: #CCCCCC}
+  
+  .head {color: white; background: #1476B5;}
+  .headsmall {font-family: verdana, sans-serif; font-size: 10px; color: white; background: #1476B5; border-top: solid 1px #72C8FF; border-left: solid 1px #72C8FF; border-bottom: solid 1px #105785; border-right: solid 1px #105785;}
+  .headsmalllink { color: White; }
+  .category {color: white; background: #1E87C7; border-top: solid 1px #46A4D1; border-left: solid 1px #46A4D1; border-bottom: solid 1px #035180; border-right: solid 1px #035180;}
+  .postcell {font-size: 12px; background: #0071BC; color: white}
+  .altforumcell {background: #E4E4E4; border-top: solid 1px #FCFCFF; border-left: solid 1px #FCFCFF; border-bottom: solid 1px #D7D7DF; border-right: solid 1px #D7D7DF;}
+  .forumcell {background: #EAEAEA; border-top: solid 1px #FAFAFD; border-left: solid 1px #FAFAFD; border-bottom: solid 1px #D7D7DF; border-right: solid 1px #D7D7DF;}
+  .announcecell {overflow: auto; color: black; background: /*#C0CEE1;*//*#D1DFF2;*/#D3DEE8; border-top: solid 1px #E2EAF4; border-left: solid 1px #E2EAF4; border-bottom: solid 1px #8D9FB8; border-right: solid 1px #8D9FB8;}
+
+  .post_trailer {background: #C4CDD8; font-size: 10px; border-top: solid 1px #EFF6FF; border-left: solid 1px #EFF6FF; border-bottom: solid 1px #606368; border-right: solid 1px #606368;}
+  .post_dateline {background: #C4CDD8; font-size: 10px; border-top: solid 1px #EFF6FF; border-left: solid 1px #EFF6FF; border-bottom: solid 1px #606368; border-right: solid 1px #606368;}
+  .post_author {background: #C0CADE;/*#9CAAC7;*//*#ADBBD8;*//*#CFDDF1*//*#C0CAD5*//*#DAE0E6;*/ font-size: 11px;vertical-align: middle; border-top: solid 1px #EFF6FF/*ADBBD8*/; border-left: solid 1px #EFF6FF; border-bottom: solid 1px #646A72; border-right: solid 1px #646A72;}
+  .post_body {background: #EFEFEF; padding: 5px 5px 5px 5px; border-top: solid 2px #D9D9D9; border-left: solid 1px #E0E0E4; border-bottom: solid 1px #44444C; border-right: solid 1px #44444C;}
+  .post_separator {font-size: 10px; background: #576982; border-top: solid 1px #2E4461; border-bottom: solid 1px #B9C6D7; border-left: solid 1px #FFFFFF; border-right: solid 1px #FFFFFF; width: 95%;}
+  
+  .post_body A:link {text-decoration: underline; color: /*#1476B5*//*#2E4B8F*//*#1D3A8D;*/#3054AE;} /* 1D3A7F */
+  .post_body A:visited {text-decoration: underline; color: /*#1476B5*//*#2E4B8F*//*#1D3A8D;*//*#001C6F*/#3054AE;}  
+  .post_body A:active {text-decoration: none; color: #000000}
+  .post_body A:hover {text-decoration: underline; color: #5086B4}
+  
+  
+  .threadhighlight {background: #003366}
+  .time {color: #351465}
+  .staff { color: #009500; /*#10AB10;*//*21BC21;*/ /*font-weight: bold*//*#32CD32/*#00781A;*/ }
+  .moderator { color: /*#DC143C;*/#CB021A; /*font-weight: bold*/ /*#BD282D*/ }
+  .premium { color: #B57438; font-weight: bold }
+  .premiumusernames { color: #B57438; font-weight: bold }  
+  .suspended { color: pink; text-decoration: line-through;}
+  .banned {	color: red;	text-decoration: line-through; }
+  .quote { font-size: 11px; background: #E6E6DA;/*F7F7EB;*/ border-top: solid 1px #5B5D82; border-left: solid 1px #5B5D82; border-bottom: solid 1px #1B1D42; border-right: solid 1px #1B1D42;}
+  .quote .quote { font-size: 11px; background: #DADACE;/*#EBEBDF;*/ border-top: solid 1px #484570; border-left: solid 1px #484570; border-bottom: solid 1px #1B1D42; border-right: solid 1px #1B1D42;}
+  .quote .quote .quote { font-size: 11px; background: #D0D0D3;/*#E0E0D4;*/ border-top: solid 1px #444166; border-left: solid 1px #444166; border-bottom: solid 1px #242146; border-right: solid 1px #242146;}
+  .quote .quote .quote .quote { font-size: 11px; background: #C4C4B8;/*#D5D5C9;*/ border-top: solid 1px #5B5D82; border-left: solid 1px #5B5D82; border-bottom: solid 1px #1B1D42; border-right: solid 1px #1B1D42;}
+  .forumrules {border: solid #555555 2px; background: #F3EEEE; font-family: verdana, sans-serif; color: black; font-size: 10px}
+  .source {background: #ffffff; border: solid 2px; font-family: Courier New; color: black; font-size: 9pt; width: 95%; max-height: 250px; overflow: auto; padding: 3px;}
+  .editedby {color: #333333; font-size: 10px;}
+  .register_required { color: red}
+  
+  .code { font-family: Courier New; font-size: 10pt; color: #477280; }
+  pre.code {font-family: Courier New; font-size: 10pt; color: #477280; background: #F7F7EB; padding: 8px 8px 8px 8px; border: solid 1px #5B5D82}
+  pre.vbcode {font-family: Courier New; font-size: 11px; color: #ADD8E6}
+  .vbcode {font-family: Courier New; font-size: 11px; color: #ADD8E6}
+  .codecomment {font-family: Courier New; font-size: 10pt; color: #9999FF}
+  
+  
+  
+/* Developer Journal Calendar */
+ .calendarhead {
+	font-family:tahoma,verdana, arial, sans-serif;
+	color:white;
+	font-size:13px;
+	font-weight:bold;
+ 	padding:6px;
+	background: #1476B5;			
+	}  
+
+  .calendar {
+	font-family:verdana, arial, sans-serif;
+	color:#707070;
+	background:#EAEAEA;
+	font-size:10px;
+	font-weight:normal;
+ 	padding:4px;		
+	}  		
+
+  .calendarsel {
+		font-family:verdana, arial, sans-serif;
+		background:#0071BC;
+		font-size:12px;
+		font-weight:bold;
+ 		padding:4px;
+	}  		
+	
+  .calendarlink { color:white; }  
+	
+
+/* Bookmarks tabs */
+
+	ul#tabnav {
+	font: bold 11px verdana, arial, sans-serif;
+	list-style-type: none;
+	padding-bottom: 24px;
+	border-bottom: 1px solid #333399;
+	margin: 0;
+	}
+	
+	ul#tabnav li {
+	float: left;
+	height: 21px;
+	background-color: #20205C;
+	margin: 2px 2px 0 2px;
+	border: 1px solid #3333AD;
+	}
+	
+	body#tab1 li.tab1, body#tab2 li.tab2, body#tab3 li.tab3, body#tab4 li.tab4 {
+	border-bottom: 1px solid #333399;
+	background-color: #333399;
+	}
+	
+	body#tab1 li.tab1 a, body#tab2 li.tab2 a, body#tab3 li.tab3 a, body#tab4 li.tab4 a {
+	color: white;
+	}
+	
+	#tabnav a {
+	float: left;
+	display: block;
+	color: #a09dc3;
+	text-decoration: none;
+	padding: 4px;
+	}
+	
+	#tabnav a:hover {
+	background: #5555DD;
+	color: white;
+	} 

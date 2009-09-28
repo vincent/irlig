@@ -1,0 +1,35 @@
+/* Syntax highlighting CSS */
+  
+  .cpp-pre {background: #ffffff; border: solid #888888 2px; font-family: Courier New; color: black; font-size: 9pt; width: 630px; height: 250px; overflow: auto; padding: 3px;}
+
+  .cpp { font-family : Arial, sans-serif; background-color :#FFFFBB; font-size:12px; border-width : 1px; border-style : solid; border-color : #BBBBBB;}
+  .cpp-blockdoc { color: #00FF00; font-family: Arial, sans-serif;}
+  .cpp-linedoc {	color: #2eFF57;	font-family: Arial, sans-serif;}
+  .cpp-code {color:#000000; font-family:Arial, sans-serif;}
+
+  .cpp-literal {color: #8B0000; font-family: Courier New;}
+  .cpp-keyword {color: blue; font-family: Courier New;}
+  .cpp-comment {color: green; font-family: Courier New;}
+  .cpp-number {color: purple; font-family: Courier New;}
+  .cpp-directive {color: gray; font-family: Courier New;}
+
+  .java-literal {color: #8B0000; font-family: Courier New;}
+  .java-keyword {color: blue; font-family: Courier New;}
+  .java-comment {color: gray; font-family: Courier New;}
+  .java-number {color: purple; font-family: Courier New;}
+  .java-primitives {color: #ff6699; font-family: Courier New;}
+  .java-storageclasses {color: #ff6633; font-family: Courier New;}
+  .java-visibilitymodifier {color: #00008B; font-family: Courier New; font-weight: bold;}
+
+  .vb-literal {color: #8B0000; font-family: Courier New;}
+  .vb-keyword {color: blue; font-family: Courier New;}
+  .vb-comment {color: gray; font-family: Courier New;}
+  .vb-function {color: #00008B; font-family: Courier New; font-weight: bold;}
+  .vb-method{color: green; font-family: Courier New;}
+
+  .asm-keyword {color: #ff6666; font-family: Courier New;}
+  .asm-function {color: #00008B; font-family: Courier New; font-weight: bold}
+  .asm-comment {color: gray; font-family: Courier New;}
+  .asm-string {color: #8B0000; font-family: Courier New;}
+  .asm-number {color: purple; font-family: Courier New;}
+  .asm-register {color: #cc6666; font-family: Courier New;}

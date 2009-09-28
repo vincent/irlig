@@ -1,0 +1,31 @@
+<?= $this->js('/irlig/init.js'); ?>
+<?= $this->js('/irlig/anim.js'); ?>
+<?= $this->js('/irlig/ground.js'); ?>
+<?= $this->js('/irlig/hud.js'); ?>
+<?= $this->js('/irlig/player.js'); ?>
+
+<?= $this->js('/kevlindev/2D.js'); ?>
+<?= $this->js('/kevlindev/IntersectionUtilities.js'); ?>
+
+<?= $this->js('/astar.js'); ?>
+
+<?= $this->css('/map_'.$this->mapName.'.css', 'media', 'style') ?>
+
+<?= $this->map($this->mapName) ?>
+
+
+<defs>
+	<?= $this->element('buddy', 'character') ?>
+
+	<? foreach (array( 'medium_grass' ) as $e) : ?>
+		<?= $this->element( $e, 'map_element') ?>
+	<? endforeach; ?>
+</defs>
+
+<?= ''/* ALWAYS LAST !  $this->partial('hud.svg'); */ ?>
+
+<script>
+
+	IRL_IG.init('<?= $this->mapName ?>', <?= $this->jsMatrix; ?>);
+
+</script>

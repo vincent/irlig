@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  shortest-path.svg
+
+  Demonstration of Dijkstra's shortest path algorithm.
+
+  Cameron McCormack <cam (at) mcc.id.au>
+
+  Permission is hereby granted to use, copy, modify and distribute this
+  code for any purpose, without fee.
+
+  Revision 1: July 26, 2006
+    Changes from Andreas Neumann to get it working in Firefox and Opera.
+
+  Initial version: December 13, 2004
+  -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 600" onload="init()">
+
+  <title id="title">Demonstration of Dijkstra's shortest path algorithm</title>
+
+  <script type="text/ecmascript" xlink:href="dijkstra_fichiers/dijkstra.js"/><html:div xmlns:html="http://www.w3.org/1999/xhtml" id="_firebugConsole" style="display: none;" FirebugVersion="1.4X.2"/>
+  <script type="text/ecmascript"><![CDATA[
+    var NUMBER_NODES = 20;
+    var NUMBER_EDGES = 40;
+
+    var SVG_NAMESPACE_URI = "http://www.w3.org/2000/svg";
+
+    var nodes = new Array();
+    var adjacencyMatrix = new Array(NUMBER_NODES);
+
+    function init() {
+      // Create randomly positioned nodes
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        var newNode = { };
+        var again;
+        do {
+          again = false;
+          newNode.x = 700 * Math.random() + 50;
+          newNode.y = 470 * Math.random() + 80;
+          // Make sure they aren't too close together
+          for (var j = 0; j < i; j++) {
+            var dx = newNode.x - nodes[j].x;
+            var dy = newNode.y - nodes[j].y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 45) {
+              again = true;
+              break;
+            }
+          }
+        } while (again);
+        nodes.push(newNode);
+      }
+  
+      // Initialize an adjacency matrix
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        adjacencyMatrix[i] = new Array(NUMBER_NODES);
+        for (var j = 0; j < NUMBER_NODES; j++) {
+          adjacencyMatrix[i][j] = Infinity;
+        }
+      }
+  
+      // Create some edges and add them to the document
+      for (var j = 0; j < NUMBER_EDGES; j++) {
+        var from = j % NUMBER_NODES;
+        var min = Infinity;
+        var to = from;
+        for (var i = 0; i < NUMBER_NODES; i++) {
+          if (from != i && adjacencyMatrix[from][i] == Infinity) {
+            var dx = nodes[from].x - nodes[i].x;
+            var dy = nodes[from].y - nodes[i].y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < min) {
+              min = distance;
+              to = i;
+            }
+          }
+        }
+        adjacencyMatrix[from][to] = min;
+        adjacencyMatrix[to][from] = min;
+  
+        var l = document.createElementNS(SVG_NAMESPACE_URI, "line");
+        var id = "l";
+        if (to < from) {
+          id += String(to) + from;
+        } else {
+          id += String(from) + to;
+        }
+        l.setAttributeNS(null, "id", id);
+        l.setAttributeNS(null, "x1", nodes[from].x);
+        l.setAttributeNS(null, "y1", nodes[from].y);
+        l.setAttributeNS(null, "x2", nodes[to].x);
+        l.setAttributeNS(null, "y2", nodes[to].y);
+        document.documentElement.appendChild(l);
+      }
+  
+      divider = document.createElementNS(SVG_NAMESPACE_URI, "g");
+      document.documentElement.appendChild(divider);
+  
+      // Add the circles for the nodes
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        var c = document.createElementNS(SVG_NAMESPACE_URI, "circle");
+        c.setAttributeNS(null, "id", "c" + i);
+        c.setAttributeNS(null, "cx", nodes[i].x);
+        c.setAttributeNS(null, "cy", nodes[i].y);
+        c.setAttributeNS(null, "r", 20);
+        c.setAttributeNS(null, "onmouseover", "showPath(" + i + ")");
+        c.setAttributeNS(null, "onmouseout", "hidePath(" + i + ")");
+        c.setAttributeNS(null, "onclick", "setActive(" + i + ")");
+        document.documentElement.appendChild(c);
+      }
+  
+      // Start with node 0 as the active node
+      activeNode = 0;
+      document.getElementById("c0").setAttributeNS(null, "class", "current");
+      shortestPathInfo = shortestPath(adjacencyMatrix, NUMBER_NODES, 0);
+    }
+
+    // Hide the path highlights
+    function clearPath() {
+      for (var i = 0; i < NUMBER_NODES; i++) {
+        for (var j = i + 1; j < NUMBER_NODES; j++) {
+          if (adjacencyMatrix[i][j] != Infinity) {
+            document.getElementById("l" + i + j)
+                    .setAttributeNS(null, "class", "");
+          }
+        }
+      }
+    }
+
+    // Show path from the active node to the given node
+    function showPath(to) {
+      clearPath();
+      if (activeNode != to) {
+        var c = document.getElementById("c" + to);
+        c.setAttributeNS(null, "class", "highlight");
+        var path = constructPath(shortestPathInfo, to);
+        var prev = activeNode;
+        var distance = 0;
+        for (var i = 0; i < path.length; i++) {
+          var id;
+          if (path[i] < prev) {
+            id = "l" + path[i] + prev;
+          } else {
+            id = "l" + prev + path[i];
+          }
+          var l = document.getElementById(id);
+          l.parentNode.removeChild( l);
+          l.setAttributeNS(null, "class", "highlight");
+          document.documentElement.insertBefore(l, divider);
+          distance += adjacencyMatrix[prev][path[i]];
+          prev = path[i];
+        }
+        document.getElementById("d").firstChild.nodeValue =
+          "Distance: " + distance;
+      }
+    }
+
+    // Unhighlight the path from the active node to the given node
+    function hidePath(to) {
+      clearPath();
+      if (activeNode != to) {
+        var c = document.getElementById("c" + to);
+        c.setAttributeNS(null, "class", "");
+      }
+    }
+
+    // Choose a new active node
+    function setActive(to) {
+      document.getElementById("c" + activeNode)
+              .setAttributeNS(null, "class", "");
+      clearPath();
+      activeNode = to;
+      shortestPathInfo = shortestPath(adjacencyMatrix, NUMBER_NODES, to);
+      document.getElementById("c" + activeNode)
+              .setAttributeNS(null, "class", "current");
+    }
+  ]]></script>
+
+  <style type="text/css">
+    circle {
+      fill: CornflowerBlue;
+      stroke-width: 2;
+      stroke: MidnightBlue;
+    }
+    circle.current {
+      fill: OrangeRed;
+      stroke: Firebrick;
+    }
+    circle.highlight {
+      fill: GreenYellow;
+      stroke: green;
+    }
+    line {
+      stroke-width: 2;
+      stroke: black;
+    }
+    line.highlight {
+      stroke-width: 4;
+      stroke: IndianRed;
+    }
+  </style>
+
+  <rect x="-100%" y="-100%" width="300%" height="300%" fill="PaleGoldenrod"/>
+  <g font-family="Arial,Helvetica" font-size="14">  
+    <text x="10" y="20" font-weight="bold" font-size="18">Demonstration of Dijkstra's shortest path algorithm</text>
+    <text x="10" y="38">Move the mouse over a circle to get the shortest path and distance to the highlighted circle</text>
+    <text x="10" y="55">Click on a circle to set it as a new starting point, reload to get a new random setup</text>
+    <text id="d" x="10" y="590">Distance: </text>
+    <a xlink:href="http://mcc.id.au/"><text x="790" y="590" text-anchor="end">Example provided by Cameron McCormack</text></a>
+ </g>
+</svg>
