@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onload="startup()">
+<script><![CDATA[
+var xmlns="http://www.w3.org/2000/svg" 
+var O=document.documentElement
+var BB
+var CTM
+function startup(){
+	BB=document.getElementById("BB")
+	TE=document.getElementsByTagName("text")
+	for (var i=0;i<TE.length;i++){
+		Ti=TE.item(i)
+		Ti.setAttribute("onmouseover","draw(evt)")
+		Ti.setAttribute("onmousedown","snug(evt)")
+	}
+}
+function draw(evt,s){
+	var O=evt.target
+	var Box=O.getBBox()
+	BB.setAttributeNS(null,"x",Box.x)
+	BB.setAttributeNS(null,"y",Box.y)
+	BB.setAttributeNS(null,"width",Box.width)
+	BB.setAttributeNS(null,"height",Box.height)
+	CTM=O.getCTM()
+}
+function snug(evt) {	
+	CTM.scale=true
+	s=CTM.a+" "+CTM.b+" "+CTM.c+" "+CTM.d+" "+CTM.e+" "+CTM.f
+	BB.setAttributeNS(null,"transform","matrix("+s+")")
+}
+//]]></script><html:div xmlns:html="http://www.w3.org/1999/xhtml" id="_firebugConsole" style="display: none;" FirebugVersion="1.4X.2"/>
+<text font-size="16pt" x="50" y="20" transform="translate(100)" onmouseover="draw(evt)" onmousedown="snug(evt)">getCTM()</text>
+
+<text id="status" x="75" y="30" font-size="14pt" transform="rotate(30, 90, 35)" onmouseover="draw(evt)" onmousedown="snug(evt)">tilted</text>
+
+<text x="50" y="60" font-size="18pt" fill="darkblue" transform="translate(-40) scale(1.5) rotate(10, 100, 80)" onmouseover="draw(evt)" onmousedown="snug(evt)">
+Move the mouse over text to see original BB</text>
+
+<text x="100" y="150" font-size="18pt" fill="darkred" transform="scale(1.5) rotate(-10, 100, 150)" onmouseover="draw(evt)" onmousedown="snug(evt)">
+Click to use getCTM and then draw BB</text>
+
+<rect id="BB" x="101" y="132" width="481.1015625" height="23" stroke="red" fill="yellow" opacity="0.4"/>
+</svg>

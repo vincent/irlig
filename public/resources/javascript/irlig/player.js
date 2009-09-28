@@ -34,13 +34,21 @@ IRL_IG.classes.player = Class.create({
 		*/
 	},
 
+	getInterface: function() {
+		return $('player_buddy');
+	},
+
 	getInstance: function() {
 		return $('player_instance');
 	},
 
 	position: function() {
+		//var pib = this.getInstance().getBBox();
 		var pib = $('player_instance').getBBox();
-		return { x:(pib.x + this.hot_d.x), y:(pib.y + this.hot_d.y) };
+		return {
+			x: pib.x + this.hot_d.x,
+			y: pib.y + this.hot_d.y
+		};
 	},
 
 	getTransform: function() {
@@ -69,6 +77,8 @@ IRL_IG.classes.player = Class.create({
 				break;
 			}
 		}
+
+		// TODO : Maybe use .getCTM() here
 
 		//.each(function(element){
 		for (i=0; i<eLayerElements.length; i++) {
@@ -110,8 +120,21 @@ IRL_IG.classes.player = Class.create({
 		var dx = parseInt(pos.x - this.position().x);
 		var dy = parseInt(pos.y - this.position().y);
 		*/
-		var dx = parseInt(pos.x - this.getInstance().getBBox().x);
-		var dy = parseInt(pos.y - this.getInstance().getBBox().y);
+
+		/*
+		var dx = parseInt(pos.x - (this.getInstance().getBBox().x - this.hot_d.x ));
+		var dy = parseInt(pos.y - (this.getInstance().getBBox().y - this.hot_d.y ));
+		*/
+
+		/*
+		var dx = parseInt(pos.x - this.getInstance().getBBox().x );
+		var dy = parseInt(pos.y - this.getInstance().getBBox().y );
+		*/
+
+		// TODO : Maybe use .getCTM() here
+
+		var dx = parseInt(pos.x - this.getInstance().getClientRects()[0].left );
+		var dy = parseInt(pos.y - this.getInstance().getClientRects()[0].top );
 
 		this.translate( dx, dy );
 	},
