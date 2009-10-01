@@ -1,33 +1,3 @@
-Node.prototype.getSafeBBox = function () {
-       var bbox = null;
-       var parent;
-       var hasparent;
-
-       if ( this.parentNode ) {
-           parent = this.parentNode;
-           hasparent = true;
-       }
-       else {
-           parent = null;
-           hasparent = false;
-       }
-
-       document.documentElement.appendChild(this);	//put the child in the custody of the state
-
-       if (this.getBBox) {
-           bbox = this.getBBox();
-       }
-
-       if (hasparent) {
-           parent.appendChild(this);		//give the child back
-       }
-       else  {
-           document.documentElement.removeChild(this);		//put the orphan back on the street
-       }
-
-       return bbox;
-   };
-
 IRL_IG.classes.ground = Class.create({
 
 	element: null,
@@ -44,25 +14,22 @@ IRL_IG.classes.ground = Class.create({
 		this.last_path = [ gridmatrix[0][0] ];
 		this.current_action = '';
 
+		/**/
 		// Adding the elements' layer
 		var svgns = 'http://www.w3.org/2000/svg';
 		this.elements_layer = document.createElementNS(svgns, 'g');
 		this.elements_layer.setAttributeNS( null, 'id', 'eLayer' );
-		this.elements_layer.setAttributeNS( null, 'x', 0 );
-		this.elements_layer.setAttributeNS( null, 'y', 0 );
-		this.elements_layer.setAttributeNS( null, 'width', '100%' );
-		this.elements_layer.setAttributeNS( null, 'height', '100%' );
 		this.element.parentNode.appendChild(this.elements_layer);
 
-		/*
-		var bbox = this.elements_layer.getBBox();
-		var t = $$('svg')[0].createSVGTransform();
-		t.setTranslate( -bbox.x, -bbox.y );
-		this.elements_layer.transform.baseVal.appendItem(t);
-		*/
+		IRL_IG.debug('Initializing map polygons');
+		var next_child = this.element.firstElementChild;
+		while (next_child) {
+			var element = next_child;
 
-		IRL_IG.debug('Initializing polygons');
-		$$('svg polygon').each(this.initializeElement.bind(this));
+			this.extendMapByPoly(element);
+			next_child = next_child.nextElementSibling;
+		}
+
 		Event.observe(this.element, 'mouseover', function(e){
 			e.element().classList.add('hover');
 		});
@@ -73,68 +40,42 @@ IRL_IG.classes.ground = Class.create({
 		this.initTest();
 	},
 
-	addPrototypeMethods: function(element) {
-		element.hasClassName = function(name) { return this.classList.contains(name); };
-		element.addClassName = function(name) { return this.classList.add(name); };
-		element.removeClassName = function(name) { return this.classList.remove(name); };
-		element.toggleClassName = function(name) { return this.classList.toggle(name); };
-		return element;
-	},
-
-	initializeElement: function(element) {
-
-		element = this.addPrototypeMethods(element);
-
-		element = this.extendMapByPoly(element);
-
-		//element.setAttribute('fill', 'transparent');
-
-		element.isWalkable = function() {
-			return (
-					!this.classList.contains('is_wall')
-				&&	(!this.hasAttribute('type') || this.getAttribute('type') != 'wall')
-			);
-		};
-
-		element.getCenter = function() {
-			var bbox = this.getBBox();
-			return {
-				x: (bbox.x + (bbox.width / 2)),
-				y: (bbox.y + (bbox.height / 2))
-			};
-		};
-
-		element.getMatrixElement = function(matrix) {
-			return matrix.findGraphNodeById(this.id);
-		};
-
-		element.inspect = function() {
-		   var bbox = this.getBBox();
-		   var svgns = 'http://www.w3.org/2000/svg';
-
-		   var outline = document.createElementNS(svgns, 'rect');
-		   outline.setAttributeNS( null, 'x', bbox.x - 2 );
-		   outline.setAttributeNS( null, 'y', bbox.y - 2 );
-		   outline.setAttributeNS( null, 'width',  bbox.width + 4 );
-		   outline.setAttributeNS( null, 'height', bbox.height + 4 );
-		   outline.setAttributeNS( null, 'stroke', 'blue' );
-		   outline.setAttributeNS( null, 'fill', 'yellow' );
-
-		   this.parentNode.insertBefore( outline, this );
-
-		   window.setTimeout(function(){ this.parentNode.removeChild(this); }.bind(outline), 5000);
-		};
-
-	},
-
 	extendMapByPoly: function(element) {
-		if (!element) return;
+		if (!element || !element.classList|| !element.classList.length) return;
 
-		if (element.classList && element.classList.contains('element-medium_grass')) {
-			this.addElement('use', { 'x':element.getBBox().x, 'y':element.getBBox().y, 'xlink:href':'#medium_grass' });
-			element.classList.add('is_wall');
-		}
-		return element;
+		var map_elements = $A(element.classList).findAll(function(c){
+			var name = c.gsub('element-', '');
+			return (name != c && $(name));
+		});
+
+		console.log('Adding map elements to layer : %o', map_elements);
+
+		map_elements.each(function(map_element){
+			map_element = map_element.gsub('element-', '');
+			if (!$(map_element)) return;
+
+			var element_center = element.getCenter();
+			var symbol = $(map_element);
+			var symbol_bbox = symbol.getTBBox();
+
+			// Assume hotpoint it's ( width/2 , height )
+			var element_bbox = {
+				x: element_center.x - symbol_bbox.x - (0.5 * symbol_bbox.width),	// HEREISHIT
+				y: element_center.y - symbol_bbox.y - (0.8 * symbol_bbox.height),	// HEREISHIT
+			};
+			var element_ctm = element.getTransformToElement($('eLayer'));
+			element_ctm = new Array( element_ctm.a, element_ctm.b, element_ctm.c, element_ctm.d, element_ctm.e, element_ctm.f );
+
+			var new_el = this.addElement('use', { transform:'matrix('+element_ctm.join(' ')+')', x:element_bbox.x, y:element_bbox.y, 'xlink:href':'#'+map_element });
+
+			var classNames = $A(symbol.classList).reject(function(classname){ return classname && classname != ''; });
+			if (classNames.length) {
+				classNames = classNames.join(' ');
+				element.addClassName(classNames);
+			}
+
+			//element.setAttributeNS(null, 'style', 'fill:red;');
+		}.bind(this));
 	},
 
 	addElement: function(name, attributes) {
@@ -144,7 +85,6 @@ IRL_IG.classes.ground = Class.create({
 		var t = $H(attributes);
 
 		$H(attributes).each(function(pair){
-			//var value = pair.value;
 			var key = new String(pair.key).split(':');
 			var ns = null;
 			if (key.length > 1) { ns = 'http://www.w3.org/1999/xlink'; key = key[1]; }

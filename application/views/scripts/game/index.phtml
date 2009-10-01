@@ -4,9 +4,6 @@
 <?= $this->js('/irlig/hud.js'); ?>
 <?= $this->js('/irlig/player.js'); ?>
 
-<?= $this->js('/kevlindev/2D.js'); ?>
-<?= $this->js('/kevlindev/IntersectionUtilities.js'); ?>
-
 <?= $this->js('/astar.js'); ?>
 
 <?= $this->css('/map_'.$this->mapName.'.css', 'media', 'style') ?>
@@ -17,7 +14,7 @@
 <defs>
 	<?= $this->element('buddy', 'character') ?>
 
-	<? foreach (array( 'medium_grass' ) as $e) : ?>
+	<? foreach (array( 'medium_grass', 'big_tree' ) as $e) : ?>
 		<?= $this->element( $e, 'map_element') ?>
 	<? endforeach; ?>
 </defs>

@@ -25,7 +25,7 @@ IRL_IG = {
 		//false &&
 		window.setTimeout(function(){
 			this.ground.registerMainPlayer(this.player);
-		}.bind(this), 2000);
+		}.bind(this), 5000);
 	},
 
 	swapChildren:  function(c1, c2) {

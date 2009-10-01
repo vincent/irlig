@@ -11,7 +11,7 @@ class Svg_Map {
 
 			$attrs = $child->attributes();
 
-			foreach (array('NW', 'N', 'NE', 'SE', 'S', 'SW') as $direction)
+			foreach (array('NW', 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W') as $direction)
 				if (isset($attrs['cell_'.$direction]))
 					$points[] = array( (string) $attrs['id'], (string) $attrs['cell_'.$direction], 1);
 		}

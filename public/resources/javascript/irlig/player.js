@@ -9,29 +9,8 @@ IRL_IG.classes.player = Class.create({
 	path: [],
 	path_step: 0,
 
-	position: {
-		x:0,
-		y:0
-	},
-
 	initialize: function(id, options) {
 		this.def_element = $(id);
-
-		hotpoint = this.def_element.getElementsByClassName('hotpoint')[0];
-		this.hot_d = {
-				x: parseInt(hotpoint.getAttribute('x')),
-				y: parseInt(hotpoint.getAttribute('y'))
-		};
-		hotpoint = null;
-
-		/*
-		var t = this.getTransform();
-		t.setTranslate( this.hot.x, this.hot.y );
-		this.player_transform_list.appendItem(t);
-
-		this.position.x = this.hot.x;
-		this.position.y = this.hot.y;
-		*/
 	},
 
 	getInterface: function() {
@@ -42,12 +21,16 @@ IRL_IG.classes.player = Class.create({
 		return $('player_instance');
 	},
 
+	getHotPoint: function() {
+		return $('hotpoint');
+	},
+
 	position: function() {
-		//var pib = this.getInstance().getBBox();
-		var pib = $('player_instance').getBBox();
+		var pib = this.getInstance().getTBBox();
+		var hotpoint = this.getHotPoint().getCenter();
 		return {
-			x: pib.x + this.hot_d.x,
-			y: pib.y + this.hot_d.y
+			x: pib.x + hotpoint.x,
+			y: pib.y + hotpoint.y
 		};
 	},
 
@@ -63,11 +46,16 @@ IRL_IG.classes.player = Class.create({
 	*/
 
 	translate: function(dx, dy) {
+		/*
 		var t = this.getTransform();
 		t.setTranslate( dx, dy );
 		this.getInstance().transform.baseVal.appendItem(t);
+		*/
 
-		/*
+		var ctm = this.getInstance().getTransformToElement(document.documentElement);
+		var m = ctm.a + ' ' + ctm.b + ' ' + ctm.c + ' ' + ctm.d + ' ' + (ctm.e + dx) + ' ' + (ctm.f + dy);
+		this.getInstance().setAttributeNS(null, 'transform', 'matrix('+m+')');
+
 		var eLayerElements = $A($('eLayer').children);
 		var player_instance_index = 0;
 
@@ -78,31 +66,26 @@ IRL_IG.classes.player = Class.create({
 			}
 		}
 
-		// TODO : Maybe use .getCTM() here
-
 		//.each(function(element){
 		for (i=0; i<eLayerElements.length; i++) {
 			var element = eLayerElements[i];
-			this.instance = $('player_instance');
 
 			if (element.getAttribute('href') == '#player_buddy') continue;
 
-			var shape_y = element.getBBox(); shape_y = shape_y.y + shape_y.height;
+			var shape_y = element.getTBBox();
+			shape_y = shape_y.y + shape_y.height;
 			var player_y = this.position().y;
 
 			if (shape_y > player_y && i <= player_instance_index) {
-				console.log('player (%s) is under grass (%s)', player_y, shape_y);
-				IRL_IG.swapChildren( eLayerElements[i], this.instance );
-				this.instance = $('player_instance');
+				//console.log('player (%s) is under grass (%s)', player_y, shape_y);
+				IRL_IG.swapChildren( eLayerElements[i], this.getInstance() );
 			}
 			else if (shape_y < player_y && i >= player_instance_index) {
-				console.log('player (%s) is above grass (%s)', player_y, shape_y);
-				IRL_IG.swapChildren( eLayerElements[i], this.instance );
-				this.instance = $('player_instance');
+				//console.log('player (%s) is above grass (%s)', player_y, shape_y);
+				IRL_IG.swapChildren( eLayerElements[i], this.getInstance() );
 			}
 
 		}
-		*/
 
 	},
 
@@ -114,27 +97,12 @@ IRL_IG.classes.player = Class.create({
 
 	enterCell: function(cell) {
 		this.cell = $(cell);
-		var pos = cell.getCenter();
+		var cell_pos__ = cell.getTBBox();
+		var cell_pos = cell.getCenter();
+		var player_pos = this.position();
 
-		/*
-		var dx = parseInt(pos.x - this.position().x);
-		var dy = parseInt(pos.y - this.position().y);
-		*/
-
-		/*
-		var dx = parseInt(pos.x - (this.getInstance().getBBox().x - this.hot_d.x ));
-		var dy = parseInt(pos.y - (this.getInstance().getBBox().y - this.hot_d.y ));
-		*/
-
-		/*
-		var dx = parseInt(pos.x - this.getInstance().getBBox().x );
-		var dy = parseInt(pos.y - this.getInstance().getBBox().y );
-		*/
-
-		// TODO : Maybe use .getCTM() here
-
-		var dx = parseInt(pos.x - this.getInstance().getClientRects()[0].left );
-		var dy = parseInt(pos.y - this.getInstance().getClientRects()[0].top );
+		var dx = parseFloat(cell_pos.x - player_pos.x);
+		var dy = parseFloat(cell_pos.y - player_pos.y);
 
 		this.translate( dx, dy );
 	},
