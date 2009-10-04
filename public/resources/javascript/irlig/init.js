@@ -6,10 +6,9 @@ IRL_IG = {
 
 	debug: function() {
 		console.log(arguments[0],arguments[1],arguments[2],arguments[3]);
-		//console.apply(console, [ 'log', 'plop' ])
 	},
 
-	init: function(name, grid) {
+	init: function(name, grid, mode) {
 
 		/* No Firebug ? */
 		if (typeof(console) == 'undefined')
@@ -18,22 +17,21 @@ IRL_IG = {
 		window.IRL_IG = this;
 		IRL_IG.debug('Game loaded %o', window.IRL_IG);
 
-		this.ground = new IRL_IG.classes.ground('map', name, grid);
-		this.hud = new IRL_IG.classes.hud('hud');
-		this.player = new IRL_IG.classes.player('player_buddy');
+		this.ground = new IRL_IG.classes.ground('map', name, grid, mode);
 
-		//false &&
-		window.setTimeout(function(){
-			this.ground.registerMainPlayer(this.player);
-		}.bind(this), 5000);
-	},
+		if (mode == 'edit') {
+			this.hud = new IRL_IG.classes.edit_hud('edit_hud');
 
-	swapChildren:  function(c1, c2) {
-		var parent = c1.parentNode;
-		var tmp = c1.cloneNode( true );
-		parent.replaceChild( tmp, c2 );
-		parent.replaceChild( c2, c1 );
-		return tmp;
+		}
+		else {
+
+			this.hud = new IRL_IG.classes.hud('hud');
+			this.player = new IRL_IG.classes.player('player_buddy');
+
+			window.setTimeout(function(){
+				this.ground.registerMainPlayer(this.player);
+			}.bind(this), 2000);
+		}
 	}
 
 };

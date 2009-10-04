@@ -6,13 +6,11 @@ IRL_IG.classes.ground = Class.create({
 
 	main_player_instance: null,
 
-	initialize: function(id, name, gridmatrix) {
+	initialize: function(id, name, gridmatrix, mode) {
 		this.element = $(id);
 		this.mapName = name;
 		this.matrix  = gridmatrix;
-
-		this.last_path = [ gridmatrix[0][0] ];
-		this.current_action = '';
+		this.mode  = mode;
 
 		/**/
 		// Adding the elements' layer
@@ -37,7 +35,12 @@ IRL_IG.classes.ground = Class.create({
 			e.element().classList.remove('hover');
 		});
 
-		this.initTest();
+		if (mode == 'edit') {
+			this.last_path = [ gridmatrix[0][0] ];
+			this.current_action = '';
+			this.initEdition();
+		}
+
 	},
 
 	extendMapByPoly: function(element) {
@@ -45,14 +48,15 @@ IRL_IG.classes.ground = Class.create({
 
 		var map_elements = $A(element.classList).findAll(function(c){
 			var name = c.gsub('element-', '');
-			return (name != c && $(name));
+			return (name != c);
 		});
-
-		console.log('Adding map elements to layer : %o', map_elements);
 
 		map_elements.each(function(map_element){
 			map_element = map_element.gsub('element-', '');
-			if (!$(map_element)) return;
+			if (!$(map_element)) {
+				console.warn('Attempt to add an unknown map element : %o', map_element);
+				return;
+			}
 
 			var element_center = element.getCenter();
 			var symbol = $(map_element);
@@ -96,7 +100,7 @@ IRL_IG.classes.ground = Class.create({
 
 	last_path: [],
 	current_action: '',
-	initTest: function() {
+	initEdition: function() {
 
 		IRL_IG.debug('Initializing map listeners');
 		//$(this.element).addEventListener('mousedown', function(e){

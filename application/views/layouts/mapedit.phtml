@@ -1,0 +1,27 @@
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+	sodipodi:version="0.32"
+	inkscape:version="0.46"
+	sodipodi:docname="big.svg"
+	inkscape:output_extension="org.inkscape.output.svg.inkscape">
+    xml:space="preserve"
+    zoomAndPan="disable"
+    width="100%"
+    height="100%" >
+
+	<?= $this->js('/prototype.js'); ?>
+	<?= $this->js('/irlig/base.js'); ?>
+	<?= $this->js('/irlig/init.js'); ?>
+	<?= $this->js('/irlig/anim.js'); ?>
+	<?= $this->js('/irlig/ground.js'); ?>
+	<?= $this->js('/irlig/edit_hud.js'); ?>
+
+	<?= $this->js('/astar.js'); ?>
+
+	<?= $this->layout()->content ?>
+
+</svg>

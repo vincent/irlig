@@ -12,7 +12,20 @@ class MapeditController extends Lib_Controller_Abstract
 
     public function indexAction()
     {
-		$this->_helper->layout->disableLayout();
+		$this->_helper->layout->setLayout('mapedit');
+
+		$map = $this->_request->getParam('map');
+		if (!$map) return;
+
+		$this->view->mapName = $map;
+		$this->view->jsMatrix = json_encode(Svg_Map::createMapAdjacencyMatrix($map));
+
+		$this->view->mode = 'edit';
+    }
+
+	public function edit()
+	{
+		$this->_helper->layout->setLayout('dummy');
 
 		$map = $this->_request->getParam('map');
 		if (!$map) return;
@@ -35,7 +48,8 @@ class MapeditController extends Lib_Controller_Abstract
 				Svg_Map::saveMap($map, $mapData);
 			break;
 		}
-    }
+
+	}
 
 
     public function postDispatch()

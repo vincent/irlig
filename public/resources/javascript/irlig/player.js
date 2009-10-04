@@ -78,11 +78,11 @@ IRL_IG.classes.player = Class.create({
 
 			if (shape_y > player_y && i <= player_instance_index) {
 				//console.log('player (%s) is under grass (%s)', player_y, shape_y);
-				IRL_IG.swapChildren( eLayerElements[i], this.getInstance() );
+				eLayerElements[i].parentNode.swapChildren( eLayerElements[i], this.getInstance() );
 			}
 			else if (shape_y < player_y && i >= player_instance_index) {
 				//console.log('player (%s) is above grass (%s)', player_y, shape_y);
-				IRL_IG.swapChildren( eLayerElements[i], this.getInstance() );
+				eLayerElements[i].parentNode.swapChildren( eLayerElements[i], this.getInstance() );
 			}
 
 		}

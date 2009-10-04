@@ -1,0 +1,16 @@
+
+<?= $this->css('/map_'.$this->mapName.'.css', 'media', 'style') ?>
+
+<?= $this->map($this->mapName) ?>
+
+<defs>
+	<?= $this->element( 'all', 'map_element', 'g', 'xml') ?>
+</defs>
+
+<?= $this->partial('edit_hud.svg'); ?>
+
+<script>
+
+	IRL_IG.init('<?= $this->mapName ?>', <?= $this->jsMatrix; ?>, '<?= $this->mode; ?>');
+
+</script>

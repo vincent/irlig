@@ -6,6 +6,7 @@ class GameController extends Lib_Controller_Abstract
     public function init()
     {
         /* Initialize action controller here */
+		$this->_helper->layout->setLayout('svg');
 
     }
 
@@ -16,8 +17,6 @@ class GameController extends Lib_Controller_Abstract
 
 		$this->view->mapName = $map;
 		$this->view->jsMatrix = json_encode(Svg_Map::createMapAdjacencyMatrix($map));
-
-		//$this->view->mode = 'edit';
     }
 
 

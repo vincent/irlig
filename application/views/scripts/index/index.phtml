@@ -1,6 +1,23 @@
-<foreignobject x="200" y="180" width="100" height="50">
-	<form id="login" method="post">
-		<input name="login" />
-		<button type="submit">Enter</button>
-	</form>
-</foreignobject>
+<h1>Welcome !</h1>
+
+<h2>Choose a map</h2>
+<ul>
+	<?php foreach ($this->maps as $map) : ?>
+		<li>
+			<a href="/game?map=<?= $map['name'] ?>">
+				<?= $map['name'] ?>
+			</a>
+		</li>
+	<?php endforeach ?>
+</ul>
+
+<h2>Edit a map</h2>
+<ul>
+	<?php foreach ($this->maps as $map) : ?>
+		<li>
+			<a href="/mapedit?map=<?= $map['name'] ?>">
+				<?= $map['name'] ?>
+			</a>
+		</li>
+	<?php endforeach ?>
+</ul>

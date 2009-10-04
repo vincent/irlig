@@ -154,6 +154,14 @@ IRL_IG_Node_methods = {
 		return matrix.findGraphNodeById(this.id);
 	},
 
+	swapChildren:  function(c1, c2) {
+		var parent = c1.parentNode;
+		var tmp = c1.cloneNode( true );
+		parent.replaceChild( tmp, c2 );
+		parent.replaceChild( c2, c1 );
+		return tmp;
+	},
+
 	inspect: function() {
 	   var bbox = this.getTBBox();
 	   var svgns = 'http://www.w3.org/2000/svg';
@@ -169,7 +177,23 @@ IRL_IG_Node_methods = {
 	   $('eLayer').appendChild( outline );
 
 	   window.setTimeout(function(){ this.parentNode.removeChild(this); }.bind(outline), 5000);
-	}
+	},
+
+	insert: function(tagName, attributes) {
+		var svgns = 'http://www.w3.org/2000/svg';
+		var tmp = document.createElementNS(svgns, tagName);
+
+		var t = $H(attributes);
+
+		$H(attributes).each(function(pair){
+			var key = new String(pair.key).split(':');
+			var ns = null;
+			if (key.length > 1) { ns = 'http://www.w3.org/1999/xlink'; key = key[1]; }
+			tmp.setAttributeNS( ns, key, pair.value );
+		});
+		this.appendChild( tmp );
+		return tmp;
+	},
 
 };
 Node.prototype = Object.extend(Node.prototype, IRL_IG_Node_methods);

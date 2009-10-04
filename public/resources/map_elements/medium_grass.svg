@@ -12,7 +12,7 @@
    sodipodi:docname="big.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <g id="medium_grass"
-     class="grass">
+     class="map_element grass">
     <g transform="matrix(2.46, 0, 0, 2.46, -43, -540)">
       <path
          style="fill:#00b300;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
