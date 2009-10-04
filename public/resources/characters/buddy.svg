@@ -137,8 +137,16 @@
 		player.hairLeft = function(){ $('body').pathSegList.getItem(3).x -= 100; };
 
 	  	player.followingPath = function(data){
+
+			var me = $('player_instance').getCenter();
+			var dest = data.getCenter();
+
 	  		this.hairUp();
-	  		this.hairLeft();
+
+	  		if (me.x &lt; dest.x)
+		  		this.hairLeft();
+		  	else if(me.x &gt; dest.x)
+		  		this.hairRight();
 	  	};
 	  	player.endFollowingPath = function(data){
 	  		this.hairReset();

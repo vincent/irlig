@@ -111,7 +111,7 @@ IRL_IG.classes.player = Class.create({
 		this.path = path;
 		this.path_step = 0;
 
-		this.def_element.followingPath();
+		this.def_element.followingPath(path[0]);
 
 		var goNextStep;
 		goNextStep = function(){

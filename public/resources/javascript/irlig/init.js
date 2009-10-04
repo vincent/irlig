@@ -20,7 +20,7 @@ IRL_IG = {
 		this.ground = new IRL_IG.classes.ground('map', name, grid, mode);
 
 		if (mode == 'edit') {
-			this.hud = new IRL_IG.classes.edit_hud('edit_hud');
+			this.edit_hud = new IRL_IG.classes.edit_hud('edit_hud');
 
 		}
 		else {

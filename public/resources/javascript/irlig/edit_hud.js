@@ -1,8 +1,7 @@
 IRL_IG.classes.edit_hud = Class.create({
 
-	element:null,
-
-	elements: { },
+	elements: {},
+	element: null,
 
 	symbols: [],
 	current_symbol: null,
@@ -13,24 +12,77 @@ IRL_IG.classes.edit_hud = Class.create({
 			symbol_preview: $('edit_hud_preview'),
 			bar_right_arrow: $('edit_hud_rightarrow'),
 			bar_left_arrow: $('edit_hud_leftarrow'),
-			symbols_bar: $('edit_hud_symbols_bar'),
-			symbols_bar_group: $('edit_hud_symbols_bar_inner')
+			symbols_bar: $('edit_hud_symbols_bar')
 		});
 
+		// Place the hud, and keep it down
+		this.onResizeWindow();
+		Event.observe(window, 'resize', this.onResizeWindow.bind(this));
+
+		// Get symbols
 		this.symbols = $$('defs > *.map_element').invoke('getAttribute', 'id');
 
-		this.symbols.each(this.addSymbol.bind(this));
+		// If there are some, select the first
+		if (this.symbols.length) {
+			this.symbols.each(this.addSymbol.bind(this));
+			this.setSymbolPreview(this.symbols[0]);
+		}
+
+		// SElect observer
+		Event.observe(this.elements.symbols_bar, 'click', function(event) {
+			var e = event.element();
+			if (e.tagName != 'use') return;
+			this.setSymbolPreview(e.getAttributeNS('http://www.w3.org/1999/xlink', 'href').gsub('#', ''));
+		}.bind(this));
+	},
+
+	onResizeWindow: function(event) {
+		var bbox = this.element.getTBBox();
+		this.element.translate(0, window.innerHeight - 200 - bbox.y);
 	},
 
 	addSymbol: function(symbol_id) {
-		var dims = this.elements.symbols_bar.getTBBox();
+		var symbol = $(symbol_id);
+		var symbol_box = symbol.getTBBox();
 
-		var element_ctm = this.elements.symbols_bar.getTransformToElement(document.documentElement);
-		element_ctm = new Array( element_ctm.a, element_ctm.b, element_ctm.c, element_ctm.d, element_ctm.e, element_ctm.f );
+		var scale = {
+				x: 45 / symbol_box.height,
+				y: Math.min(50 / symbol_box.width, 45 / symbol_box.height)
+		};
 
-		document.documentElement.getMatrix().inverse();
+		this.elements.symbols_bar.insert('use', {
+				'xlink:href': '#'+symbol_id,
+				x: (50*(1/scale.x)*(this.elements.symbols_bar.children.length+1)),
+				y: 50,
+				width: 50,
+				height: 50,
+				transform: 'scale( #{x} , #{y} )'.interpolate(scale)
+			});
+	},
 
-		this.elements.symbols_bar_group.insert('use', { 'xlink:href':'#'+symbol_id, transform:'matrix('+element_ctm.join(' ')+')', x:dims.x, y:dims.y, width:'50px', height:(dims.height*0.99) });
+	setSymbolPreview: function(symbol_id) {
+		// Remove elements in preview
+		$A(this.elements.symbol_preview.children).invoke('remove');
+
+		var symbol = $(symbol_id);
+		var symbol_box = symbol.getTBBox();
+
+		// Set HUD's current symbol
+		this.current_symbol = symbol_id;
+
+		var scale = {
+				x: 170 / symbol_box.height,
+				y: Math.min(170 / symbol_box.width, 170 / symbol_box.height)
+		}
+
+		this.elements.symbol_preview.insert('use', {
+				'xlink:href': '#'+symbol_id,
+				x: 0,
+				y: 0,
+				width: 170,
+				height: 170,
+				transform: 'scale( #{x} , #{y} )'.interpolate(scale)
+			});
 	}
 
 });

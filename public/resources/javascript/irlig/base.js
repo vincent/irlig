@@ -135,6 +135,10 @@ IRL_IG_Node_methods = {
 		return this.classList.toggle(name);
 	},
 
+	remove: function() {
+		return this.parentNode.removeChild(this);
+	},
+
 	isWalkable: function() {
 		return (
 				!this.classList.contains('is_wall')
@@ -194,6 +198,13 @@ IRL_IG_Node_methods = {
 		this.appendChild( tmp );
 		return tmp;
 	},
+
+	translate: function(dx, dy) {
+		var ctm = this.getTransformToElement(document.documentElement);
+		var m = ctm.a + ' ' + ctm.b + ' ' + ctm.c + ' ' + ctm.d + ' ' + (ctm.e + dx) + ' ' + (ctm.f + dy);
+		this.setAttributeNS(null, 'transform', 'matrix('+m+')');
+		return this;
+	}
 
 };
 Node.prototype = Object.extend(Node.prototype, IRL_IG_Node_methods);

@@ -17,7 +17,12 @@ IRL_IG.classes.ground = Class.create({
 		var svgns = 'http://www.w3.org/2000/svg';
 		this.elements_layer = document.createElementNS(svgns, 'g');
 		this.elements_layer.setAttributeNS( null, 'id', 'eLayer' );
-		this.element.parentNode.appendChild(this.elements_layer);
+
+		// .. just after the map, so the HUD will not collide
+		if (this.element.nextElementSibling)
+			this.element.parentNode.insertBefore(this.elements_layer, this.element.nextElementSibling);
+		else
+			this.element.parentNode.appendChild(this.elements_layer);
 
 		IRL_IG.debug('Initializing map polygons');
 		var next_child = this.element.firstElementChild;
@@ -107,8 +112,13 @@ IRL_IG.classes.ground = Class.create({
 		Event.observe(this.element, 'mousedown', function(e) {
 			var cell = e.element();
 			if (e.isMiddleClick()) {
-				this.set_cell_type(cell.id, 'wall');
-				this.current_action = 'filling_walls';
+				var current_symbol_class = this.getCurrentHUDSymbol();
+				console.log('current symbol is %o', current_symbol_class)
+				if (current_symbol_class) {
+					current_symbol_class = 'element-'+current_symbol_class;
+					cell.addClassName( current_symbol_class );
+					this.updateMapCell(cell.id, { class:'wall '+current_symbol_class });
+				}
 			}
 			return false;
 		}.bind(this));
@@ -131,16 +141,26 @@ IRL_IG.classes.ground = Class.create({
 
 	},
 
-	set_cell_type: function(cell_id, type) {
-		switch (type) {
-			case 'wall':
-				$(cell_id).setAttribute('type', 'wall');
-				$(cell_id).setAttribute('fill', 'black');
+	getCurrentHUDSymbol: function() {
+		var hud = window.IRL_IG.edit_hud;
+		if (!hud) {
+			console.error('Editing HUD is not here');
+			return false;
+		};
+		return hud.current_symbol;
+	},
 
-				/* new Ajax.Request('/mapedit?map='+mapName+'&amp;map_action=set_cell_type'+'&amp;cell_id='+cell_id+'&amp;type='+type); */
-			break;
+	updateMapCell: function(cell_id, attributes) {
+		var cell = $(cell_id);
+		attributes = $H(attributes);
 
-		}
+		attributes.each(function(pair){
+			cell.setAttributeNS(null, pair.key, pair.value);
+		});
+
+		this.extendMapByPoly($(cell_id));
+
+		new Ajax.Request('/mapedit/updatecell?map='+this.mapName+'&cell_id='+cell_id+'&'+attributes.toQueryString());
 	},
 
 	clear_path: function(path) {

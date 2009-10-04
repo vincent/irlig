@@ -23,33 +23,66 @@ class MapeditController extends Lib_Controller_Abstract
 		$this->view->mode = 'edit';
     }
 
-	public function edit()
+	public function updatecellAction()
 	{
 		$this->_helper->layout->setLayout('dummy');
 
 		$map = $this->_request->getParam('map');
 		if (!$map) return;
 
-		switch ($this->_request->getParam('map_action')) {
+		$attributes = array_intersect_key(
+						$this->_request->getParams(),
+						array(
+							'class' => 1
+						)
+					);
 
-			case 'set_cell_type':
-				$cell_id = $this->_request->getParam('cell_id');
-				$cell_type = $this->_request->getParam('type');
-				if (empty($cell_id) OR !$cell_type) return;
+		$cell_id = $this->_request->getParam('cell_id');
+		$cell_index = intval(str_replace('cell_', '', $cell_id));
 
-				$mapData = Svg_Map::getMap($map);
-				foreach ($mapData->g->children() as $poly) {
-					if ((string)$poly->attributes['id'] == $cell_id) {
-						(string)$poly->attributes['type'] = $cell_type;
-						break;
-					}
-				}
+		$mapData = Svg_Map::getMap($map);
 
-				Svg_Map::saveMap($map, $mapData);
-			break;
+		/*
+		//print_r($mapData);
+
+		print_r($mapData->xpath('/polygon'));
+
+		var_dump($mapData->xpath('//polygon[@id = "'.$cell_id.'"]'));
+
+		print_r($mapData->xpath('id('.$cell_id.')'));
+
+		print_r($mapData->polygon[$cell_index]);
+		die;
+
+		foreach ($mapData->polygon as $poly) {
+			//if ((string)$poly->attributes['id'] == $cell_id)
+				$a = get_object_vars($poly);
+				reset($a);
+				var_dump($a);
 		}
 
+		die;
+
+		$mapData = $mapData->xpath('id('.$cell_id.')');
+
+
+		foreach ($mapData->xpath->children() as $poly) {
+			if ((string)$poly->attributes['id'] == $cell_id) {
+				error_log('Found cell');
+				foreach ($attributes as $k => $v)
+					(string)$poly->attributes[$k] = $v;
+				break;
+			}
+		}
+		*/
+
+		$mapData->g->polygon[$cell_index]['class'] = $attributes['class'];
+
+		Svg_Map::saveMap($map, $mapData);
+
+		$this->view->data = true;
 	}
+
 
 
     public function postDispatch()
