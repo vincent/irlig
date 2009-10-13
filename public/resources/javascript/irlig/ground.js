@@ -4,13 +4,23 @@ IRL_IG.classes.ground = Class.create({
 	matrix:  null,
 	mapName: null,
 
+	mapping: {},
+
 	main_player_instance: null,
 
 	initialize: function(id, name, gridmatrix, mode) {
 		this.element = $(id);
+
+		// Report map size to the farest viewport
+		var far_vp = document.documentElement;
+		var near_vp = this.element.nearestViewportElement;
+		far_vp.setAttributeNS(null, 'width', parseInt(near_vp.getAttributeNS(null, 'width')));
+		far_vp.setAttributeNS(null, 'height', parseInt(near_vp.getAttributeNS(null, 'height')));
+
 		this.mapName = name;
 		this.matrix  = gridmatrix;
 		this.mode  = mode;
+		this.astar = new Astar(this.matrix);
 
 		/**/
 		// Adding the elements' layer
@@ -75,7 +85,12 @@ IRL_IG.classes.ground = Class.create({
 			var element_ctm = element.getTransformToElement($('eLayer'));
 			element_ctm = new Array( element_ctm.a, element_ctm.b, element_ctm.c, element_ctm.d, element_ctm.e, element_ctm.f );
 
-			var new_el = this.addElement('use', { transform:'matrix('+element_ctm.join(' ')+')', x:element_bbox.x, y:element_bbox.y, 'xlink:href':'#'+map_element });
+			var new_el = this.addElement('use', { transform:'matrix('+element_ctm.join(' ')+')', x:element_bbox.x, y:element_bbox.y, 'xlink:href':'#'+map_element, id:'element-instance-'+parseInt(Math.random()*1000000) });
+
+			if (this.mapping[element.id])
+				this.mapping[element.id].push(new_el.id);
+			else
+				this.mapping[element.id] = [ new_el.id ];
 
 			var classNames = $A(symbol.classList).reject(function(classname){ return classname && classname != ''; });
 			if (classNames.length) {
@@ -180,17 +195,27 @@ IRL_IG.classes.ground = Class.create({
 	registerMainPlayer: function(player) {
 		if (!player) IRL_IG.debug('No player given');
 
-		var first_cell = this.element.getElementsByTagName('polygon')[0];
+		var first_cell = this.element.children[0];
 		first_cell_center = first_cell.getCenter();
 
+		// Create a <use> for the current player
 		this.addElement('use', { 'x':0, 'y':0, 'xlink:href':'#'+(player.def_element.id), 'id':'player_instance' });
 
 		this.main_player = player;
 
 		Event.observe(this.element, 'click', function(e){
 			var dest = e.element();
+
+			/*
+			dest.setAttributeNS(null, 'fill', 'red');
+			window.setTimeout(function(){
+								dest.setAttributeNS(null, 'fill', 'none');
+							  }, 2000);
+			*/
+			//console.log('To %o !', dest);
+
 			if (e.isLeftClick() && dest.isWalkable()) {
-				var path = astar.search(this.matrix, this.main_player.cell.getMatrixElement(this.matrix), dest.getMatrixElement(this.matrix));
+				var path = this.astar.search(this.matrix, this.main_player.cell.getMatrixElement(this.matrix), dest.getMatrixElement(this.matrix));
 				path = path.map(function(cell){ return $(cell.id) });
 				this.main_player.followPathAndStop(path);
 			}

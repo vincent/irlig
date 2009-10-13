@@ -51,10 +51,10 @@ IRL_IG_Node_methods = {
 		if (ctm) {
 			ctm.scale = true;
 			bbox = {
-				x: (bbox.x + ctm.e),
-				y: (bbox.y + ctm.f),
-				height: (bbox.height),
-				width: (bbox.width)
+				x: (bbox.x * ctm.a) + ctm.e,
+				y: (bbox.y * ctm.d) + ctm.f,
+				height: (bbox.height) * ctm.a,
+				width: (bbox.width) * ctm.d
 			};
 
 		}
@@ -164,6 +164,35 @@ IRL_IG_Node_methods = {
 		parent.replaceChild( tmp, c2 );
 		parent.replaceChild( c2, c1 );
 		return tmp;
+	},
+
+	getMapNeighbors: function(options) {
+		var neighbors = [];
+		var _defaults = {
+			with_elements: false,
+			only_ids: false
+		};
+		if (!options) options = Object.extend(_defaults, options);
+
+		$A(this.classList).each(function(classname){
+			if (classname.indexOf('neighbors-') == 0)
+				classname.gsub('neighbors-', '').split('-').each(function(n){ if (n && !n.empty()) neighbors.push(n); });
+		});
+
+		[ 'NW', 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W' ].each(function(n){
+			n = 'cell_'+n;
+			if (this.hasAttributeNS(null, n))
+				neighbors.push(this.getAttributeNS(null, n));
+		}.bind(this));
+
+		if (options.with_elements) {
+			neighbors = neighbors.reject(function(cell){
+				var has_element = $A($(cell).classList).find(function(classname){ return classname.indexOf('element-') == -1 });
+				return typeof(has_element) != 'undefined';
+			});
+		}
+
+		return neighbors;
 	},
 
 	inspect: function() {

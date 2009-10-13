@@ -6,7 +6,10 @@ class Zend_View_Helper_Map {
 
 		$mapData = Svg_Map::getMap($mapName);
 
-		return $mapData->g->asXML();
+		$mapData = $mapData->asXML();
+		$mapData = preg_replace('/<\?xml [^\<]*\?>/', '', $mapData);
+
+		return $mapData;
 	}
 
 }

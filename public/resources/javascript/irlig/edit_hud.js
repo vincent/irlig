@@ -22,6 +22,8 @@ IRL_IG.classes.edit_hud = Class.create({
 		// Get symbols
 		this.symbols = $$('defs > *.map_element').invoke('getAttribute', 'id');
 
+		console.log('Registered symbols : %o', this.symbols);
+
 		// If there are some, select the first
 		if (this.symbols.length) {
 			this.symbols.each(this.addSymbol.bind(this));

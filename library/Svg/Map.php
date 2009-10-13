@@ -7,7 +7,7 @@ class Svg_Map {
 
 		$xml = self::getMap($mapName, 'xml');
 
-		foreach($xml->g->polygon as $child) {
+		foreach($xml->g->path as $child) {
 
 			$attrs = $child->attributes();
 

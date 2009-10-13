@@ -44,6 +44,55 @@ class hexagon(SVGdraw.polygon):
 
 		return x, y
 
+class hexpath(SVGdraw.path):
+	def __init__(self, width, xoffset, yoffset, units, **args):
+		self.units = units
+		self.xoffset = xoffset
+		self.yoffset = yoffset
+
+		#create points
+		sidelength = width/2
+		xmotion = sidelength/2
+		ymotion = sidelength*hexhalfheight
+
+		sides = []
+		sides.append("M")
+		sides.append([0, ymotion])
+		sides.append("L")
+		sides.append([xmotion, 2*ymotion])
+		sides.append("L")
+		sides.append([xmotion + sidelength, 2*ymotion])
+		sides.append("L")
+		sides.append([sidelength*2, ymotion])
+		sides.append("L")
+		sides.append([xmotion + sidelength, 0])
+		sides.append("L")
+		sides.append([xmotion, 0])
+		sides.append("L")
+		sides.append([0, ymotion])
+
+		points = ' '.join(map(self.makePoints, sides)) + ' z'
+
+		#send points to parent
+		SVGdraw.path.__init__(self, points, **args)
+
+	def makePoints(self, points):
+		if points == "M" or points == "L" or points == "Z" or points == "m" or points == "l" or points == "z":
+			return points
+
+		x, y = points
+		x += self.xoffset
+		y += self.yoffset
+
+		#you can't use units with polygons
+		#I don't understand
+		if self.units in unitpoints:
+			pointconv = unitpoints[self.units]
+			x *= pointconv
+			y *= pointconv
+
+		return "%f,%f" % ( x, y )
+
 class grid:
 	def __init__(self, height=11, width=8.5, description="map grid", gridSize=1.0, units="in", lineColor="black", fillColor="none", pen=.01, margins=.5, bigGrid=None, bigGridColor="red", bigGridPen=.02, type="box"):
 		self.height=float(height)
@@ -118,11 +167,11 @@ class grid:
 		realHeight = self.height-(self.topMargin+self.botMargin)
 
 		partWidth = self.gridSize
-		if self.type == 'hex':
+		if self.type == 'hex' or self.type == 'hexpath':
 			partWidth *= 1.5
 		partHeight = self.gridSize
 		rowOffset = 0
-		if self.type == 'hex':
+		if self.type == 'hex' or self.type == 'hexpath':
 			partHeight *= hexhalfheight/2
 			rowOffset = 1
 
@@ -151,7 +200,7 @@ class grid:
 			penWidth = str(self.bigGridPen) + self.units
 			gridcount = self.bigGrid
 
-			if self.type == 'hex':
+			if self.type == 'hex' or self.type == 'hexpath':
 				smallWidth = partWidth
 				gridsize *= (gridcount+2)
 				partWidth = gridsize*1.5
@@ -227,7 +276,7 @@ class grid:
 			#do stuff for hexagons
 			rowcolumns = columns
 			rowoffset = 0
-			if self.type == 'hex':
+			if self.type == 'hex' or self.type == 'hexpath':
 				if polyRow % 2 == 0:
 					if (self.width-(horizontalOffset+self.rightMargin-.01)) >= (columns*partWidth + gridsize):
 						rowcolumns = columns + 1
@@ -241,6 +290,10 @@ class grid:
 
 				if self.type == 'hex':
 					gridshape = hexagon(gridsize, polyLeft, polyTop, self.units, stroke=lineColor, fill=fillColor, stroke_width=penWidth)
+
+				elif self.type == 'hexpath':
+					gridshape = hexpath(gridsize, polyLeft, polyTop, self.units, stroke=lineColor, fill=fillColor, stroke_width=penWidth)
+
 				else:
 					gridshape = SVGdraw.rect(polyLeftStr, polyTopStr, polySize, polySize, stroke=lineColor, fill=fillColor, stroke_width=penWidth)
 
@@ -257,29 +310,39 @@ class grid:
 
 				gridshape.attributes['id'] = 'cell_' + str(index)
 
+				neighbors_class = 'neighbors-'
+
 				id = index - columns
 				if id >= 0:
-					gridshape.attributes['cell_NW'] = "cell_" + str(id)
+					#gridshape.attributes['cell_NW'] = "cell_" + str(id)
+					neighbors_class += "cell_" + str(id) + '-'
 
 				id = index - columns * 2
 				if id >= 0:
-					gridshape.attributes['cell_N']  = "cell_" + str(id)
+					#gridshape.attributes['cell_N']  = "cell_" + str(id)
+					neighbors_class += "cell_" + str(id) + '-'
 
 				id = index - columns + 1
 				if id >= 0:
-					gridshape.attributes['cell_NE'] = "cell_" + str(id)
+					#gridshape.attributes['cell_NE'] = "cell_" + str(id)
+					neighbors_class += "cell_" + str(id) + '-'
 
 				id = index + columns - 1
 				if id <= rows * columns:
-					gridshape.attributes['cell_SE'] = "cell_" + str(id)
+					#gridshape.attributes['cell_SE'] = "cell_" + str(id)
+					neighbors_class += "cell_" + str(id) + '-'
 
 				id = index + columns * 2
 				if id <= rows * columns:
-					gridshape.attributes['cell_S']  = "cell_" + str(id)
+					#gridshape.attributes['cell_S']  = "cell_" + str(id)
+					neighbors_class += "cell_" + str(id) + '-'
 
 				id = index + columns
 				if id <= rows * columns:
-					gridshape.attributes['cell_SW'] = "cell_" + str(id)
+					#gridshape.attributes['cell_SW'] = "cell_" + str(id)
+					neighbors_class += "cell_" + str(id) + '-'
+
+				gridshape.attributes['class'] = neighbors_class
 
 				index = index + 1
 

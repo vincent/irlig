@@ -4,8 +4,8 @@
   <g cells="440" rows="22" id="map" columns="20">
 
 	<!-- START GRID -->
-    <polygon cell_SE="cell_19" points="0,19.48 11.25,38.97 33.75,38.97 45,19.48 33.75,0 11.25,0 0,19.48 " cell_S="cell_40" id="cell_0" cell_SW="cell_20" style="fill:none"/>
-    <polygon cell_SE="cell_20" points="67.5,19.48 78.75,38.97 101.25,38.97 112.5,19.48 101.25,0 78.75,0 67.5,19.48 " cell_S="cell_41" id="cell_1" cell_SW="cell_21" style="fill:none"/>
+    <polygon cell_SE="cell_19" points="0,19.48 11.25,38.97 33.75,38.97 45,19.48 33.75,0 11.25,0 0,19.48 " cell_S="cell_40" id="cell_0" cell_SW="cell_20" />
+    <polygon cell_SE="cell_20" points="67.5,19.48 78.75,38.97 101.25,38.97 112.5,19.48 101.25,0 78.75,0 67.5,19.48 " cell_S="cell_41" id="cell_1" cell_SW="cell_21" />
     <polygon cell_SE="cell_22" points="202.5, 19.48  213.75, 38.97  236.25, 38.97  247.5, 19.48  236.25, 0.0  213.75, 0.0  " stroke-width="0.01in" cell_S="cell_43" id="cell_3" cell_SW="cell_23" fill="none"/>
     <polygon cell_SE="cell_23" points="270.0, 19.48  281.25, 38.97  303.75, 38.97  315.0, 19.48  303.75, 0.0  281.25, 0.0  " stroke-width="0.01in" cell_S="cell_44" id="cell_4" cell_SW="cell_24" fill="none"/>
     <polygon cell_SE="cell_24" points="337.5, 19.48  348.75, 38.97  371.25, 38.97  382.5, 19.48  371.25, 0.0  348.75, 0.0  " stroke-width="0.01in" cell_S="cell_45" id="cell_5" cell_SW="cell_25" fill="none"/>
@@ -20,7 +20,7 @@
     <polygon cell_SE="cell_33" points="945.0, 19.48  956.25, 38.97  978.75, 38.97  990.0, 19.48  978.75, 0.0  956.25, 0.0  " stroke-width="0.01in" cell_S="cell_54" id="cell_14" cell_SW="cell_34" fill="none"/>
     <polygon cell_SE="cell_34" points="1012.5, 19.48  1023.75, 38.97  1046.25, 38.97  1057.5, 19.48  1046.25, 0.0  1023.75, 0.0  " stroke-width="0.01in" cell_S="cell_55" id="cell_15" cell_SW="cell_35" fill="none"/>
     <polygon cell_SE="cell_35" points="1080.0, 19.48  1091.25, 38.97  1113.75, 38.97  1125.0, 19.48  1113.75, 0.0  1091.25, 0.0  " stroke-width="0.01in" cell_S="cell_56" id="cell_16" cell_SW="cell_36" fill="none"/>
-    <polygon cell_SE="cell_21" points="135,19.48 146.25,38.97 168.75,38.97 180,19.48 168.75,0 146.25,0 135,19.48 " cell_S="cell_42" id="cell_2" cell_SW="cell_22" style="fill:none"/>
+    <polygon cell_SE="cell_21" points="135,19.48 146.25,38.97 168.75,38.97 180,19.48 168.75,0 146.25,0 135,19.48 " cell_S="cell_42" id="cell_2" cell_SW="cell_22" />
     <polygon cell_SE="cell_36" points="1147.5, 19.48  1158.75, 38.97  1181.25, 38.97  1192.5, 19.48  1181.25, 0.0  1158.75, 0.0  " stroke-width="0.01in" cell_S="cell_57" id="cell_17" cell_SW="cell_37" fill="none"/>
     <polygon cell_SE="cell_37" points="1215.0, 19.48  1226.25, 38.97  1248.75, 38.97  1260.0, 19.48  1248.75, 0.0  1226.25, 0.0  " stroke-width="0.01in" cell_S="cell_58" id="cell_18" cell_SW="cell_38" fill="none"/>
     <polygon cell_SE="cell_38" points="1282.5, 19.48  1293.75, 38.97  1316.25, 38.97  1327.5, 19.48  1316.25, 0.0  1293.75, 0.0  " cell_NE="cell_0" stroke-width="0.01in" cell_S="cell_59" id="cell_19" cell_SW="cell_39" fill="none"/>
@@ -299,7 +299,7 @@
     <polygon cell_N="cell_252" cell_NW="cell_272" cell_SE="cell_311" points="810.0, 292.28  821.25, 311.76  843.75, 311.76  855.0, 292.28  843.75, 272.79  821.25, 272.79  " cell_NE="cell_273" stroke-width="0.01in" cell_S="cell_332" id="cell_292" cell_SW="cell_312" fill="none"/>
     <polygon cell_N="cell_253" cell_NW="cell_273" cell_SE="cell_312" points="877.5, 292.28  888.75, 311.76  911.25, 311.76  922.5, 292.28  911.25, 272.79  888.75, 272.79  " cell_NE="cell_274" stroke-width="0.01in" cell_S="cell_333" id="cell_293" cell_SW="cell_313" fill="none"/>
     <polygon cell_N="cell_254" cell_NW="cell_274" cell_SE="cell_313" points="945.0, 292.28  956.25, 311.76  978.75, 311.76  990.0, 292.28  978.75, 272.79  956.25, 272.79  " cell_NE="cell_275" stroke-width="0.01in" cell_S="cell_334" id="cell_294" cell_SW="cell_314" fill="none"/>
-    <polygon cell_N="cell_255" cell_NW="cell_275" cell_SE="cell_314" points="1012.5, 292.28  1023.75, 311.76  1046.25, 311.76  1057.5, 292.28  1046.25, 272.79  1023.75, 272.79  " cell_NE="cell_276" stroke-width="0.01in" cell_S="cell_335" id="cell_295" cell_SW="cell_315" fill="none"/>
+    <polygon cell_N="cell_255" cell_NW="cell_275" cell_SE="cell_314" points="1012.5, 292.28  1023.75, 311.76  1046.25, 311.76  1057.5, 292.28  1046.25, 272.79  1023.75, 272.79  " cell_NE="cell_276" stroke-width="0.01in" cell_S="cell_335" id="cell_295" cell_SW="cell_315" fill="none" class="wall element-nicubunu_RPG_map_symbols_Crossroads_Sign"/>
     <polygon cell_N="cell_256" cell_NW="cell_276" cell_SE="cell_315" points="1080.0, 292.28  1091.25, 311.76  1113.75, 311.76  1125.0, 292.28  1113.75, 272.79  1091.25, 272.79  " cell_NE="cell_277" stroke-width="0.01in" cell_S="cell_336" id="cell_296" cell_SW="cell_316" fill="none"/>
     <polygon cell_N="cell_257" cell_NW="cell_277" cell_SE="cell_316" points="1147.5, 292.28  1158.75, 311.76  1181.25, 311.76  1192.5, 292.28  1181.25, 272.79  1158.75, 272.79  " cell_NE="cell_278" stroke-width="0.01in" cell_S="cell_337" id="cell_297" cell_SW="cell_317" fill="none"/>
     <polygon cell_N="cell_258" cell_NW="cell_278" cell_SE="cell_317" points="1215.0, 292.28  1226.25, 311.76  1248.75, 311.76  1260.0, 292.28  1248.75, 272.79  1226.25, 272.79  " cell_NE="cell_279" stroke-width="0.01in" cell_S="cell_338" id="cell_298" cell_SW="cell_318" fill="none"/>

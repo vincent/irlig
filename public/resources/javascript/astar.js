@@ -33,7 +33,6 @@ Object.extend(IRL_IG.classes.a_star_grid.prototype, Array.prototype, {
 			return (e.pos.x == node.pos.x && e.pos.y == node.pos.y);
 		});
 	}
-
 });
 */
 
@@ -63,21 +62,27 @@ Array.prototype.removeGraphNode = function(node) {
 	});
 };
 
-var astar = {
-	init: function(grid) {
-		for(var x = 0; x < grid.length; x++) {
-			for(var y = 0; y < grid[x].length; y++) {
-				grid[x][y].f = 0;
-				grid[x][y].g = 0;
-				grid[x][y].h = 0;
-				grid[x][y].debug = "";
-				grid[x][y].parent = null;
+var Astar = Class.create({
+
+	grid : [],
+
+	initialize: function(grid) {
+		this.grid = grid;
+		for(var x = 0; x < this.grid.length; x++) {
+			for(var y = 0; y < this.grid[x].length; y++) {
+				this.grid[x][y].f = 0;
+				this.grid[x][y].g = 0;
+				this.grid[x][y].h = 0;
+				this.grid[x][y].debug = "";
+				this.grid[x][y].parent = null;
 			}
 		}
 	},
 	search: function(grid, start, end) {
-		astar.init(grid);
 
+		this.initialize(this.grid);
+
+		var grid 	   = this.grid.clone();
 		var openList   = [];
 		var closedList = [];
 		openList.push(start);
@@ -107,11 +112,11 @@ var astar = {
 			//openList.without(currentNode);
 
 			closedList.push(currentNode);
-			var neighbors = astar.neighbors(grid, currentNode);
+			var neighbors = this.neighbors(grid, currentNode);
 
 			for(var i=0; i<neighbors.length;i++) {
 				var neighbor = neighbors[i];
-				if(closedList.findGraphNode(neighbor) || !$(neighbor.id).isWalkable()) {
+				if ( !$(neighbor.id).isWalkable() || closedList.findGraphNode(neighbor)) {
 					// not a valid node to process, skip to next neighbor
 					continue;
 				}
@@ -122,12 +127,12 @@ var astar = {
 				var gScoreIsBest = false;
 
 
-				if(!openList.findGraphNode(neighbor)) {
+				if (!openList.findGraphNode(neighbor)) {
 					// This the the first time we have arrived at this node, it must be the best
 					// Also, we need to take the h (heuristic) score since we haven't done so yet
 
 					gScoreIsBest = true;
-					neighbor.h = astar.heuristic(neighbor.pos, end.pos);
+					neighbor.h = this.heuristic(neighbor.pos, end.pos);
 					openList.push(neighbor);
 				}
 				else if(gScore < neighbor.g) {
@@ -141,7 +146,7 @@ var astar = {
 					neighbor.parent = currentNode;
 					neighbor.g = gScore;
 					neighbor.f = neighbor.g + neighbor.h;
-					neighbor.debug = "F: " + neighbor.f + "<br />G: " + neighbor.g + "<br />H: " + neighbor.h;
+					//neighbor.debug = "F: " + neighbor.f + "<br />G: " + neighbor.g + "<br />H: " + neighbor.h;
 				}
 			}
 		}
@@ -150,55 +155,23 @@ var astar = {
 		return [];
 	},
 	heuristic: function(pos0, pos1) {
-		// This is the Manhattan distance
-		var d1 = Math.abs (pos1.x - pos0.x);
-		var d2 = Math.abs (pos1.y - pos0.y);
-		return d1 + d2;
+		var dx = Math.abs (pos1.x - pos0.x);
+		var dy = Math.abs (pos1.y - pos0.y);
+
+		// Maybe buggy here
+		return (Math.abs(dx) + Math.abs(dy) + Math.abs(dx - dy)) / 2;
+		//return (-(Math.abs(dx) + Math.abs(dy) + Math.abs(dx + dy))) / 2;
+		//return dx + dy;
 	},
 	neighbors: function(grid, node) {
-		var ret = [];
-		var x = node.pos.x;
-		var y = node.pos.y;
-		var rows = grid.length;
-		var cols = grid[0].length;
 
-		//$(node.id).setAttribute('fill', 'green');
+		var cell = $(node.id)
+		var neighbors = cell.getMapNeighbors();
 
-/*
-		//console.log('%o, %o', grid[x-1], grid[x-1][y]);
-		if(grid[x-1] && grid[x-1][y]) {
-			ret.push(grid[x-1][y]);
-		}
-		//console.log('%o, %o', grid[x+1], grid[x+1][y]);
-		if(grid[x+1] && grid[x+1][y]) {
-			ret.push(grid[x+1][y]);
-		}
-		//console.log('%o, %o', grid[x][x-1], grid[x][y-1]);
-		if(grid[x][y-1] && grid[x][y-1]) {
-			ret.push(grid[x][y-1]);
-		}
-		//console.log('%o, %o', grid[x][x+1], grid[x][y+1]);
-		if(grid[x][y+1] && grid[x][y+1]) {
-			ret.push(grid[x][y+1]);
-		}
-*/
+		neighbors = neighbors.map(function(cell_id){
+			return grid.findGraphNodeById(cell_id);
+		});
 
-		var offs = ( x%2 ) ? 1 : -1;
-		[
-			grid[x+2] ? grid[x+2][y] : null,
-			grid[x-2] ? grid[x-2][y] : null,
-			grid[x+1] ? grid[x+1][y] : null,
-			grid[x-1] ? grid[x-1][y] : null,
-			grid[x+1] ? grid[x+1][y+offs] : null,
-			grid[x-1] ? grid[x-1][y+offs] : null
-
-		].each(function(cell){
-			if (cell) {
-				ret.push(cell);
-				//$( cell.id ).setAttribute('fill', 'yellow');
-			}
-		})
-
-		return ret;
+		return neighbors;
 	}
-};
+});

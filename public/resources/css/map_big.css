@@ -1,10 +1,10 @@
 #map {
 	/* cursor: none; */
 	cursor: url(file:///usr/local/share/openclipart-0.19/babayasin/babayasin_Hand_cursor.png);
+	overflow: scroll;
 }
 
 #map polygon {
-	fill: transparent;
 	stroke: transparent;
 }
 

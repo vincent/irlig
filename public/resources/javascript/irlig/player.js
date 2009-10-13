@@ -56,21 +56,34 @@ IRL_IG.classes.player = Class.create({
 		var m = ctm.a + ' ' + ctm.b + ' ' + ctm.c + ' ' + ctm.d + ' ' + (ctm.e + dx) + ' ' + (ctm.f + dy);
 		this.getInstance().setAttributeNS(null, 'transform', 'matrix('+m+')');
 
-		var eLayerElements = $A($('eLayer').children);
-		var player_instance_index = 0;
+		var neighbors = this.cell.getMapNeighbors({with_elements:true, only_ids:true});
+		//var eLayerElements = $A($('eLayer').children);
 
-		for (i=0; i<eLayerElements.length; i++) {
-			if (eLayerElements[i].getAttribute('href') == '#player_buddy') {
-				player_instance_index = i;
-				break;
+		var eLayerElements = [];
+		neighbors.each(function(mapelement){
+			var mapped = window.IRL_IG.ground.mapping[mapelement];
+			if (mapped) mapped.each(function(m){ eLayerElements.push(m); });
+		});
+
+		if (eLayerElements.length == 0) return;
+
+		console.log('See if some of %o must be replaced', eLayerElements);
+
+		var player_instance_index = 0;
+		var get_player_instance_position = function(){
+			for (i=0; i<eLayerElements.length; i++) {
+				if (eLayerElements[i].getAttribute('href') == '#player_buddy') {
+					player_instance_index = i;
+					break;
+				}
 			}
-		}
+		};
 
 		//.each(function(element){
 		for (i=0; i<eLayerElements.length; i++) {
 			var element = eLayerElements[i];
 
-			if (element.getAttribute('href') == '#player_buddy') continue;
+			if (!element || !element.getTBBox()) continue;
 
 			var shape_y = element.getTBBox();
 			shape_y = shape_y.y + shape_y.height;
@@ -85,6 +98,7 @@ IRL_IG.classes.player = Class.create({
 				eLayerElements[i].parentNode.swapChildren( eLayerElements[i], this.getInstance() );
 			}
 
+			get_player_instance_position();
 		}
 
 	},
