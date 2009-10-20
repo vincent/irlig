@@ -12,10 +12,12 @@
 <?= $this->js('/irlig/ground.js'); ?>
 <?= $this->js('/irlig/hud.js'); ?>
 <?= $this->js('/irlig/player.js'); ?>
+<?= $this->js('/irlig/environement.js'); ?>
 
 <?= $this->js('/astar.js'); ?>
 
 <?= $this->css('/game.css', 'media', 'style') ?>
+<?= $this->css('/environement.css', 'media', 'style') ?>
 <?= $this->css('/map_'.$this->mapName.'.css', 'media', 'style') ?>
 
 <?= $this->map($this->mapName) ?>
@@ -48,11 +50,45 @@
        r="640"
        gradientTransform="matrix(1,0,0,0.625,0,150)"
        gradientUnits="userSpaceOnUse" />
+
     <pattern id="pavement" width="512" height="512" patternUnits="userSpaceOnUse">
 	    <image xlink:href="/resources/images/stone_pavement.png" x="0" y="0" width="512" height="512"/>
 	</pattern>
 
 	<?= $this->element('buddy', 'character') ?>
+
+	<? foreach (array(
+			array(
+				'name' => 'rust',
+				'texture' => '/metal/sheet/042metal_64.jpg'
+			),
+			array(
+				'name' => 'road',
+				'texture' => '/roof/state/30_brut_gris_64.jpg'
+			),
+			array(
+				'name' => 'desert',
+				'texture' => '/ground/soilsand/009terresable_64.jpg'
+			),
+			array(
+				'name' => 'snow',
+				'texture' => '/snow/004_neige_64.jpg'
+			),
+			array(
+				'name' => 'sand',
+				'texture' => '/sand/sand_025_64.jpg'
+			),
+			array(
+				/* pattern width/height are lower than the actual image, to allow texture moving without glitches */
+				'name' => 'water',
+				'texture' => '/liquid/water/026eau_128.jpg',
+				'pat_w' => 44,
+				'pat_h' => 44,
+				'image_x' => -10
+			),
+	) as $e) : ?>
+		<?= $this->texturepattern( $e ) ?>
+	<? endforeach; ?>
 
 	<? foreach (array( 'medium_grass', 'big_tree', 'plane_grass', 'nicubunu_RPG_map_symbols_Crossroads_Sign' ) as $e) : ?>
 		<?= $this->element( $e, 'map_element') ?>

@@ -2,15 +2,12 @@ svg {
 	background: #000;
 	fill: url(#radial_mask);
 }
-#map > * {
+#map * {
 	fill: #050 !important;
-	stroke: transparent;
+	stroke: none !important;
+	stroke-width: 0px;
 }
-#map > .hover {
+#map .hover {
 	fill: #0F0 !important;
-	stroke: transparent;
 }
 
-#map .pavement {
-	fill: url(#pavement) !important;
-}

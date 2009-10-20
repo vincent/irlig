@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+ <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+    "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [
+    <!ATTLIST svg xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
+ ]>
+<svg width="8cm" height="4cm" viewBox="0 0 800 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <defs>
+	<pattern id="i_pave" x="0" y="0"
+		 width="40" height="40" patternUnits="userSpaceOnUse">
+	   <image xlink:href="file:///home/vincent/workspace/irl-ig/public/resources/images/grass.png"
+			width="200px" height="120px" x="-40" y="-40"/>
+	</pattern>
+  </defs>
+
+  <!-- Outline the drawing area in blue -->
+  <rect fill="none" stroke="blue" x="1" y="1" width="798" height="398"/>
+
+  <ellipse fill="url(#i_pave)" stroke="black" stroke-width="5" cx="400" cy="200" rx="350" ry="150"/>
+
+</svg>

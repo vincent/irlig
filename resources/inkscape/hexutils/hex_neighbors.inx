@@ -1,0 +1,16 @@
+<inkscape-extension>
+  <_name>Hexagons neighbors</_name>
+  <id>org.inkscape.effect.hex_neighbors</id>
+  <dependency type="executable" location="extensions">hex_neighbors.py</dependency>
+  <dependency type="executable" location="extensions">irlig.py</dependency>
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+       <submenu _name="IRL_IG"/>
+    </effects-menu>
+  </effect>
+  <script>
+    <command reldir="extensions" interpreter="python">hex_neighbors.py</command>
+  </script>
+</inkscape-extension>
+

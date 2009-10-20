@@ -1,0 +1,25 @@
+<inkscape-extension>
+  <_name>Hexagons grids</_name>
+  <id>org.inkscape.effect.hex_grid</id>
+  <dependency type="executable" location="extensions">hex_grid.py</dependency>
+
+	<param name="margins"	type="float" 	min="0.0"	max="1000.0" 	_gui-text="Side margins">0.0</param>
+	<param name="topmargin"	type="float" 	min="0.0"	max="1000.0" 	_gui-text="Top margins">1.0</param>
+    <param name="units" 	type="string"								_gui-text="Units:  in or cm">cm</param>
+	<param name="gridsize"  type="int" 		min="0" 	max="10" 		_gui-text="Size of grid, right to left and top to bottom">1.0</param>
+	<param name="gridkind"  type="string" 								_gui-text="Kind of grid: box, hex or hexpath">hexpath</param>
+	<param name="mapwidth"  type="int"   	min="0"		max="50" 		_gui-text="Map width">5</param>
+	<param name="mapheight" type="int"   	min="0"		max="50"  		_gui-text="Map height">5</param>
+	<param name="resolution" type="int"   	min="50"	max="100"  		_gui-text="Polygon resolution">90</param>
+
+  <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+       <submenu _name="IRL_IG"/>
+    </effects-menu>
+  </effect>
+  <script>
+    <command reldir="extensions" interpreter="python">hex_grid.py</command>
+  </script>
+</inkscape-extension>
+

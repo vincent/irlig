@@ -1,23 +1,48 @@
 <h1>Welcome !</h1>
 
-<h2>Choose a map</h2>
-<ul>
-	<?php foreach ($this->maps as $map) : ?>
-		<li>
-			<a href="/game?map=<?= $map['name'] ?>">
-				<?= $map['name'] ?>
-			</a>
-		</li>
-	<?php endforeach ?>
-</ul>
+<div style="width:50%; float:left;">
+	<h2>Play a map</h2>
+	<ul>
+		<?php foreach ($this->maps as $map) : ?>
+			<li>
+				<a href="/game?map=<?= $map['name'] ?>">
+					<?= $map['name'] ?>
+				</a>
+			</li>
+		<?php endforeach ?>
+	</ul>
 
-<h2>Edit a map</h2>
-<ul>
-	<?php foreach ($this->maps as $map) : ?>
-		<li>
-			<a href="/mapedit?map=<?= $map['name'] ?>">
-				<?= $map['name'] ?>
-			</a>
-		</li>
-	<?php endforeach ?>
-</ul>
+	<h2>Edit a map</h2>
+	<ul>
+		<?php foreach ($this->maps as $map) : ?>
+			<li>
+				<a href="/mapedit?map=<?= $map['name'] ?>">
+					<?= $map['name'] ?>
+				</a>
+			</li>
+		<?php endforeach ?>
+	</ul>
+</div>
+
+<div style="width:50%; float:right;">
+	<h2>Architecture</h2>
+	<ul>
+		<li>Zend PHP framework</li>
+		<li>Custom SVG libs</li>
+		<li>Custom Inkscape plugins</li>
+			<ul>
+				<li>Hexagons grid from J. Stratton's <a href="http://www.godsmonsters.com/?ART=111">script</a></li>
+				<li>...</li>
+			</ul>
+		<li></li>
+		<li><a href="/resources/maps/">SVG maps</a></li>
+		<li><a href="/resources/map_elements/">SVG elements</a>, some from <a href="http://howto.nicubunu.ro/inkscape_rpg_map_elements/">Nicubunu RPG collection</a></li>
+		<li><a href="/resources/images/oF-Slayer_textures/">textures from slayer</a></li>
+	</ul>
+
+	<h2>Contribute</h2>
+	<ul>
+		<li>GitHub repositery you can <a href="http://github.com/vincent/irlig" onclick="alert('git clone git://github.com/vincent/irlig.git'); return false;">clone</a></li>
+		<li>Issues tracked <a href="http://github.com/vincent/irlig/issues">here</a></li>
+	</ul>
+</div>

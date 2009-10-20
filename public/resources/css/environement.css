@@ -1,0 +1,35 @@
+#map *.i_pave,
+#map g.i_pave > *  {
+	fill: url(#i_pave) !important;
+}
+
+#map *.water,
+#map g.water > *  {
+	fill: url(#water) !important;
+}
+
+#map *.sand,
+#map g.sand > *  {
+	fill: url(#sand) !important;
+}
+
+#map *.snow,
+#map g.snow > *  {
+	fill: url(#snow) !important;
+}
+
+#map *.desert,
+#map g.desert > *  {
+	fill: url(#desert) !important;
+}
+
+#map *.road,
+#map g.road > *  {
+	fill: url(#road) !important;
+}
+
+#map *.rust,
+#map g.rust > *  {
+	fill: url(#rust) !important;
+}
+

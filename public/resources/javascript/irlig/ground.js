@@ -11,11 +11,9 @@ IRL_IG.classes.ground = Class.create({
 	initialize: function(id, name, gridmatrix, mode) {
 		this.element = $(id);
 
-		// Report map size to the farest viewport
-		var far_vp = document.documentElement;
-		var near_vp = this.element.nearestViewportElement;
-		far_vp.setAttributeNS(null, 'width', parseInt(near_vp.getAttributeNS(null, 'width')));
-		far_vp.setAttributeNS(null, 'height', parseInt(near_vp.getAttributeNS(null, 'height')));
+		// Report map size to the farest viewport, or window dimensions
+		this.onResizeWindow();
+		Event.observe(window, 'resize', this.onResizeWindow.bind(this));
 
 		this.mapName = name;
 		this.matrix  = gridmatrix;
@@ -56,6 +54,13 @@ IRL_IG.classes.ground = Class.create({
 			this.initEdition();
 		}
 
+	},
+
+	onResizeWindow: function() {
+		var far_vp = document.documentElement;
+		var near_vp = this.element.nearestViewportElement;
+		far_vp.setAttributeNS(null, 'width', Math.max(parseInt(near_vp.getAttributeNS(null, 'width')), window.innerWidth));
+		far_vp.setAttributeNS(null, 'height', Math.max(parseInt(near_vp.getAttributeNS(null, 'height')), window.innerHeight));
 	},
 
 	extendMapByPoly: function(element) {
