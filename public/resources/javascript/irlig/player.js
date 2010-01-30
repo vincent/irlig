@@ -1,14 +1,18 @@
 IRL_IG.classes.player = Class.create({
 
 	CHANGE_PATH_SPEED: 200,
-	MOVE_PATH_SPEED: 90,
+	MOVE_PATH_SPEED: 200,
 
 	instance: null,
 	element: null,
 	cell: null,
 	path: [],
 	path_step: 0,
+	
+	main_aura: null,
 
+	spell_speed_factor: 1,
+	
 	initialize: function(id, options) {
 		this.def_element = $(id);
 	},
@@ -25,6 +29,10 @@ IRL_IG.classes.player = Class.create({
 		return $('hotpoint');
 	},
 
+	setMainAura: function(object) {
+		this.main_aura = object;
+	},
+	
 	position: function() {
 		var pib = this.getInstance().getTBBox();
 		var hotpoint = this.getHotPoint().getCenter();
@@ -55,6 +63,8 @@ IRL_IG.classes.player = Class.create({
 		var ctm = this.getInstance().getTransformToElement(document.documentElement);
 		var m = ctm.a + ' ' + ctm.b + ' ' + ctm.c + ' ' + ctm.d + ' ' + (ctm.e + dx) + ' ' + (ctm.f + dy);
 		this.getInstance().setAttributeNS(null, 'transform', 'matrix('+m+')');
+
+		return;
 
 		var neighbors = this.cell.getMapNeighbors({with_elements:true, only_ids:true});
 		//var eLayerElements = $A($('eLayer').children);
@@ -109,8 +119,12 @@ IRL_IG.classes.player = Class.create({
 		this.getInstance().transform.baseVal.appendItem(t);
 	},
 
-	enterCell: function(cell) {
-		this.cell = $(cell);
+	enterCell: function(cell, by_dir) {
+		// Abort any cast
+		if (this.current_cast)
+			this.current_cast.abort();
+		
+		//console.log('Entering cell %o', cell);
 		var cell_pos__ = cell.getTBBox();
 		var cell_pos = cell.getCenter();
 		var player_pos = this.position();
@@ -118,28 +132,87 @@ IRL_IG.classes.player = Class.create({
 		var dx = parseFloat(cell_pos.x - player_pos.x);
 		var dy = parseFloat(cell_pos.y - player_pos.y);
 
-		this.translate( dx, dy );
+		this.def_element.leaveCell(cell, by_dir);
+
+		clearTimeout(this.cell_to_cell_moving);
+		this.current_translation = {
+			x:0,
+			y:0,
+			dx:dx,
+			dy:dy,
+		};
+
+		this.cell_to_cell_moving = setTimeout(this.moving.bind(this), 10);
+		this.cell = $(cell);
+
+		this.def_element.enterCell(cell, by_dir);
 	},
 
+	moving: function() {
+		var x_move_positive = (this.current_translation.dx >= 0);
+		var y_move_positive = (this.current_translation.dy >= 0);
+		
+		var x_done = (x_move_positive  && this.current_translation.x >= this.current_translation.dx) 
+				  || (!x_move_positive && this.current_translation.x <= this.current_translation.dx);
+		
+		var y_done = (y_move_positive  && this.current_translation.y >= this.current_translation.dy) 
+				  || (!y_move_positive && this.current_translation.y <= this.current_translation.dy);
+		
+		if (x_done && y_done) {
+			clearTimeout(this.cell_to_cell_moving);
+			return;
+		}
+		
+		this.translate(
+			x_done ? 0 : x_move_positive ? 5 : -5,
+			y_done ? 0 : y_move_positive ? 5 : -5
+		);
+		if (this.main_aura)
+			this.main_aura.translate(
+				x_done ? 0 : x_move_positive ? 5 : -5,
+				y_done ? 0 : y_move_positive ? 5 : -5
+			);
+
+		if (!x_done) this.current_translation.x += (5 * (x_move_positive ? 1 : -1 ));
+		if (!y_done) this.current_translation.y += (5 * (y_move_positive ? 1 : -1 ));
+		
+		this.cell_to_cell_moving = setTimeout( arguments.callee.bind(this) , 10);
+	},
+	
 	followPathAndStop: function(path) {
 		this.path = path;
 		this.path_step = 0;
 
 		this.def_element.followingPath(path[0]);
 
+		//console.log("following path: %o", path);
+		
 		var goNextStep;
-		goNextStep = function(){
+		goNextStep = function() {
 			if (this.path_step >= this.path.length) {
+				//console.log('path step (%o) > path length (%o) so endFollowingPath', this.path_step, this.path.length);
 				this.def_element.endFollowingPath();
 				return;
 			}
 
-			this.enterCell(this.path[this.path_step++]);
+			this.enterCell($(this.path[this.path_step].id), this.path[this.path_step].by_dir);
+			this.path_step++;
 
 			setTimeout(arguments.callee.bind(this), this.MOVE_PATH_SPEED);
 		};
 
 		setTimeout(goNextStep.bind(this), this.CHANGE_PATH_SPEED);
+	},
+	
+	cast: function(spell) {
+		var cast = new IRL_IG.classes.cast({
+			spell_time: 2000,
+			onComplete: function(){
+				new IRL_IG.spells.aura_stars(IRL_IG.player);
+			}
+		});
+		this.current_cast = cast;
+		return cast;
 	}
 
 });

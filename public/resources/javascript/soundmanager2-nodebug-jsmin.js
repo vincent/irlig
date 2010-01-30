@@ -1,0 +1,1 @@
+/home/vincent/workspace/svg_game/irlig/resources/soundmanagerv295b-20100101/script/soundmanager2-nodebug-jsmin.js

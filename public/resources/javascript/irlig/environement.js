@@ -19,6 +19,16 @@ IRL_IG.environement = {
 		}
 
 		setInterval(animate.bind(pat), 100);
+	},
+	
+	elevateWithChildren: function(center_element, amplitude) {
+		var center = $(center_element);
+		center.translate(0, -amplitude);
+		
+		center.getMapNeighbors().each(function(e){
+			var el = $(e);
+			el.translate(0, -(amplitude / 2));
+		});
 	}
 
 

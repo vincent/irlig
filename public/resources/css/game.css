@@ -7,7 +7,10 @@ svg {
 	stroke: none !important;
 	stroke-width: 0px;
 }
-#map .hover {
+#map .hover, #map *:hover {
 	fill: #0F0 !important;
 }
 
+#map .hover_neighbour {
+	fill: #F00 !important;
+}

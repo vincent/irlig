@@ -266,8 +266,8 @@ class grid:
 
 		# for id
 		index = 0
-
-		print "%s COLUMNS" % columns
+		
+		#print "%s rows, %s columns" % ( rows, columns )
 
 		for polyRow in range(0, rows):
 			polyTop = verticalOffset + polyRow*partHeight
@@ -299,50 +299,81 @@ class grid:
 
 				"""
 				positions = {
-					'cell_NW': (index - rows),
-					'cell_N' : (index - rows * 2),
-					'cell_NE': (index - rows + 1),
-					'cell_SE': (index + rows),
-					'cell_S' : (index + rows * 2),
-					'cell_SW': (index + rows - 1)
+					'cell_NW': (index - columns    ),
+					'cell_N' : (index - columns * 2),
+					'cell_NE': (index - columns + 1),
+					'cell_SE': (index + columns    ),
+					'cell_S' : (index + columns * 2),
+					'cell_SW': (index + columns - 1)
 				}
 				"""
 
 				gridshape.attributes['id'] = 'cell_' + str(index)
+				gridshape.attributes['row'] = str(polyRow)
+				gridshape.attributes['col'] = str(polyColumn)
 
-				neighbors_class = 'neighbors-'
+				neighbors_class = [ ]
 
-				id = index - columns
-				if id >= 0:
-					#gridshape.attributes['cell_NW'] = "cell_" + str(id)
-					neighbors_class += "cell_" + str(id) + '-'
+				evenRow = (polyRow % 2 == 0)
+				evenCol = (polyColumn % 2 == 0)
+				id = -1
 
+				#print "i%s: polyRow=%s polyColumn=%s" % ( index, polyRow, polyColumn )
+
+				# North OK
 				id = index - columns * 2
 				if id >= 0:
+					neighbors_class.append( "N:cell_" + str(id) )
 					#gridshape.attributes['cell_N']  = "cell_" + str(id)
-					neighbors_class += "cell_" + str(id) + '-'
 
-				id = index - columns + 1
-				if id >= 0:
-					#gridshape.attributes['cell_NE'] = "cell_" + str(id)
-					neighbors_class += "cell_" + str(id) + '-'
-
-				id = index + columns - 1
-				if id <= rows * columns:
-					#gridshape.attributes['cell_SE'] = "cell_" + str(id)
-					neighbors_class += "cell_" + str(id) + '-'
-
+				# South OK
 				id = index + columns * 2
 				if id <= rows * columns:
 					#gridshape.attributes['cell_S']  = "cell_" + str(id)
-					neighbors_class += "cell_" + str(id) + '-'
+					neighbors_class.append( "S:cell_" + str(id) )
 
-				id = index + columns
+				# NorthWest OK
+				if evenRow:
+					if polyColumn > 0:
+						id = (index - columns) - 1
+				else:
+					id = (index - columns)
+				if id >= 0:
+					neighbors_class.append( "NW:cell_" + str(id) )
+
+				# NorthEst OK
+				if polyColumn < columns:
+					if evenRow:
+						id = index - columns
+					elif polyColumn < columns - 1:
+						id = index - columns + 1
+
+					if id >= 0:
+						neighbors_class.append( "NE:cell_" + str(id) )
+						#gridshape.attributes['cell_NW'] = "cell_" + str(id)
+
+				# SouthEst OK
+				if evenRow:
+					id = index + columns
+				else:
+					if polyColumn < (columns - 1):
+					   id = index + columns + 1
 				if id <= rows * columns:
+					neighbors_class.append( "SE:cell_" + str(id) )
+					#gridshape.attributes['cell_SE'] = "cell_" + str(id)
+				
+				# SouthWest
+				if evenRow:
+					if polyColumn > 0:
+					   id = index + columns - 1
+				else:
+					id = index + columns
+				if id <= rows * columns:
+					neighbors_class.append( "SW:cell_" + str(id) )
 					#gridshape.attributes['cell_SW'] = "cell_" + str(id)
-					neighbors_class += "cell_" + str(id) + '-'
 
-				gridshape.attributes['class'] = neighbors_class
+				if len(neighbors_class) > 0:
+					gridshape.attributes['class'] = 'neighbors-' + '-'.join(neighbors_class)
 
 				index = index + 1
 

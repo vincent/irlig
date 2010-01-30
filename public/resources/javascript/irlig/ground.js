@@ -6,6 +6,8 @@ IRL_IG.classes.ground = Class.create({
 
 	mapping: {},
 
+	showNeighbours: true,
+	
 	main_player_instance: null,
 
 	initialize: function(id, name, gridmatrix, mode) {
@@ -35,18 +37,27 @@ IRL_IG.classes.ground = Class.create({
 		IRL_IG.debug('Initializing map polygons');
 		var next_child = this.element.firstElementChild;
 		while (next_child) {
-			var element = next_child;
-
-			this.extendMapByPoly(element);
+			if (next_child.getClassName().length > 0) {
+				this.extendMapByPoly(next_child);
+			}
 			next_child = next_child.nextElementSibling;
 		}
 
-		Event.observe(this.element, 'mouseover', function(e){
-			e.element().classList.add('hover');
-		});
-		Event.observe(this.element, 'mouseout', function(e){
-			e.element().classList.remove('hover');
-		});
+		/* Pretending the hover effect is not needed on Gecko */
+		if (!Prototype.Browser.Gecko) {
+			Event.observe(this.element, 'mouseover', function(e){
+				var el = e.element();
+				el.addClassName('hover');
+				
+				//el.getMapNeighbors().each(function(n){ $(n).addClassName('hover_neighbour'); });
+			});
+			Event.observe(this.element, 'mouseout', function(e){
+				var el = e.element();
+				el.removeClassName('hover');
+
+				//el.getMapNeighbors().each(function(n){ $(n).removeClassName('hover_neighbour'); });
+			});
+		}
 
 		if (mode == 'edit') {
 			this.last_path = [ gridmatrix[0][0] ];
@@ -64,9 +75,7 @@ IRL_IG.classes.ground = Class.create({
 	},
 
 	extendMapByPoly: function(element) {
-		if (!element || !element.classList|| !element.classList.length) return;
-
-		var map_elements = $A(element.classList).findAll(function(c){
+		var map_elements = new Element.ClassNames(element).findAll(function(c){
 			var name = c.gsub('element-', '');
 			return (name != c);
 		});
@@ -82,22 +91,33 @@ IRL_IG.classes.ground = Class.create({
 			var symbol = $(map_element);
 			var symbol_bbox = symbol.getTBBox();
 
-			// Assume hotpoint it's ( width/2 , height )
+			// Assume hotpoint is ( width/2 , height )
 			var element_bbox = {
 				x: element_center.x - symbol_bbox.x - (0.5 * symbol_bbox.width),	// HEREISHIT
 				y: element_center.y - symbol_bbox.y - (0.8 * symbol_bbox.height),	// HEREISHIT
 			};
+			/*
 			var element_ctm = element.getTransformToElement($('eLayer'));
 			element_ctm = new Array( element_ctm.a, element_ctm.b, element_ctm.c, element_ctm.d, element_ctm.e, element_ctm.f );
+			*/
 
-			var new_el = this.addElement('use', { transform:'matrix('+element_ctm.join(' ')+')', x:element_bbox.x, y:element_bbox.y, 'xlink:href':'#'+map_element, id:'element-instance-'+parseInt(Math.random()*1000000) });
+			var new_el = this.addElement('use', { 
+				//transform:'matrix('+element_ctm.join(' ')+')',
+				//x:element_bbox.x,
+				//y:element_bbox.y,
+				'xlink:href':'#'+map_element,
+				id:'element-instance-'+parseInt(Math.random()*1000000)
+			});
+			new_el.translate(element_bbox.x, element_bbox.y);
 
+			//console.log('Added element %o', new_el);
+			
 			if (this.mapping[element.id])
 				this.mapping[element.id].push(new_el.id);
 			else
 				this.mapping[element.id] = [ new_el.id ];
 
-			var classNames = $A(symbol.classList).reject(function(classname){ return classname && classname != ''; });
+			var classNames = symbol.classNames();
 			if (classNames.length) {
 				classNames = classNames.join(' ');
 				element.addClassName(classNames);
@@ -200,16 +220,26 @@ IRL_IG.classes.ground = Class.create({
 	registerMainPlayer: function(player) {
 		if (!player) IRL_IG.debug('No player given');
 
-		var first_cell = this.element.children[0];
+		var first_cell = this.element.firstElementChild;
 		first_cell_center = first_cell.getCenter();
+
+		// Create a <use> for the player's aura
+		var player_aura = this.addElement('use', { 'xlink:href':'#radial_aura_player', 'id':'element-instance-'+parseInt(Math.random()*1000000) });
+		player_aura.translate(20,-20);
+		player_aura.scale(0.5);
 
 		// Create a <use> for the current player
 		this.addElement('use', { 'x':0, 'y':0, 'xlink:href':'#'+(player.def_element.id), 'id':'player_instance' });
-
+		
 		this.main_player = player;
+		this.main_player.setMainAura(player_aura);
 
 		Event.observe(this.element, 'click', function(e){
+		//this.element.onclick = function(e){
+
+			//console.log('Click event %o ...', e);
 			var dest = e.element();
+			//console.log('... from %o', dest);
 
 			/*
 			dest.setAttributeNS(null, 'fill', 'red');
@@ -220,8 +250,18 @@ IRL_IG.classes.ground = Class.create({
 			//console.log('To %o !', dest);
 
 			if (e.isLeftClick() && dest.isWalkable()) {
-				var path = this.astar.search(this.matrix, this.main_player.cell.getMatrixElement(this.matrix), dest.getMatrixElement(this.matrix));
-				path = path.map(function(cell){ return $(cell.id) });
+				//console.log('Go !');
+				
+				var start = this.main_player.cell.getMatrixElement(this.matrix);
+				//console.log('start is %o', start);
+				
+				var end   = dest.getMatrixElement(this.matrix);
+				//console.log('end is %o', end);
+				
+				var path = this.astar.search(this.matrix, start, end);
+				//console.log('found A* path %o' , path);
+				
+				//path = path.map(function(cell){ return $(cell.id) });
 				this.main_player.followPathAndStop(path);
 			}
 		}.bind(this));
@@ -229,5 +269,5 @@ IRL_IG.classes.ground = Class.create({
 		this.main_player.enterCell(first_cell);
 		console.log('player registred');
 	}
-
+	
 });

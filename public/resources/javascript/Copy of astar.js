@@ -36,7 +36,7 @@ var astar = {
 
 			// End case -- result has been found, return the traced path
 			if(currentNode.pos == end.pos) {
-				console.log('finished : %o = %o', currentNode, end);
+				//console.log('finished : %o = %o', currentNode, end);
 				var curr = currentNode;
 				var ret = [];
 				while(curr.parent) {
@@ -105,26 +105,26 @@ var astar = {
 		var x = node.pos.x;
 		var y = node.pos.y;
 
-		console.log('get neighbors');
+		//console.log('get neighbors');
 
-		console.log('%o, %o', grid[x-1], grid[x-1][y]);
+		//console.log('%o, %o', grid[x-1], grid[x-1][y]);
 		if(grid[x-1] && grid[x-1][y]) {
 			ret.push(grid[x-1][y]);
 		}
-		console.log('%o, %o', grid[x+1], grid[x+1][y]);
+		//console.log('%o, %o', grid[x+1], grid[x+1][y]);
 		if(grid[x+1] && grid[x+1][y]) {
 			ret.push(grid[x+1][y]);
 		}
-		console.log('%o, %o', grid[x][x-1], grid[x][y-1]);
+		//console.log('%o, %o', grid[x][x-1], grid[x][y-1]);
 		if(grid[x][y-1] && grid[x][y-1]) {
 			ret.push(grid[x][y-1]);
 		}
-		console.log('%o, %o', grid[x][x+1], grid[x][y+1]);
+		//console.log('%o, %o', grid[x][x+1], grid[x][y+1]);
 		if(grid[x][y+1] && grid[x][y+1]) {
 			ret.push(grid[x][y+1]);
 		}
 
-		console.log(ret);
+		//console.log(ret);
 
 		return ret;
 	}

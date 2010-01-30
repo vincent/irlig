@@ -1,11 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" zoomAndPan="disable" >
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+	 xmlns:xhtml="http://www.w3.org/1999/xhtml"
+ xml:space="preserve" zoomAndPan="disable" >
 
 	<?= $this->js('/prototype.js'); ?>
 	<?= $this->js('/scriptaculous/scriptaculous.js'); ?>
+	<?= $this->js('/irlig/base.js'); ?>
 	<?= $this->js('/irlig/init.js'); ?>
 	<?= $this->js('/irlig/ground.js'); ?>
 	<?= $this->js('/irlig/player.js'); ?>
+	<?= $this->js('/irlig/cast.js'); ?>
 	<?= $this->js('/irlig/hud.js'); ?>
 
 	<?= $this->partial('hud.svg'); ?>

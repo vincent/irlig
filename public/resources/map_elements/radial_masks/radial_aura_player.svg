@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="radial_mask_green.svg">
+   <g id="radial_aura_player">
+	  <defs
+	     id="defs4">
+	    <linearGradient
+	       id="linearGradient3590">
+	      <stop
+	         style="stop-color:#78ff00;stop-opacity:0;"
+	         offset="0"
+	         id="stop3592" />
+	      <stop
+	         id="stop3598"
+	         offset="0.52173913"
+	         style="stop-color:#32ff00;stop-opacity:0.49803922;" />
+	      <stop
+	         style="stop-color:#00ff00;stop-opacity:0;"
+	         offset="1"
+	         id="stop3594" />
+	    </linearGradient>
+	    <radialGradient
+	       inkscape:collect="always"
+	       xlink:href="#linearGradient3590"
+	       id="radialGradient3596"
+	       cx="298.57144"
+	       cy="389.50504"
+	       fx="298.57144"
+	       fy="389.50504"
+	       r="144.78572"
+	       gradientTransform="matrix(1,0,0,0.41785889,0,226.74689)"
+	       gradientUnits="userSpaceOnUse"
+	       spreadMethod="pad" />
+	  </defs>
+		<path
+		   sodipodi:type="arc"
+		   style="fill:url(#radialGradient3596);fill-opacity:1;fill-rule:evenodd;stroke-width:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		   id="path2816"
+		   sodipodi:cx="298.57144"
+		   sodipodi:cy="389.50504"
+		   sodipodi:rx="135.71429"
+		   sodipodi:ry="60"
+		   d="m 434.28574,389.50504 a 135.71429,60 0 1 1 -40.54233,-42.77392 l -95.17197,42.77392 z"
+		   transform="matrix(0.59098062,0,0,0.59098062,-176.44992,-225.43057)"
+		   sodipodi:start="0"
+		   sodipodi:end="5.4895623" />
+	</g>
+</svg>

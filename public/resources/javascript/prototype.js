@@ -17,7 +17,8 @@ var Prototype = {
       Opera:          isOpera,
       WebKit:         ua.indexOf('AppleWebKit/') > -1,
       Gecko:          ua.indexOf('Gecko') > -1 && ua.indexOf('KHTML') === -1,
-      MobileSafari:   /Apple.*Mobile.*Safari/.test(ua)
+      MobileSafari:   /Apple.*Mobile.*Safari/.test(ua),
+      Chrome:         ua.indexOf('Chrome') > -1
     }
   })(),
 
@@ -2117,35 +2118,68 @@ Element.Methods = {
     return Element.getDimensions(element).width;
   },
 
+  getClassName: function(element) {
+	if (element.classList)
+		return $A(element.classList).join(' ');
+	
+	else if (element.className.baseVal)
+    	return typeof(element.className.baseVal) != 'undefined' ? element.className.baseVal : '';
+	
+	return '';
+  },
+	  
+  setClassName: function(element, className) {
+	if (element.classList)
+		element.classList.add(className);
+	else if (element.className.baseVal)
+    	element.className.baseVal = className;
+  },
+		  
   classNames: function(element) {
     return new Element.ClassNames(element);
   },
 
   hasClassName: function(element, className) {
     if (!(element = $(element))) return;
-    var elementClassName = element.className;
-    return (elementClassName.length > 0 && (elementClassName == className ||
-      new RegExp("(^|\\s)" + className + "(\\s|$)").test(elementClassName)));
+	if (element.classList)
+		return element.classList.contains(className);
+	else {
+      var elementClassName = Element.getClassName(element);
+      return (elementClassName.length > 0 && (elementClassName == className ||
+        new RegExp("(^|\\s)" + className + "(\\s|$)").test(elementClassName)));
+	}
   },
 
   addClassName: function(element, className) {
     if (!(element = $(element))) return;
-    if (!Element.hasClassName(element, className))
-      element.className += (element.className ? ' ' : '') + className;
+	if (element.classList)
+	  return element.classList.add(className);
+	else {
+	  if (!Element.hasClassName(element, className))
+	    Element.setClassName(element, Element.getClassName(element) + ' ' + className);
+	}
     return element;
   },
 
   removeClassName: function(element, className) {
     if (!(element = $(element))) return;
-    element.className = element.className.replace(
-      new RegExp("(^|\\s+)" + className + "(\\s+|$)"), ' ').strip();
+	if (this.classList)
+		return this.classList.remove(className);
+	else {
+      Element.setClassName(element,  Element.getClassName(element).replace(
+        new RegExp("(^|\\s+)" + className + "(\\s+|$)"), ' ').strip());
+	}
     return element;
   },
 
   toggleClassName: function(element, className) {
     if (!(element = $(element))) return;
-    return Element[Element.hasClassName(element, className) ?
-      'removeClassName' : 'addClassName'](element, className);
+	if (this.classList)
+		return this.classList.toggle(className);
+	else {
+      return Element[Element.hasClassName(element, className) ?
+        'removeClassName' : 'addClassName'](element, className);
+	}
   },
 
   cleanWhitespace: function(element) {
@@ -4845,13 +4879,13 @@ Element.ClassNames.prototype = {
   },
 
   _each: function(iterator) {
-    this.element.className.split(/\s+/).select(function(name) {
+    Element.getClassName(this.element).split(/\s+/).select(function(name) {
       return name.length > 0;
     })._each(iterator);
   },
 
   set: function(className) {
-    this.element.className = className;
+	Element.setClassName(this.element, className);
   },
 
   add: function(classNameToAdd) {

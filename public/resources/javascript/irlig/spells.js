@@ -1,0 +1,3 @@
+IRL_IG.spells = {
+		
+}

@@ -1,10 +1,17 @@
+/**
+ * GLOBALS
+ */
+var svgns = 'http://www.w3.org/2000/svg';
+
+/**
+ * Methods added on SVGNodes 
+ */
 IRL_IG_Node_methods = {
 
 	/**
 	 * Get the __transformed__ element's BBox
 	 */
 	getTBBox: function() {
-		var svgns = 'http://www.w3.org/2000/svg';
 		var bbox;
 
 		try {
@@ -122,26 +129,36 @@ IRL_IG_Node_methods = {
 	   return bbox;
 	},
 
+	classNames: function() {
+		return Element.classNames(this)
+	},
+	getClassName: function() {
+		return Element.getClassName(this);
+	},
+	setClassName: function(name) {
+		return Element.setClassName(this, name);
+	},
 	hasClassName: function(name) {
-		return this.classList.contains(name);
+		Element.hasClassName(this, name);
 	},
 	addClassName: function(name) {
-		return this.classList.add(name);
+		Element.addClassName(this, name);
 	},
 	removeClassName: function(name) {
-		return this.classList.remove(name);
+		Element.removeClassName(this, name);
 	},
 	toggleClassName: function(name) {
-		return this.classList.toggle(name);
+		Element.toggleClassName(this, name);
 	},
 
 	remove: function() {
-		return this.parentNode.removeChild(this);
+		if (this.parentNode)
+			return this.parentNode.removeChild(this);
 	},
 
 	isWalkable: function() {
 		return (
-				!this.classList.contains('is_wall')
+				!this.hasClassName('is_wall')
 			&&	(!this.hasAttribute('type') || this.getAttribute('type') != 'wall')
 		);
 	},
@@ -155,6 +172,7 @@ IRL_IG_Node_methods = {
 	},
 
 	getMatrixElement: function(matrix) {
+		//return grid_assoc[this.id];
 		return matrix.findGraphNodeById(this.id);
 	},
 
@@ -167,18 +185,32 @@ IRL_IG_Node_methods = {
 	},
 
 	getMapNeighbors: function(options) {
-		var neighbors = [];
+		var neighbors = $H();
 		var _defaults = {
 			with_elements: false,
 			only_ids: false
 		};
-		if (!options) options = Object.extend(_defaults, options);
+		if (!options)
+			options = _defaults;
+		else
+			options = Object.extend(_defaults, options);
 
-		$A(this.classList).each(function(classname){
+		var i = 0;
+		$A(this.classNames()).each(function(classname){
 			if (classname.indexOf('neighbors-') == 0)
-				classname.gsub('neighbors-', '').split('-').each(function(n){ if (n && !n.empty()) neighbors.push(n); });
+				classname.gsub('neighbors-', '').split('-').each(function(n){
+					if (n && !n.empty()) {
+						if (n.indexOf(':')) {
+							n = n.split(':');
+							neighbors.set(n[0],n[1]);
+						}
+						else
+							neighbors.set(i,n);
+					}
+				});
 		});
 
+		/*
 		[ 'NW', 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W' ].each(function(n){
 			n = 'cell_'+n;
 			if (this.hasAttributeNS(null, n))
@@ -187,10 +219,10 @@ IRL_IG_Node_methods = {
 
 		if (options.with_elements) {
 			neighbors = neighbors.reject(function(cell){
-				var has_element = $A($(cell).classList).find(function(classname){ return classname.indexOf('element-') == -1 });
-				return typeof(has_element) != 'undefined';
+				return $(cell).hasClassName('element-');
 			});
 		}
+		*/
 
 		return neighbors;
 	},
@@ -228,6 +260,12 @@ IRL_IG_Node_methods = {
 		return tmp;
 	},
 
+	scale: function(factor) {
+		var ctm = this.getTransformToElement(document.documentElement);
+		var m = (ctm.a * factor) + ' ' + ctm.b + ' ' + ctm.c + ' ' + (ctm.d * factor) + ' ' + ctm.e + ' ' + ctm.f;
+		this.setAttributeNS(null, 'transform', 'matrix('+m+')');
+		return this;
+	},
 	translate: function(dx, dy) {
 		var ctm = this.getTransformToElement(document.documentElement);
 		var m = ctm.a + ' ' + ctm.b + ' ' + ctm.c + ' ' + ctm.d + ' ' + (ctm.e + dx) + ' ' + (ctm.f + dy);

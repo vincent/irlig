@@ -31,15 +31,22 @@ class Svg_Map {
 			'columns'	=>	(string) $maproot['columns']
 		);
 
-		$matrix = array_fill( 0, $maproot['rows'], array_fill( 0, $maproot['columns'], null ) );
+		//$matrix = array_fill( 0, $maproot['rows'], array_fill( 0, $maproot['columns'], null ) );
+		$matrix = array();
 
 		$cell = 0;
-		for ($r = 0; $r < $maproot['rows']; $r++)
-			for ($c = 0; $c < $maproot['columns']; $c++)
+		for ($r = 0; $r < $maproot['rows']; $r++) {
+			for ($c = 0; $c < $maproot['columns']; $c++) {
 				$matrix[$r][$c] = array(
-					'id'	=>	'cell_'.$cell++,
+					'id'	=>	'cell_'.$cell,
 					'pos'	=>	array( 'x'=>$r, 'y'=>$c ),
 				);
+				/**/
+				//$matrix['cell_'.$cell] = array( 'x'=>$r, 'y'=>$c );
+
+				$cell++;
+			}
+		}
 
 		return $matrix;
 	}

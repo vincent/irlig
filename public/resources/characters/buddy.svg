@@ -136,8 +136,10 @@
 		player.hairRight= function(){ $('body').pathSegList.getItem(3).x += 100; };
 		player.hairLeft = function(){ $('body').pathSegList.getItem(3).x -= 100; };
 
-	  	player.followingPath = function(data){
+	  	player.followingPath = function(data){};
+	  	player.endFollowingPath = function(data){};
 
+		/*
 			var me = $('player_instance').getCenter();
 			var dest = data.getCenter();
 
@@ -151,6 +153,7 @@
 	  	player.endFollowingPath = function(data){
 	  		this.hairReset();
 	  	};
+	  	*/
 
 	  //});
 	  </script>

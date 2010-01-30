@@ -40,10 +40,18 @@ Object.extend(IRL_IG.classes.a_star_grid.prototype, Array.prototype, {
  * For A* grid
  */
 Array.prototype.findGraphNodeById = function(id) {
+
+	//console.log( 'search in matrix %o ...', this );
+	
 	var found = null;
 	for(var x = 0; x < this.length; x++)
 		for(var y = 0; y < this[x].length; y++)
-			if (this[x][y].id == id) return this[x][y];
+			if (this[x][y].id == id) {
+				
+				//console.log( 'found %o !', this[x][y] );
+
+				return this[x][y];
+			}
 	return found;
 };
 
@@ -67,26 +75,33 @@ var Astar = Class.create({
 	grid : [],
 
 	initialize: function(grid) {
-		this.grid = grid;
-		for(var x = 0; x < this.grid.length; x++) {
-			for(var y = 0; y < this.grid[x].length; y++) {
-				this.grid[x][y].f = 0;
-				this.grid[x][y].g = 0;
-				this.grid[x][y].h = 0;
-				this.grid[x][y].debug = "";
-				this.grid[x][y].parent = null;
+		var mygrid = Object.extend(grid);
+		for(var x = 0; x < mygrid.length; x++) {
+			for(var y = 0; y < mygrid[x].length; y++) {
+				mygrid[x][y].f = 0;
+				mygrid[x][y].g = 0;
+				mygrid[x][y].h = 0;
+				mygrid[x][y].debug = "";
+				mygrid[x][y].parent = null;
 			}
 		}
+		return mygrid;
 	},
 	search: function(grid, start, end) {
 
-		this.initialize(this.grid);
+		//if (!this.grid_cache) this.grid_cache = this.initialize(grid);
 
-		var grid 	   = this.grid.clone();
+		var grid 	   = this.initialize(grid);
 		var openList   = [];
 		var closedList = [];
 		openList.push(start);
 
+		for(var x = 0; x < grid.length; x++)
+			for(var y = 0; y < grid[x].length; y++)
+				if (grid[x][y].parent)
+					console.log('Hu, seems there already is a parent in grid[%s][%s] : %o', x, y, grid[x][y]);
+		
+		
 		while(openList.length > 0) {
 
 			// Grab the lowest f(x) to process next
@@ -115,7 +130,7 @@ var Astar = Class.create({
 			var neighbors = this.neighbors(grid, currentNode);
 
 			for(var i=0; i<neighbors.length;i++) {
-				var neighbor = neighbors[i];
+				var neighbor = neighbors[i][1];
 				if ( !$(neighbor.id).isWalkable() || closedList.findGraphNode(neighbor)) {
 					// not a valid node to process, skip to next neighbor
 					continue;
@@ -147,6 +162,8 @@ var Astar = Class.create({
 					neighbor.g = gScore;
 					neighbor.f = neighbor.g + neighbor.h;
 					//neighbor.debug = "F: " + neighbor.f + "<br />G: " + neighbor.g + "<br />H: " + neighbor.h;
+					
+					neighbor.by_dir = neighbors[i][0];
 				}
 			}
 		}
@@ -167,11 +184,14 @@ var Astar = Class.create({
 
 		var cell = $(node.id)
 		var neighbors = cell.getMapNeighbors();
-
+		var dirs = neighbors.keys();
+		
 		neighbors = neighbors.map(function(cell_id){
-			return grid.findGraphNodeById(cell_id);
+			return grid.findGraphNodeById(cell_id[1]);
 		});
 
+		neighbors = dirs.zip(neighbors);
+		
 		return neighbors;
 	}
 });

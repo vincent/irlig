@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="200"
+   height="200"
+   id="svg2325"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="buddy.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:window-height="726"
+     inkscape:window-width="736"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="2.32"
+     inkscape:cx="110.64288"
+     inkscape:cy="152.14426"
+     inkscape:window-x="130"
+     inkscape:window-y="45"
+     inkscape:current-layer="g2389" />
+  <g id="player_riku">
+	  <defs
+	     id="defs2327">
+	    <pattern
+	       patternUnits="userSpaceOnUse"
+	       width="128"
+	       height="256"
+	       patternTransform="translate(450,115)"
+	       id="pattern5165">
+	      <image
+	         xlink:href="/resources/images/riku8wn.png"
+	         width="128"
+	         height="256"
+	         id="image2951"
+	         x="0"
+	         y="-18" />
+	    </pattern>
+	  </defs>
+    <rect
+       style="fill:url(#pattern5165);"
+       id="rect2816"
+       width="30"
+       height="60"
+       x="0.17544992"
+       y="-68.319519" />
+ 	<rect
+       style="fill:red;"
+       id="hotpoint"
+       class="hotpoint"
+       width="5"
+       height="5"
+       x="20"
+       y="40" />
+    <script
+       type="text/ecmascript"
+       id="script2399">
+	  //Event.observe(window, 'load', function(){
+
+	  	var player = $('player_riku');
+
+	  	player.leaveCell = function(data, by_dir){
+	  		//console.log(by_dir);
+	  		player.switchPose(by_dir);
+	  	};
+
+	  	player.enterCell = function(data, by_dir){
+	  		//console.log(by_dir);
+	  	};
+
+	  	player.followingPath = function(data){
+			player.walking = setInterval(function(){
+				if (player.current_pose) {
+					player.current_pose_cycle++;
+					this.switchPose(player.current_pose, player.current_pose_cycle);
+				}
+			}.bind(player), 200);
+			//console.log('Set interval %o', player.walking );
+	  	};
+	  	
+	  	player.endFollowingPath = function(data, by_dir){
+	  		player.walking = clearInterval(player.walking);
+	  		player.switchPose(null);
+			//console.log('endFollowingPath');
+	  	};
+
+		player.switchPose = function(dir, cycle) {
+	  		var image = $('image2951');
+	  		var coords = player.getPositionCoords(dir, cycle);
+	  		image.setAttributeNS(null, 'x', coords.x);
+	  		image.setAttributeNS(null, 'y', coords.y);
+
+			player.current_pose = dir;
+		};
+
+		player.current_pose_cycle = 0;
+		player.getPositionCoords = function(position, cycle) {
+			switch (position) {
+				default:
+				case 'S':
+				case 'SOUTH':
+				case 'DEFAULT':
+					pose_coords =  { x:0, y:-18 };
+				break;
+
+				case 'N':
+				case 'NORTH':
+					pose_coords =  { x:0, y:-210 };
+				break;
+
+				case 'NE':
+				case 'NORTHEAST':
+					pose_coords =  { x:0, y:-140 };
+					//pose_coords =  { x:-96, y:-210 };
+				break;
+
+				case 'NW':
+				case 'NORTHWEST':
+					pose_coords =  { x:0, y:-78 };
+					//pose_coords =  { x:-32, y:-210 };
+				break;
+
+				case 'SE':
+				case 'SOUTHEAST':
+					pose_coords =  { x:0, y:-140 };
+				break;
+
+				case 'SW':
+				case 'SOUTHWEST':
+					pose_coords =  { x:0, y:-78 };
+				break;
+			}
+
+			if (cycle > 3) cycle = 0;			
+			if (cycle) pose_coords.x = cycle * -32;			
+			
+			return pose_coords;
+		}
+
+	  //});
+	  </script>
+  </g>
+</svg>

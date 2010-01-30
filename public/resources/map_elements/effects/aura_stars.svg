@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="aura_stars.svg">
+  <defs
+     id="defs4012">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective4069" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="379.28571"
+     inkscape:cy="1281.886"
+     inkscape:document-units="px"
+     inkscape:current-layer="aura_stars"
+     showgrid="false"
+     inkscape:window-width="914"
+     inkscape:window-height="633"
+     inkscape:window-x="1868"
+     inkscape:window-y="229"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="aura_stars">
+    <defs
+       id="defs4">
+      <linearGradient
+         id="linearGradient3660">
+        <stop
+           style="stop-color:#e5ff00;stop-opacity:0.56521738;"
+           offset="0"
+           id="stop3662" />
+        <stop
+           style="stop-color:#ffff00;stop-opacity:0;"
+           offset="1"
+           id="stop3664" />
+      </linearGradient>
+      <radialGradient
+         inkscape:collect="always"
+         xlink:href="#linearGradient3660"
+         id="radialGradient3596"
+         cx="332.85715"
+         cy="473.79074"
+         fx="332.85715"
+         fy="473.79074"
+         r="130.5"
+         gradientUnits="userSpaceOnUse" />
+      <filter
+         inkscape:collect="always"
+         id="filter3654"
+         x="-0.108"
+         width="1.216"
+         y="-0.108"
+         height="1.216">
+        <feGaussianBlur
+           inkscape:collect="always"
+           stdDeviation="11.7"
+           id="feGaussianBlur3656" />
+      </filter>
+      <radialGradient
+         inkscape:collect="always"
+         xlink:href="#linearGradient3660"
+         id="radialGradient3666"
+         cx="126.03218"
+         cy="115.87097"
+         fx="126.03218"
+         fy="115.87097"
+         r="36.564445"
+         gradientTransform="matrix(1,0,0,1.0336406,0,-3.897966)"
+         gradientUnits="userSpaceOnUse" />
+      <linearGradient
+         id="linearGradient3660-5">
+        <stop
+           style="stop-color:#e5ff00;stop-opacity:0.56521738;"
+           offset="0"
+           id="stop3662-1" />
+        <stop
+           style="stop-color:#ffff00;stop-opacity:0;"
+           offset="1"
+           id="stop3664-2" />
+      </linearGradient>
+      <radialGradient
+         r="36.564445"
+         fy="115.87097"
+         fx="126.03218"
+         cy="115.87097"
+         cx="126.03218"
+         gradientTransform="matrix(1,0,0,1.0336406,0,-3.897966)"
+         gradientUnits="userSpaceOnUse"
+         id="radialGradient3685"
+         xlink:href="#linearGradient3660-5"
+         inkscape:collect="always" />
+      <linearGradient
+         id="linearGradient3660-6">
+        <stop
+           style="stop-color:#e5ff00;stop-opacity:0.56521738;"
+           offset="0"
+           id="stop3662-0" />
+        <stop
+           style="stop-color:#ffff00;stop-opacity:0;"
+           offset="1"
+           id="stop3664-4" />
+      </linearGradient>
+      <radialGradient
+         r="36.564445"
+         fy="115.87097"
+         fx="126.03218"
+         cy="115.87097"
+         cx="126.03218"
+         gradientTransform="matrix(1,0,0,1.0336406,0,-3.897966)"
+         gradientUnits="userSpaceOnUse"
+         id="radialGradient3685-4"
+         xlink:href="#linearGradient3660-6"
+         inkscape:collect="always" />
+    </defs>
+    <g
+       id="aura_stars_group"
+       transform="matrix(0.12097667,0,0,0.12097667,24.570334,12.739979)">
+      <path
+         transform="matrix(1.3072585,0,0,1.3072585,-53.70177,-97.004819)"
+         d="m 462.85715,473.79074 c 0,71.79702 -58.20299,130 -130,130 -71.79702,0 -130,-58.20298 -130,-130 0,-71.79702 58.20298,-130 130,-130 71.79701,0 130,58.20298 130,130 z"
+         sodipodi:ry="130"
+         sodipodi:rx="130"
+         sodipodi:cy="473.79074"
+         sodipodi:cx="332.85715"
+         style="fill:url(#radialGradient3596);fill-opacity:1;fill-rule:evenodd;stroke:none;filter:url(#filter3654)"
+         sodipodi:type="arc"
+         id="path4059" />
+      <path
+         transform="translate(240,337.14285)"
+         d="m 137.14285,78.076473 2.40899,26.316717 23.04478,12.93489 -24.28427,10.4234 -5.18057,25.91398 -17.4175,-19.8747 -26.246549,3.08084 13.519669,-22.70664 -11.040688,-24.009926 25.773108,5.841228 19.42303,-17.919789 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="-0.57530396"
+         sodipodi:arg1="-1.2036225"
+         sodipodi:r2="19.897697"
+         sodipodi:r1="39.795395"
+         sodipodi:cy="115.21933"
+         sodipodi:cx="122.85714"
+         sodipodi:sides="5"
+         style="fill:url(#radialGradient3666);fill-opacity:1;stroke:none"
+         sodipodi:type="star"
+         id="path4061" />
+      <path
+         transform="translate(342.53925,436.49121)"
+         d="m 137.14285,78.076473 2.40899,26.316717 23.04478,12.93489 -24.28427,10.4234 -5.18057,25.91398 -17.4175,-19.8747 -26.246549,3.08084 13.519669,-22.70664 -11.040688,-24.009926 25.773108,5.841228 19.42303,-17.919789 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="-0.57530396"
+         sodipodi:arg1="-1.2036225"
+         sodipodi:r2="19.897697"
+         sodipodi:r1="39.795395"
+         sodipodi:cy="115.21933"
+         sodipodi:cx="122.85714"
+         sodipodi:sides="5"
+         style="fill:url(#radialGradient3685);fill-opacity:1;stroke:none"
+         sodipodi:type="star"
+         id="path4063" />
+      <path
+         transform="translate(202.53925,439.34836)"
+         d="m 137.14285,78.076473 2.40899,26.316717 23.04478,12.93489 -24.28427,10.4234 -5.18057,25.91398 -17.4175,-19.8747 -26.246549,3.08084 13.519669,-22.70664 -11.040688,-24.009926 25.773108,5.841228 19.42303,-17.919789 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="-0.57530396"
+         sodipodi:arg1="-1.2036225"
+         sodipodi:r2="19.897697"
+         sodipodi:r1="39.795395"
+         sodipodi:cy="115.21933"
+         sodipodi:cx="122.85714"
+         sodipodi:sides="5"
+         style="fill:url(#radialGradient3685-4);fill-opacity:1;stroke:none"
+         sodipodi:type="star"
+         id="path4065" />
+    </g>
+    <script
+       type="text/ecmascript"
+       id="script4067">
+    	(function(){
+    		var g = document.getElementById('aura_stars_group');
+    		g.default_matrix = g.getAttributeNS(null, 'transform'); /* "matrix(0.12097667,0,0,0.12097667,24.570334,12.739979)"; */
+    		
+    		g.run_effect = function() {
+    			clearTimeout(g.effect_timer);
+    			g.effect_timer = setTimeout(g._run_effect.bind(g), 1);
+    			//g.effect_end_timer = setTimeout(g._end_effect.bind(g), 201);
+    		};
+
+    		g._end_effect = function() {
+    		}
+    		
+    		g._run_effect = function() {
+    			if (this.current_scale &lt; 15) {
+    				this.style.display = 'none';
+
+					/* */
+    				this.scale(1.2);
+    				//*/
+
+    				/* */
+    				var new_bbox = this.getTBBox();
+    				this.translate( - new_bbox.x * 1 - new_bbox.width, - new_bbox.y * 1 - new_bbox.height );
+    				//*/
+
+    				/*
+    				var new_bbox = $('aura_stars_group').getTBBox();
+					var ctm = this.previous_matrix ? this.previous_matrix : this.getTransformToElement(document.documentElement);
+					ctm = ctm.scale(1.2);
+					//console.log(ctm.a+' '+ctm.b+' '+ctm.c+' '+ctm.d+' '+ctm.e+' '+ctm.f);
+    				ctm = ctm.translate( - new_bbox.width * 3, - new_bbox.height * 3);
+    				this.setAttributeNS(null, 'transform', 'matrix('+ctm.a+' '+ctm.b+' '+ctm.c+' '+ctm.d+' '+ctm.e+' '+ctm.f+')');
+    				this.previous_matrix = ctm;
+    				*/
+    				
+    				this.style.display = '';
+    				this.current_scale++;
+    				//console.log('aura scale is now %o', this.current_scale);
+    				g.effect_timer = setTimeout(this._run_effect.bind(this), 30);
+    			}
+    			else {
+	    			clearTimeout(this.effect_timer);
+	     			this.setAttributeNS(null, 'transform', this.default_matrix);
+	    			this.current_scale = 0;
+    			}
+    		}
+    		
+    	})();
+
+		IRL_IG.spells.aura_stars = Class.create({
+			initialize: function(player) {
+				var player_pos = player.position();
+				var player_bbox = player.getInstance().getTBBox();
+				var aura_bbox = $('aura_stars_group').getTBBox();
+
+				this.element = IRL_IG.ground.addElement('use', { 'xlink:href':'#aura_stars_group' });
+
+				this.element.translate(player_bbox.x - (aura_bbox.width / 1), player_bbox.y - (aura_bbox.width / 2));
+				
+				//console.log('element %o should be on %o:%o', this.element, player_pos.x, player_pos.y);
+				
+				setTimeout(this.element.remove.bind(this.element), 101);
+				$('aura_stars_group').run_effect();
+			}
+		});
+    </script>
+  </g>
+</svg>
